@@ -1,0 +1,56 @@
+<div data-role="page" id="fbpage" style="height: 100%">
+	<div data-role="header" data-tap-toggle="false" data-position="fixed"
+		style="background: -webkit-linear-gradient(90deg, #50C9C3 10%, #96DEDA 90%);">
+		<a href="#"
+			onclick="$.mobile.changePage('register_login.html',{ changeHash: false });"
+			style="background: url('img/backb.png') no-repeat; background-size: 120%; box-shadow: none; height: 80%; border: 0px;"></a>
+		<h3
+			style="text-transform: capitalize; color: #303638; margin-left: auto; margin-right: auto; width: 70%; text-shadow: none;">Facebook
+			Login</h3>
+		<a href="#" class="ui-btn-right"
+			style="background: url('img/logo.png') no-repeat; background-size: 120%; box-shadow: none; height: 80%; border: 0px;"></a>
+	</div>
+	<div data-role="main" class="ui-content"
+		style="overflow-y: scroll; -webkit-overflow-scrolling: touch;">
+		<div align="center">
+			<img id="fbpic" src="#" style="height: 130px; width: 130px;">
+		</div>
+		<form action="POST" id="fbform">
+			<label for="user-name"
+				style="color: #000000; margin-top: 3%; text-transform: capitalize;">First
+				Name:</label> <input type="text" data-role="none" id="user-name"
+				name="user-name" placeholder=""
+				style="background: transparent; border: 1px solid black; border-radius: 1px; text-transform: none; text-indent: 5px; width: 85%; height: 30px;" />
+			<label for="last-name"
+				style="color: #000000; margin-top: 4%; text-transform: capitalize;">Last
+				Name:</label> <input type="text" data-role="none" id="last-name"
+				name="last-name" placeholder=""
+				style="background: transparent; border: 1px solid black; border-radius: 1px; text-transform: none; text-indent: 5px; width: 85%; height: 30px;" />
+			<label for="user-email"
+				style="color: #000000; margin-top: 4%; text-transform: capitalize;">Email:</label>
+			<input type="text" data-role="none" id="user-email" name="user-email"
+				placeholder=""
+				style="background: transparent; border: 1px solid black; border-radius: 1px; text-transform: none; text-indent: 5px; width: 85%; height: 30px;" />
+			<input type="hidden" id="user-id" name="user-id"> <label
+				style="color: #303638; margin-top: 4%; text-transform: capitalize;">Profile
+				Privacy:</label>
+			<div class="ui-grid-a"
+				style="width: 100%; margin-top: 4%; color: #303638; border: 1px solid black; border-radius: 1px; padding: 2px;"
+				align="center">
+				<div class="ui-block-a">
+					<label>Private</label> <input data-role="none" type="radio"
+						id="profile_me" name="privacy" value="private" checked><br>
+				</div>
+				<div class="ui-block-b">
+					<label>Public</label> <input data-role="none" type="radio"
+						id="profile_public" name="privacy" value="public"><br>
+				</div>
+			</div>
+			<div align="center" style="margin-top: 3%;">
+				<a class="ui-btn ui-btn-inline" id="fblogbut"
+					style="background-color: red; border: 1px solid white; border-radius: 15px; color: #FFFFFF;">Login</a>
+			</div>
+
+		</form>
+	</div>
+</div>

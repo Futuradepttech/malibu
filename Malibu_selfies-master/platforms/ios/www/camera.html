@@ -1,0 +1,96 @@
+	<!--
+	    Licensed to the Apache Software Foundation (ASF) under one
+	    or more contributor license agreements.  See the NOTICE file
+	    distributed with this work for additional information
+	    regarding copyright ownership.  The ASF licenses this file
+	    to you under the Apache License, Version 2.0 (the
+	    "License"); you may not use this file except in compliance
+	    with the License.  You may obtain a copy of the License at
+	
+	    http://www.apache.org/licenses/LICENSE-2.0
+	
+	    Unless required by applicable law or agreed to in writing,
+	    software distributed under the License is distributed on an
+	    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+	     KIND, either express or implied.  See the License for the
+	    specific language governing permissions and limitations
+	    under the License.
+	-->
+<div data-role="page" id="camera"
+	style="height: 100%; background-image: url('img/login_screen_bg.png'); background-size: cover; width: 100%; background-repeat: no-repeat;">
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false"
+		style="background-color: #43D3F7; text-align: center; display: table-cell; vertical-align: middle;">
+		<img src="img/logo.png"
+			style="width: 50px; float: left; margin-right: 5px; margin-left: 5px;">
+		<span id="selfie_text"
+			style="color: #FFFFFF; font-weight: normal; font-size: medium; text-transform: none; text-align: center; margin-top: 1em; float: left; text-shadow: none;">Selfies</span>
+		<img src="img/ques.png"
+			onclick='$.mobile.changePage("faq.html", {changeHash : true});'
+			style="float: right; width: 40px; margin-top: 5px;"> <img
+			src="img/msg_icon.png"
+			onclick='$.mobile.changePage("messageMain.html", {changeHash : true});'
+			style="float: right; width: 40px; margin-top: 5px;">
+	</div>
+	<div data-role="main" class="ui-content" align="center"
+		style="background-color: transparent; width: 90%; height: 430px;">
+
+		<div class="ui-grid-b"
+			style="margin-top: 48%; width: 60%; z-index: 0;">
+			<div class="ui-block-a" style="width: 48%;">
+				<img id="camera_ic" src="img/camera.png" style="height: 80px;" />
+			</div>
+			<div class="ui-block-b" style="width: 4%;"></div>
+			<div class="ui-block-c" style="width: 48%;">
+				<img id="video_ic" src="img/ic_video_cam.png" style="height: 80px;" />
+			</div>
+		</div>
+
+		<div data-theme="b" id="popupMenu"
+			style="z-index: 2; position: absolute; left: 12.5%; top: 35%; width: 75%; height: 30%; box-shadow: 5px 5px 5px #888888; background-color: #43D3F7; display: none;">
+			<img src="img/ic_cross.png" id="popclose"
+				style="float: right; position: absolute; right: 0em; top: 0em;">
+			<div class="ui-grid-b" style="margin-top: 15%; width: 70%;">
+				<img id="select_camera" class="ui-block-a" src="img/camera.png"
+					style="height: 80px; width: 80px; float: left:;" />
+				<div class="ui-block-b" style="width: 15px;"></div>
+				<img id="select_gallery" class="ui-block-c"
+					src="img/ic_gallery_cam.png"
+					style="height: 80px; width: 80px; float: right;" />
+			</div>
+		</div>
+	</div>
+	<div data-role="footer" data-theme="b" data-position="fixed"
+		data-tap-toggle="false"
+		style="background-color: #43D3F7; position: fixed; bottom: 0px; padding: 0px; border: 1px solid #43D3F7;">
+
+		<div data-role="navbar" class="nav-glyphish-example"
+			style="background-color: transparent; bottom: 0px; padding: 0px; height: 50px;"
+			data-grid="d">
+			<ul>
+				<li style="height: 50px; width: 20%; padding: 5px 0;"
+					onclick='$.mobile.changePage("dashboard.html", {changeHash : true});'><img
+					src="img/home.png"
+					style="width: 35px; display: block; margin: auto; vertical-align: middle;"></li>
+				<li style="height: 50px; width: 20%; padding: 5px 0;"
+					onclick='$.mobile.changePage("search.html", {changeHash : true});'><img
+					src="img/search.png"
+					style="width: 35px; display: block; margin: auto; vertical-align: middle;"></li>
+				<li style="height: 50px; width: 20%; padding: 5px 0;"
+					onclick='$.mobile.changePage("camera.html", {changeHash : true});'><img
+					src="img/camera_y.png"
+					style="width: 35px; display: block; margin: auto; vertical-align: middle;"></li>
+				<li style="height: 50px; width: 20%; padding: 5px 0;"
+					onclick='$.mobile.changePage("notification.html", {changeHash : true});'><img
+					src="img/posting.png"
+					style="width: 35px; display: block; margin: auto; vertical-align: middle;"><label
+					id="noti_count"
+					style="background: red; height: 20px; width: 20px; border-radius: 16px; color: white; text-transform: none; text-shadow: none; z-index: 22; position: absolute; margin-right: 0em; margin-top: 0em; font-weight: bold; font-size: small; text-align: center; line-height: 20px; top: 0em; display: none; left: 70%;"></label></li>
+				<li style="height: 50px; width: 20%; padding: 5px 0;"
+					onclick='$.mobile.changePage("profile.html", {changeHash : true});'><img
+					src="img/user.png"
+					style="width: 35px; display: block; margin: auto; vertical-align: middle;"></li>
+			</ul>
+		</div>
+	</div>
+</div>

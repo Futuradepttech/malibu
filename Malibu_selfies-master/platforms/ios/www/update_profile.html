@@ -1,0 +1,171 @@
+	<!--
+	    Licensed to the Apache Software Foundation (ASF) under one
+	    or more contributor license agreements.  See the NOTICE file
+	    distributed with this work for additional information
+	    regarding copyright ownership.  The ASF licenses this file
+	    to you under the Apache License, Version 2.0 (the
+	    "License"); you may not use this file except in compliance
+	    with the License.  You may obtain a copy of the License at
+	
+	    http://www.apache.org/licenses/LICENSE-2.0
+	
+	    Unless required by applicable law or agreed to in writing,
+	    software distributed under the License is distributed on an
+	    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+	     KIND, either express or implied.  See the License for the
+	    specific language governing permissions and limitations
+	    under the License.
+	-->
+<div data-role="page" id="update_profile"
+	style="height: 100%; width: 100%; background-color: white;">
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false"
+		style="background-color: #43D3F7; text-align: center; display: table-cell; vertical-align: middle;">
+		<img src="img/ic_arrow.png"
+			style="width: 30px; float: left; margin-right: 5px; margin-left: 5px;"
+			onclick='$.mobile.changePage("profile.html", {changeHash : true});'>
+		<span id="update_profile_text"
+			style="color: #FFFFFF; font-weight: normal; font-size: medium; text-transform: none; text-align: center; margin-top: 1em; float: left; text-shadow: none;">Update
+			Profile</span>
+	</div>
+	<div data-role="main" class="ui-content"
+		style="background-color: #00B7E8; width: 100%; height: 100%; padding: 0em;">
+		<div
+			style="width: 95%; height: 100%; padding: 2.5%; float: left; top: 0em; left: 0em;">
+			<img id="user_img" src="img/suer_profile.png"
+				style="width: 40%; margin-left: 30%;"> <img id="select_pic"
+				src="img/edit_icon.png"
+				style="position: absolute; right: 10px; height: 50px; width: 50px; top: 60px;">
+			<input id="username" type="text" placeholder="UserName"
+				style="height: 50px; font-size: medium; color: #000000; border: 1px solid #FFFFFF; text-shadow: none;"
+				disabled> <input id="email" type="text" placeholder="Email"
+				style="height: 50px; font-size: medium; color: #000000; border: 1px solid #FFFFFF; text-shadow: none;"
+				disabled>
+			<!-- 		<button id="password"
+				style="background-color: #43D3F7; color: #FFFFFF; border: 1px solid #43D3F7; font-style: normal; font-weight: lighter;">Click
+				to Change Password</button> -->
+			<input id="name" type="text" placeholder="Name"
+				style="height: 50px; font-size: medium; color: #000000; border: 1px solid #FFFFFF; text-shadow: none;">
+			<textarea id="about" type="text" placeholder="About"
+				style="height: 100px; font-size: medium; color: #000000; border: 1px solid #FFFFFF; text-shadow: none;"></textarea>
+			<fieldset data-role="controlgroup" data-type="horizontal">
+				<input type="radio" name="radio-choice-h-2" id="radio-choice-h-2a"
+					value="male" checked="checked"> <label
+					for="radio-choice-h-2a">Male</label> <input type="radio"
+					name="radio-choice-h-2" id="radio-choice-h-2b" value="female">
+				<label for="radio-choice-h-2b">Female</label>
+			</fieldset>
+			<input id="city" type="text" placeholder="City"
+				style="height: 50px; font-size: medium; color: #000000; border: 1px solid #FFFFFF; text-shadow: none;">
+			<fieldset data-role="controlgroup" data-type="horizontal">
+				<select class="ui-block-a" id="date">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19">19</option>
+					<option value="20">20</option>
+					<option value="21">21</option>
+					<option value="22">22</option>
+					<option value="23">23</option>
+					<option value="24">24</option>
+					<option value="25">25</option>
+					<option value="26">26</option>
+					<option value="27">27</option>
+					<option value="28">28</option>
+					<option value="29">29</option>
+					<option value="30">30</option>
+					<option value="31">31</option>
+				</select> <select class="ui-block-b" id="month"><option value="jan">January</option>
+					<option value="feb">February</option>
+					<option value="mar">March</option>
+					<option value="apr">April</option>
+					<option value="may">May</option>
+					<option value="jun">June</option>
+					<option value="jul">July</option>
+					<option value="aug">August</option>
+					<option value="sep">September</option>
+					<option value="oct">October</option>
+					<option value="nov">November</option>
+					<option value="dec">December</option></select><select class="ui-block-c"
+					id="year">
+					<option value="1960">1960</option>
+				</select>
+			</fieldset>
+			<button id="update_btn"
+				style="background-color: #00D88E; color: #FFFFFF; border: 1px solid #00D88E; font-style: normal; height: 50px; font-weight: lighter; text-shadow: none;">Update</button>
+		</div>
+		<div data-theme="b" id="popupMenu"
+			style="z-index: 2; position: absolute; left: 12.5%; top: 19%; width: 75%; height: 20%; box-shadow: 5px 5px 5px #888888; background-color: #43D3F7; display: none;">
+			<img src="img/ic_cross.png" id="popclose"
+				style="float: right; position: absolute; right: 0em; top: 0em;">
+			<div class="ui-grid-b"
+				style="margin-top: 15%; margin-left: 15%; width: 70%;">
+				<img id="select_camera" class="ui-block-a" src="img/camera.png"
+					style="height: 80px; width: 80px; float: left:;" />
+				<div class="ui-block-b" style="width: 15px;"></div>
+				<img id="select_gallery" class="ui-block-c"
+					src="img/ic_gallery_cam.png"
+					style="height: 80px; width: 80px; float: right;" />
+			</div>
+		</div>
+		<!-- <div data-theme="b" id="popupPassword"
+			style="z-index: 2; position: absolute; left: 12.5%; top: 27%; width: 75%; height: 200px; box-shadow: 5px 5px 5px #888888; background-color: #43D3F7; display: none;">
+			<img src="img/ic_cross.png" id="popclose1"
+				style="float: right; position: absolute; right: 0em; top: 0em;">
+			<div style="margin-top: 15%; margin-left: 15%; width: 70%;">
+				<input type="password" id="passw" placeholder="New Password"> <input
+					type="password" placeholder="Confirm Password" id="confirmpassw">
+				<button id="update_pass_btn"
+					style="background-color: #00D88E; color: #FFFFFF; border: 1px solid #00D88E; font-style: normal; height: 45px; font-weight: lighter; text-shadow: none;">Update
+					Password</button>
+			</div>
+		</div>
+	 -->
+	</div>
+	<div data-role="footer" data-theme="b" data-position="fixed"
+		data-tap-toggle="false"
+		style="background-color: #43D3F7; position: fixed; bottom: 0px; padding: 0px; border: 1px solid #43D3F7;">
+
+		<div data-role="navbar" class="nav-glyphish-example"
+			style="background-color: transparent; bottom: 0px; padding: 0px; height: 50px;"
+			data-grid="d">
+			<ul>
+				<li style="height: 50px; width: 20%; padding: 5px 0;"
+					onclick='$.mobile.changePage("dashboard.html", {changeHash : true});'><img
+					src="img/home.png"
+					style="width: 35px; display: block; margin: auto; vertical-align: middle;"></li>
+				<li style="height: 50px; width: 20%; padding: 5px 0;"
+					onclick='$.mobile.changePage("search.html", {changeHash : true});'><img
+					src="img/search.png"
+					style="width: 35px; display: block; margin: auto; vertical-align: middle;"></li>
+				<li style="height: 50px; width: 20%; padding: 5px 0;"
+					onclick='$.mobile.changePage("camera.html", {changeHash : true});'><img
+					src="img/camera.png"
+					style="width: 35px; display: block; margin: auto; vertical-align: middle;"></li>
+				<li style="height: 50px; width: 20%; padding: 5px 0;"
+					onclick='$.mobile.changePage("notification.html", {changeHash : true});'><img
+					src="img/posting.png"
+					style="width: 35px; display: block; margin: auto; vertical-align: middle;"></li>
+				<li style="height: 50px; width: 20%; padding: 5px 0;"
+					onclick='$.mobile.changePage("profile.html", {changeHash : true});'><img
+					src="img/user_y.png"
+					style="width: 35px; display: block; margin: auto; vertical-align: middle;"></li>
+			</ul>
+		</div>
+	</div>
+</div>

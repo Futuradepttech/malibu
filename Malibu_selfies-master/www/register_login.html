@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+	<!--
+	    Licensed to the Apache Software Foundation (ASF) under one
+	    or more contributor license agreements.  See the NOTICE file
+	    distributed with this work for additional information
+	    regarding copyright ownership.  The ASF licenses this file
+	    to you under the Apache License, Version 2.0 (the
+	    "License"); you may not use this file except in compliance
+	    with the License.  You may obtain a copy of the License at
+	
+	    http://www.apache.org/licenses/LICENSE-2.0
+	
+	    Unless required by applicable law or agreed to in writing,
+	    software distributed under the License is distributed on an
+	    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+	     KIND, either express or implied.  See the License for the
+	    specific language governing permissions and limitations
+	    under the License.
+	-->
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+<meta name="viewport"
+	content="user-scalable=0,initial-scale=1,width=device-width,height=device-height" />
+<link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css">
+<script src="js/jquery-1.10.2.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Roboto'
+	rel='stylesheet' type='text/css'>
+<script src="js/jquery.mobile-1.4.2.min.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+
+<title>Malibu Selfie</title>
+<script src="js/feed.js"></script>
+<!-- <script src="js/ui.js"></script> -->
+<script type="text/javascript" src="js/openfb.js"></script>
+<script type="text/javascript" src="js/jscolor.js"></script>
+<script type="text/javascript" src="js/jsOAuth-1.3.6.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/panel.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/paintbrush.js"></script>
+<script type="text/javascript" src="js/playground.js"></script>
+<script type="text/javascript" src="js/jquery.cycle.all.js"></script>
+<script type="text/javascript" src="js/html2canvas.js"></script>
+
+<script
+	src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
+	
+</script>
+<script type="text/javascript" src="js/mainfiledata.js"></script>
+
+
+<style>
+#login,#registeration,#register_login,#add_details,#add_effect,#camera_screen,#dashboard,#notification,#profile,#search
+	{
+	font-family: 'Roboto', sans-serif;
+	text-shadow: none;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	text-shadow: none;
+}
+
+.scrollablefirst {
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+
+#search_img_vid::-webkit-input-placeholder { /* WebKit browsers */
+	color: white;
+}
+
+#search_img_vid:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	color: white;
+	opacity: 1;
+}
+
+#search_img_vid:-moz-placeholder { /* Mozilla Firefox 19+ */
+	color: white;
+	opacity: 1;
+}
+
+#search_img_vid:-ms-input-placeholder { /* Internet Explorer 10+ */
+	color: white;
+}
+
+.slider ul {
+	list-type: none;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.slider {
+	margin: 0 auto;
+	width: 90%;
+	height: 50%;
+	margin-top: 40%;
+}
+
+.sld_main {
+	width: 50%;
+	height: 5%;
+	margin-top: 15%;
+	margin-left: 25%;
+}
+
+.sld_main ul {
+	list-type: none;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+</style>
+</head>
+<body style="height: 100%;">
+	<div data-role="page" id="register_login"
+		style="height: 100%; background-image: url('img/info_screen.png'); width: 100%; background-size: cover;">
+
+		<div data-role="main" class="ui-content" align="center"
+			style="background: transparent;"></div>
+		<div style="margin-top: 40%; width: 100%;">
+			<section style="width: 100%;">
+				<div class="container" style="margin: 0 auto;width: 100%;">
+					<div class="slider" style="margin: 0 auto;width: 100%;">
+						<ul id="slider1" style="margin: 0 auto;width: 100%;">
+							<li style="width: 100%;"><div align="center"
+									style="color: white; height: 90%; width: 96%; text-transform: none; text-align: center; margin-left: 2%; font-size: small;margin: 0 auto;">
+									<b style="vertical-align: middle;"><font style="font-size: large; color: #43D3F7;">MalibuSelfies</font></b><br> <br> <p>   The App that brings Malibu to you .      
+								</p></div></li>
+							<li style="width: 100%;"><div
+									style="color: white; height: 90%; width: 96%; text-transform: none; text-align: center; margin-left: 2%; font-size: small;">
+									<b><font style="font-size: large; color: #43D3F7;">MalibuSelfies</font></b><br> <br>The Exclusive photo and video app
+									for those who want to experience the lifestyle.
+								</div></li>
+							<li style="width: 100%;"><div
+									style="color: white; height: 90%; width: 96%; text-transform: none; text-align: center; margin-left: 2%; font-size: small;">
+									<b><font style="font-size: large; color: #43D3F7;">MalibuSelfies</font></b><br> <br>MalibuSelfies is the app for people who want to share their lives, business or brand name with the World.
+								</div></li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<section>
+				<div class="container" style="margin: 0 auto; margin-top: 5%;">
+					<div class="sld_main" style="margin: 0 auto;">
+						<ul id="sld_main1" style="margin: 0 auto;">
+							<li><img style="width: 90%; margin-left: 5%;"
+								src="img/step_1.png"></li>
+							<li><img style="width: 90%; margin-left: 5%;"
+								src="img/step_2.png"></li>
+							<li><img style="width: 90%; margin-left: 5%;"
+								src="img/step_3.png"></li>
+						</ul>
+					</div>
+				</div>
+			</section>
+		</div>
+		<div class="ui-grid-a"
+			style="width: 100%; position: absolute; bottom: 0px; left: 0px; margin-bottom: 5%;"
+			align="center">
+			<div class="ui-block-a"
+				style="width: 50%; height: 28%; padding: 10px;">
+				<button
+					style="background-color: #00D88E; color: #FFFFFF; border: 1px solid #00D88E; font-style: normal; font-weight: lighter;"
+                    onclick='$.mobile.changePage("login.html", {changeHash : true});'>Login</button>
+			</div>
+			<div class="ui-block-b" style="width: 50%; padding: 10px;">
+				<button
+					style="background-color: #43D3F7; color: #FFFFFF; border: 1px solid #43D3F7; font-style: normal; font-weight: lighter;"
+					onclick='$.mobile.changePage("registration.html", {changeHash : true});'>Register</button>
+			</div>
+		</div>
+	</div>
+    
+    <script>
+    
+    
+     setTimeout(function(){
+     $('#slider1').cycle({
+     fx : 'scrollLeft', //'scrollLeft,scrollDown,scrollRight,scrollUp',blindX, blindY, blindZ, cover, curtainX, curtainY, fade, fadeZoom, growX, growY, none, scrollUp,scrollDown,scrollLeft,scrollRight,scrollHorz,scrollVert,shuffle,slideX,slideY,toss,turnUp,turnDown,turnLeft,turnRight,uncover,ipe ,zoom
+     speed : 'slow',
+     timeout : 3000
+     });
+
+
+$('#sld_main1').cycle({
+fx : 'none', //'scrollLeft,scrollDown,scrollRight,scrollUp',blindX, blindY, blindZ, cover, curtainX, curtainY, fade, fadeZoom, growX, growY, none, scrollUp,scrollDown,scrollLeft,scrollRight,scrollHorz,scrollVert,shuffle,slideX,slideY,toss,turnUp,turnDown,turnLeft,turnRight,uncover,ipe ,zoom
+speed : 'slow',
+timeout : 3500
+});
+
+
+}, 100);
+    
+    
+    </script>
+    
+</body>
+</html>

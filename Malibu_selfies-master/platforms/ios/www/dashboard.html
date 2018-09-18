@@ -1,0 +1,172 @@
+	<!--
+	    Licensed to the Apache Software Foundation (ASF) under one
+	    or more contributor license agreements.  See the NOTICE file
+	    distributed with this work for additional information
+	    regarding copyright ownership.  The ASF licenses this file
+	    to you under the Apache License, Version 2.0 (the
+	    "License"); you may not use this file except in compliance
+	    with the License.  You may obtain a copy of the License at
+	
+	    http://www.apache.org/licenses/LICENSE-2.0
+	
+	    Unless required by applicable law or agreed to in writing,
+	    software distributed under the License is distributed on an
+	    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+	     KIND, either express or implied.  See the License for the
+	    specific language governing permissions and limitations
+	    under the License.
+	-->
+<div data-role="page" id="dashboard"
+	style="height: 100%; background-color: white; background-size: cover; width: 100%; background-repeat: no-repeat;">
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false"
+		style="background-color: #43D3F7; text-align: center; display: table-cell; vertical-align: middle;">
+		<img src="img/logo.png"
+			style="width: 50px; float: left; margin-right: 5px; margin-left: 5px;">
+		<img src="img/ques.png"
+			onclick='$.mobile.changePage("faq.html", {changeHash : true});'
+			style="float: right; width: 40px; margin-top: 5px;"> <img
+			src="img/msg_icon.png"
+			onclick='$.mobile.changePage("messageMain.html", {changeHash : true});'
+			style="float: right; width: 40px; margin-top: 5px;"> <span id="dashboard_text"
+			style="color: #FFFFFF; font-weight: normal; font-size: medium; text-transform: none; text-align: center; margin-top: 1em; float: left; text-shadow: none;">Dashboard</span>
+
+		<div class="ui-grid-a"
+			style="background-color: #F2F2F2; left: 0em; margin-top: 0px; width: 100%; height: 38px; text-transform: none; font-weight: bold; font-size: small; float: left; margin-top: 0em; top: 50px;">
+			<label class="ui-block-a" id="btn_public"
+				style="color: #7C7C7C; text-align: center; text-transform: none; text-shadow: none; border-right: 1px solid white; height: 100%; display: block; line-height: 38px; font-size: small; font-weight: bold;">Public</label>
+			<label class="ui-block-b" id="btn_private"
+				style="color: #7C7C7C; text-align: center; text-transform: none; text-shadow: none; height: 100%; display: block; line-height: 38px; font-size: small; font-weight: bold;">Private</label>
+		</div>
+	</div>
+	<div data-role="main" class="ui-content"
+		style="background-color: #FFFFFF; width: 100%; height: 100%; top: 0em;">
+		<!-- 	<div style="width: 90%;margin: 0 auto;box-shadow: 5px 5px 5px #888888; background-color: #43D3F7;height: 300px;z-index: 2;position: absolute;">
+		<ul data-role="listview" class="scrollablefirst" style="padding: 15px;background: transparent;height: 96%;">
+		<li style="height: 35px;background: transparent;"><div class="ui-grid-a"><img class="ui-block-a" src="img/intro.png" style="width: 45px;height: 45px;"><label style="width: 65%;color: black;text-transform: none;text-shadow: none;text-align: center;line-height: 45px;height: 45px;">Name23</label> </div> </li>
+		<li style="height: 35px;background: transparent;"><div class="ui-grid-a"><img class="ui-block-a" src="img/intro.png" style="width: 45px;height: 45px;"><label style="width: 65%;color: black;text-transform: none;text-shadow: none;text-align: center;line-height: 45px;height: 45px;">Name23</label> </div> </li>
+		<li style="height: 35px;background: transparent;"><div class="ui-grid-a"><img class="ui-block-a" src="img/intro.png" style="width: 45px;height: 45px;"><label style="width: 65%;color: black;text-transform: none;text-shadow: none;text-align: center;line-height: 45px;height: 45px;">Name23</label> </div> </li>
+		<li style="height: 35px;background: transparent;"><div class="ui-grid-a"><img class="ui-block-a" src="img/intro.png" style="width: 45px;height: 45px;"><label style="width: 65%;color: black;text-transform: none;text-shadow: none;text-align: center;line-height: 45px;height: 45px;">Name23</label> </div> </li>
+		<li style="height: 35px;background: transparent;"><div class="ui-grid-a"><img class="ui-block-a" src="img/intro.png" style="width: 45px;height: 45px;"><label style="width: 65%;color: black;text-transform: none;text-shadow: none;text-align: center;line-height: 45px;height: 45px;">Name23</label> </div> </li>
+		<li style="height: 35px;background: transparent;"><div class="ui-grid-a"><img class="ui-block-a" src="img/intro.png" style="width: 45px;height: 45px;"><label style="width: 65%;color: black;text-transform: none;text-shadow: none;text-align: center;line-height: 45px;height: 45px;">Name23</label> </div> </li>
+		<li style="height: 35px;background: transparent;"><div class="ui-grid-a"><img class="ui-block-a" src="img/intro.png" style="width: 45px;height: 45px;"><label style="width: 65%;color: black;text-transform: none;text-shadow: none;text-align: center;line-height: 45px;height: 45px;">Name23</label> </div> </li>
+		</ul>
+		</div>
+	 -->
+		<div style="">
+			<ul data-role="listview" class="scrollablefirst" data-filter="true"
+				data-input="#myFilter" id="dashboard_list"
+				style="padding: 10px; width: 95%; background-color: transparent; height: 96%;">
+
+				<!-- 			<li
+					style='background-color: transparent; color: #303638; text-transform: none; overflow: auto; padding: 5px; -webkit-transform: translateZ(0);'>
+					<div class='ui-grid-a'>
+						<div class='ui-block-a' style='width: 15%;'>
+							<img src='img/intro.png'
+								style='height: 45px; width: 45px; border-radius: 23px;'>
+						</div>
+						<div class='ui-block-b' style='width: 85%; padding-top: 15px;'>
+							<label
+								style='font-size: medium; margin-left: 10px; color: #696969; text-shadow: none; text-transform: none; font-weight: bold;'>Jessica</label>
+						</div>
+					</div> <img src="img/intro.png"
+					style="width: 100%; background-size: cover; margin-top: 15px;">
+					<div class="ui-grid-c"
+						style="width: 50%; margin-top: 10px; height: 30px;">
+						<img class="ui-block-a" src="img/ic_heart_icon.png"
+							style="width: 20px; height: 20px;"> <label
+							class="ui-block-b"
+							style="color: #626262; text-transform: none; text-shadow: none; font-size: small; font-weight: bold; margin-left: 5px; padding-top: 3px;">150</label>
+						<img class="ui-block-c" src="img/ic_comment.png"
+							style="width: 20px; height: 20px; margin-left: 5px;"> <label
+							class="ui-block-d"
+							style="color: #626262; text-transform: none; text-shadow: none; font-size: small; font-weight: bold; margin-left: 5px; padding-top: 3px;">Comments</label>
+					</div>
+					<div class="ui-grid-a"
+						style='width: 100%; float: left; margin-top: 1%;'>
+						<div class="ui-block-a"
+							style='width: 10%; height: 25px; float: left;'>
+							<img src='img/ic_username.png' height='25px' width='25px'
+								style='border-radius: 50px;'>
+						</div>
+						<div class="ui-block-b" style="width: 90%;">
+							<div style='float: left; width: 90%;'>
+								<label
+									style='font-size: small; color: #000000; font-weight: normal;'>Namae</label>
+							</div>
+							<div style='width: 90%; padding-left: 1%;'>
+								<div style='width: 95%; white-space: normal;'>
+									<label
+										style='word-wrap: break-word; font-size: 70%; margin-top: 0px;'>
+										jjsdkf khsdk sjhf jdsgfj sdfkdsflk s jd dskl lsdk lsd ds;l
+										fdslk ;sd ;dlsk ldk</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ui-grid-a"
+						style='width: 100%; float: left; margin-top: 1%;'>
+						<div class="ui-block-a"
+							style='width: 10%; height: 25px; float: left;'>
+							<img src='img/ic_username.png' height='25px' width='25px'
+								style='border-radius: 50px;'>
+						</div>
+						<div class="ui-block-b" style="width: 90%;">
+							<div style='float: left; width: 90%;'>
+								<label
+									style='font-size: small; color: #000000; font-weight: normal;'>Namae2</label>
+							</div>
+							<div style='width: 90%; padding-left: 1%;'>
+								<div style='width: 95%; white-space: normal;'>
+									<label
+										style='word-wrap: break-word; font-size: 70%; margin-top: 0px;'>
+										jjsdkf khsdk sjhf jdsgfj sdfkdsflk s jd dskl lsdk lsd ds;l
+										fdslk ;sd ;dlsk ldk</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div
+						style='color: #BBB9BC; float: left; margin-left: 10%; margin-top: 10px;'
+						id='cmtcount' data-value=''>
+						<label style='font-size: 80%;'>view all 34 comments</label>
+					</div>
+				</li>
+ -->
+			</ul>
+		</div>
+	</div>
+	<div data-role="footer" data-theme="b" data-position="fixed"
+		data-tap-toggle="false"
+		style="background-color: #43D3F7; position: fixed; bottom: 0px; padding: 0px; border: 1px solid #43D3F7;">
+
+		<div data-role="navbar" class="nav-glyphish-example"
+			style="background-color: transparent; bottom: 0px; padding: 0px; height: 50px;"
+			data-grid="d">
+			<ul>
+				<li style="height: 50px; width: 20%; padding: 5px 0;"
+					onclick='$.mobile.changePage("dashboard.html", {changeHash : true});'><img
+					src="img/home_y.png"
+					style="width: 35px; display: block; margin: auto; vertical-align: middle;"></li>
+				<li style="height: 50px; width: 20%; padding: 5px 0;"
+					onclick='$.mobile.changePage("search.html", {changeHash : true});'><img
+					src="img/search.png"
+					style="width: 35px; display: block; margin: auto; vertical-align: middle;"></li>
+				<li style="height: 50px; width: 20%; padding: 5px 0;"
+					onclick='$.mobile.changePage("camera.html", {changeHash : true});'><img
+					src="img/camera.png"
+					style="width: 35px; display: block; margin: auto; vertical-align: middle;"></li>
+				<li style="height: 50px; width: 20%; padding: 5px 0;"
+					onclick='$.mobile.changePage("notification.html", {changeHash : true});'><img
+					src="img/posting.png"
+					style="width: 35px; display: block; margin: auto; vertical-align: middle;"><label
+					id="noti_count"
+					style="background: red; height: 20px; width: 20px; border-radius: 16px; color: white; text-transform: none; text-shadow: none; z-index: 22; position: absolute; margin-right: 0em; margin-top: 0em; font-weight: bold; font-size: small; text-align: center; line-height: 20px; top: 0em; display: none; left: 70%;"></label></li>
+				<li style="height: 50px; width: 20%; padding: 5px 0;"
+					onclick='$.mobile.changePage("profile.html", {changeHash : true});'><img
+					src="img/user.png"
+					style="width: 35px; display: block; margin: auto; vertical-align: middle;"></li>
+			</ul>
+		</div>
+	</div>
+</div>

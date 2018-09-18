@@ -1,0 +1,200 @@
+	<!--
+	    Licensed to the Apache Software Foundation (ASF) under one
+	    or more contributor license agreements.  See the NOTICE file
+	    distributed with this work for additional information
+	    regarding copyright ownership.  The ASF licenses this file
+	    to you under the Apache License, Version 2.0 (the
+	    "License"); you may not use this file except in compliance
+	    with the License.  You may obtain a copy of the License at
+	
+	    http://www.apache.org/licenses/LICENSE-2.0
+	
+	    Unless required by applicable law or agreed to in writing,
+	    software distributed under the License is distributed on an
+	    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+	     KIND, either express or implied.  See the License for the
+	    specific language governing permissions and limitations
+	    under the License.
+	-->
+<script type="text/javascript" src="js/html2canvas.js"></script>
+<div data-role="page" id="add_effect"
+	style="height: 100%; width: 100%; background-color: white;">
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false"
+		style="background-color: #43D3F7; text-align: center; display: table-cell; vertical-align: middle;">
+		<img src="img/ic_arrow.png"
+			style="width: 30px; float: left; margin-right: 1em;margin-left: 5px;"
+			onclick='$.mobile.changePage("camera.html", {changeHash : true});'>
+		<span
+			style="color: #FFFFFF; font-weight: normal; font-size: medium; text-transform: none; text-align: center; margin-top: 1em; float: left; text-shadow: none;"></span>
+		<img src="img/ic_check_icon.png" style="float: right; width: 50px;"
+			id="editImage_save">
+	</div>
+	<div data-role="main" class="ui-content" id="test_img"
+		style="background-color: transparent; width: 100%; height: 100%; padding: 0em; border: none;">
+		<img id="contentimg"
+			style="width: 100%; float: left; margin-left: 0em; position: absolute; z-index: 0; height: 65.2%;">
+		<img src="img/light_logo.png" id="id_logo"
+			style="width: 50px; height: 50px; position: absolute; z-index: 4; right: 0px; top: 0px;">
+		<img src="img/frames/frame0.png" id="frameImg"
+			style="width: 100%; height: 69%; float: left; position: absolute; left: 0em; z-index: 1; display: none;">
+	</div>
+	<div data-role="footer" data-theme="b" data-position="fixed"
+		data-tap-toggle="false"
+		style="background-color: #424242; position: fixed; bottom: 0px; padding: 0px; border: none; height: 16.6%; overflow-y: scroll; overflow-x: hidden;">
+		<div id="controls_center"
+			style="background-color: #424242; height: 96%; width: 100%;">
+			<div class="ui-grid-b"
+				style="width: 90%; height: 37%; padding: 1px 5px; background-color: #424242;">
+				<img class="ui-block-a" id="adjust" src="img/ic_adjust.png"
+					style="height: 45px; width: 32%; float: left;"> <img
+					class="ui-block-b" id="frameAdd" src="img/ic_frame.png"
+					style="height: 45px; width: 32%"> <img class="ui-block-c"
+					id="settings" src="img/ic_settings.png"
+					style="height: 45px; width: 32%; float: right;">
+			</div>
+			<div id="for_frame"
+				style="float: left; position: absolute; left: 0em; width: 100%; display: none; overflow-x: scroll;border-top: 1px solid #4b4b4b;">
+				<div
+					style="height: 82px; width: 900px; overflow-x: auto; overflow-y: hidden;">
+					<img id="frm0" src="img/frames/frame0.png"
+						style="height: 77px; width: 65px; float: left; margin: 5px; overflow-x: auto; overflow-y: hidden; display: inline-block;">
+					<img id="frm1" src="img/frames/frame1.png"
+						style="height: 77px; width: 65px; float: left; margin: 5px; overflow-x: auto; overflow-y: hidden; display: inline-block;">
+					<img id="frm2" src="img/frames/frame2.png"
+						style="height: 77px; width: 65px; float: left; margin: 5px; overflow-x: auto; overflow-y: hidden; display: inline-block;">
+					<img id="frm3" src="img/frames/frame3.png"
+						style="height: 77px; width: 65px; float: left; margin: 5px; overflow-x: auto; overflow-y: hidden; display: inline-block;">
+					<img id="frm4" src="img/frames/frame4.png"
+						style="height: 77px; width: 65px; float: left; margin: 5px; overflow-x: auto; overflow-y: hidden; display: inline-block;">
+					<img id="frm5" src="img/frames/frame5.png"
+						style="height: 77px; width: 65px; float: left; margin: 5px; overflow-x: auto; overflow-y: hidden; display: inline-block;">
+					<img id="frm6" src="img/frames/frame6.png"
+						style="height: 77px; width: 65px; float: left; margin: 5px; overflow-x: auto; overflow-y: hidden; display: inline-block;">
+					<img id="frm7" src="img/frames/frame7.png"
+						style="height: 77px; width: 65px; float: left; margin: 5px; overflow-x: auto; overflow-y: hidden; display: inline-block;">
+					<img id="frm8" src="img/frames/frame8.png"
+						style="height: 77px; width: 65px; float: left; margin: 5px; overflow-x: auto; overflow-y: hidden; display: inline-block;">
+					<img id="frm9" src="img/frames/frame9.png"
+						style="height: 77px; width: 65px; float: left; margin: 5px; overflow-x: auto; overflow-y: hidden; display: inline-block;">
+					<img id="frm10" src="img/frames/frame10.png"
+						style="height: 77px; width: 65px; float: left; margin: 5px; overflow-x: auto; overflow-y: hidden; display: inline-block;">
+				</div>
+			</div>
+			<div id="for_adjust"
+				style="float: left; position: absolute; left: 0em; width: 100%;height: 83px;border-top: 1px solid #4b4b4b;">
+				<div class="ui-grid-b"
+					style="width: 40%; float: left; height: 100%; background-color: #424242; height: 93%;">
+					<img class="ui-block-a" id="gussianblur" src="img/ic_blur.png"
+						style="border-right: 1px solid #4b4b4b; width: 50%; height: 100%;">
+					<img class="ui-block-b" id="sharpen" src="img/ic_sharpens.png"
+						style="border-right: 1px solid #4b4b4b; width: 50%; height: 100%;">
+				</div>
+				<div class="ui-grid-b"
+					style="width: 60%; float: left; height: 100%; background-color: #424242; height: 93%;">
+					<img class="ui-block-a" id="poster" src="img/ic_poster.png"
+						style="border-right: 1px solid #4b4b4b; width: 33.3%; height: 100%;">
+					<img class="ui-block-b" id="noise" src="img/ic_noise.png"
+						style="border-right: 1px solid #4b4b4b; width: 33.3%; height: 100%;">
+					<img class="ui-block-c" id="greyscale" src="img/ic_greyscale.png"
+						style="width: 33.4%; height: 100%;">
+				</div>
+			</div>
+			<div id="for_settings"
+				style="display: none; float: left; position: absolute; left: 0em; width: 100%;height: 83px;border-top: 1px solid #4b4b4b;">
+				<div class="ui-grid-b"
+					style="width: 40%; float: left; height: 100%; background-color: #424242; height: 93%;">
+					<img class="ui-block-a" id="brightness" src="img/ic_brightness.png"
+						style="border-right: 1px solid #4b4b4b; width: 50%; height: 100%;">
+					<img class="ui-block-b" id="edges" src="img/ic_edge.png"
+						style="border-right: 1px solid #4b4b4b; width: 50%; height: 100%;">
+				</div>
+				<div class="ui-grid-b"
+					style="width: 60%; float: left; height: 100%; background-color: #424242; height: 93%;">
+					<img class="ui-block-a" id="emboss" src="img/ic_embross.png"
+						style="border-right: 1px solid #4b4b4b; width: 33.3%; height: 100%;">
+					<img class="ui-block-b" id="mosiac" src="img/ic_mosiac.png"
+						style="border-right: 1px solid #4b4b4b; width: 33.3%; height: 100%;">
+					<img class="ui-block-c" id="sepia" src="img/ic_sepia.png"
+						style="width: 33.4%; height: 100%;">
+				</div>
+			</div>
+		</div>
+		<div>
+			<form id="interaction-form" style="">
+				<div id="interaction"
+					style="border: none; height: 80%; width: 80%; position: absolute; left: 5%; top: 5%; display: none; text-transform: none;">
+					<div>
+						<select id="filter-selector" data-role="none"
+							style="display: none; height: 0em; width: 0em;"></select>
+					</div>
+					<div class="controls" id="controls-blur">
+						<label>Gaussian Blur<input type="number" data-type="range"
+							name="data-pb-blur-amount" min="0" max="10" step="0.05"
+							value="0.2"></label>
+					</div>
+					<div class="controls" id="controls-edges">
+						<label>Detect Edges<input type="number" data-type="range"
+							name="data-pb-edges-amount" min="0" max="1" step="0.01" value="1"></label>
+					</div>
+					<div class="controls" id="controls-emboss">
+						<label>Emboss<input type="number" data-type="range"
+							name="data-pb-emboss-amount" min="0" max="1" step="0.01"
+							value="0.2"></label>
+					</div>
+					<div class="controls" id="controls-greyscale">
+						<label>Greyscale<input type="number" data-type="range"
+							name="data-pb-greyscale-opacity" min="0" max="1" step="0.01"
+							value="1"></label>
+					</div>
+					<div class="controls" id="controls-matrix">
+						<label>Matrix<input type="number" data-type="range"
+							name="data-pb-matrix-amount" min="0" max="1" step="0.01"
+							value="0.2"></label>
+					</div>
+					<div class="controls" id="controls-mosaic">
+						<label>Mosaic<input type="number" data-type="range"
+							name="data-pb-mosaic-opacity" min="0" max="1" step="0.01"
+							value="1"></label><label>Size:<input type="number"
+							data-type="range" name="data-pb-mosaic-size" min="1" max="40"
+							step="1" value="5"></label>
+					</div>
+					<div class="controls" id="controls-noise">
+						<label>Noise<input type="number" data-type="range"
+							name="data-pb-noise-amount" min="0" max="100" step="1" value="30"></label>
+					</div>
+					<div class="controls" id="controls-posterize">
+						<label>Posterize<input type="number" data-type="range"
+							name="data-pb-posterize-amount" min="2" max="100" step="1"
+							value="5"></label><label>Opacity:<input type="number"
+							data-type="range" name="data-pb-posterize-opacity" min="0"
+							max="1" step="0.01" value="1"></label>
+					</div>
+					<div class="controls" id="controls-sepia">
+						<label>Sepia Tone<input type="number" data-type="range"
+							name="data-pb-sepia-opacity" min="0" max="1" step="0.01"
+							value="0.5"></label>
+					</div>
+					<div class="controls" id="controls-sharpen">
+						<label>Sharpen<input type="number" data-type="range"
+							name="data-pb-sharpen-amount" min="0" max="1" step="0.01"
+							value="0.2"></label>
+					</div>
+					<div class="controls" id="controls-tint">
+						<label style="display: none;">Colour:<input type="text"
+							name="data-pb-tint-color" id="myselectcolor" style=""
+							value="#FFFFFF"></label><label>Brightness:<input
+							type="number" data-type="range" name="data-pb-tint-opacity"
+							min="0" max="1" step="0.01" value="0.5"></label>
+					</div>
+					<button class="apply" style="display: none;" onclick="changefnn()">Apply</button>
+					<img src="img/ic_done.png"
+						style="width: 30px; height: 30px; margin-left: 50%;"
+						id="effect_done">
+				</div>
+			</form>
+
+		</div>
+	</div>
+
+</div>

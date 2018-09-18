@@ -1,0 +1,71 @@
+
+<!--
+	    Licensed to the Apache Software Foundation (ASF) under one
+	    or more contributor license agreements.  See the NOTICE file
+	    distributed with this work for additional information
+	    regarding copyright ownership.  The ASF licenses this file
+	    to you under the Apache License, Version 2.0 (the
+	    "License"); you may not use this file except in compliance
+	    with the License.  You may obtain a copy of the License at
+	
+	    http://www.apache.org/licenses/LICENSE-2.0
+	
+	    Unless required by applicable law or agreed to in writing,
+	    software distributed under the License is distributed on an
+	    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+	     KIND, either express or implied.  See the License for the
+	    specific language governing permissions and limitations
+	    under the License.
+	-->
+<div data-role="page" id="comments"
+	style="height: 100%; background-color: white; background-size: cover; width: 100%; background-repeat: no-repeat;">
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false"
+		style="background-color: #43D3F7; text-align: center; display: table-cell; vertical-align: middle;">
+		<img id="backC" class="ui-block-a" src="img/ic_arrow.png"
+			style="width: 30px; float: left; margin-left: 5px; margin-right: 5px;">
+		<img src="img/logo.png"
+			style="width: 50px; float: left; margin-right: 5px; margin-left: 5px;">
+		<span
+			style="color: #FFFFFF; font-weight: normal; font-size: medium; text-transform: none; text-align: center; margin-top: 1em; float: left; text-shadow: none;">Comments</span>
+		<img src="img/ques.png"
+			onclick='$.mobile.changePage("faq.html", {changeHash : true});'
+			style="float: right; width: 40px; margin-top: 5px;">
+
+	</div>
+	<div data-role="main" class="ui-content"
+		style="background-color: #FFFFFF; width: 100%; height: 100%; top: 0em;">
+		<!-- 	<div style="width: 90%;margin: 0 auto;box-shadow: 5px 5px 5px #888888; background-color: #43D3F7;height: 300px;z-index: 2;position: absolute;">
+		<ul data-role="listview" class="scrollablefirst" style="padding: 15px;background: transparent;height: 96%;">
+		<li style="height: 35px;background: transparent;"><div class="ui-grid-a"><img class="ui-block-a" src="img/intro.png" style="width: 45px;height: 45px;"><label style="width: 65%;color: black;text-transform: none;text-shadow: none;text-align: center;line-height: 45px;height: 45px;">Name23</label> </div> </li>
+		<li style="height: 35px;background: transparent;"><div class="ui-grid-a"><img class="ui-block-a" src="img/intro.png" style="width: 45px;height: 45px;"><label style="width: 65%;color: black;text-transform: none;text-shadow: none;text-align: center;line-height: 45px;height: 45px;">Name23</label> </div> </li>
+		<li style="height: 35px;background: transparent;"><div class="ui-grid-a"><img class="ui-block-a" src="img/intro.png" style="width: 45px;height: 45px;"><label style="width: 65%;color: black;text-transform: none;text-shadow: none;text-align: center;line-height: 45px;height: 45px;">Name23</label> </div> </li>
+		<li style="height: 35px;background: transparent;"><div class="ui-grid-a"><img class="ui-block-a" src="img/intro.png" style="width: 45px;height: 45px;"><label style="width: 65%;color: black;text-transform: none;text-shadow: none;text-align: center;line-height: 45px;height: 45px;">Name23</label> </div> </li>
+		<li style="height: 35px;background: transparent;"><div class="ui-grid-a"><img class="ui-block-a" src="img/intro.png" style="width: 45px;height: 45px;"><label style="width: 65%;color: black;text-transform: none;text-shadow: none;text-align: center;line-height: 45px;height: 45px;">Name23</label> </div> </li>
+		<li style="height: 35px;background: transparent;"><div class="ui-grid-a"><img class="ui-block-a" src="img/intro.png" style="width: 45px;height: 45px;"><label style="width: 65%;color: black;text-transform: none;text-shadow: none;text-align: center;line-height: 45px;height: 45px;">Name23</label> </div> </li>
+		<li style="height: 35px;background: transparent;"><div class="ui-grid-a"><img class="ui-block-a" src="img/intro.png" style="width: 45px;height: 45px;"><label style="width: 65%;color: black;text-transform: none;text-shadow: none;text-align: center;line-height: 45px;height: 45px;">Name23</label> </div> </li>
+		</ul>
+		</div>
+	 -->
+		<div style="">
+			<ul data-role="listview" class="scrollablefirst" data-filter="true"
+				data-input="#myFilter" id="comment_list"
+				style="padding: 10px; width: 95%; background-color: transparent; height: 96%;">
+
+			</ul>
+		</div>
+
+	</div>
+	<div data-role="footer" data-theme="b" data-position="fixed"
+		data-tap-toggle="false"
+		style="background-color: white; position: fixed; bottom: 0px; padding: 0px;">
+
+		<div class="ui-grid-a"
+			style="width: 100%; height: 70px; margin-top: 0em;">
+			<input id="cmt_msg" class="ui-block-a" type="text"
+				style="width: 70%; height: 45px; border-bottom: 1px solid black;text-transform: none;text-shadow: none;color: #000000;">
+			<button id="cmt_btn" class="ui-block-b"
+				style="background-color: #00D88E; color: #FFFFFF; border: 1px solid #00D88E; font-style: normal; height: 36px; font-weight: lighter; text-shadow: none; width: 26%; margin-left: 3%;">Comment</button>
+		</div>
+	</div>
+</div>
