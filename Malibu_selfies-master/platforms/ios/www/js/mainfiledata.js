@@ -8175,7 +8175,7 @@ var lan_code = {"english":[{"login":"login",
                                                                    $('#password').val('');
                                                                    user_id = data.users[0].id;
                                                                    localStorage.setItem("userid", user_id);
-                                                                   $.mobile.changePage("profile.html",{changeHash : true});
+                                                                   $.mobile.changePage("dashboard.html",{changeHash : true});
                                                                    
                                                                    } else {
                                                                    alertSS(data.data);
