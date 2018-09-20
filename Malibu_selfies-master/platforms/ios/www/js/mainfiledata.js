@@ -37,10 +37,10 @@ var user_id = localStorage.getItem('userid');
 
 //alert(user_id)
 
-var lan_code = {"english":[{"login":"login",
-                           "register":"register",
+var lan_code = {"english":[{"login":"Login",
+                           "register":"Register",
                            "Forgot_username":"Forgot Username or Password",
-                           "profile":"profile",
+                           "profile":"Profile",
                            "email":"Email",
                            "name":"Name",
                            "city":"City",
@@ -2737,7 +2737,7 @@ var lan_code = {"english":[{"login":"login",
 
 							function accounts_data(about, email, username,
 									city, sex, dob) {
-                       alert(1)
+                      // alert(1)
 								$('#about').text(about);
 								$('#email').text(email);
 								$('#username').text(username);
@@ -8169,7 +8169,7 @@ var lan_code = {"english":[{"login":"login",
                                                                                       textStatus,
                                                                                       jQxhr) {
                                                                    
-                                                                   if (data.users.length > 0) {
+                                                                   if (data.status == 'success') {
                                                                       // alert('Login Successfully');
                                                                    $('#username').val('');
                                                                    $('#password').val('');
@@ -8178,7 +8178,7 @@ var lan_code = {"english":[{"login":"login",
                                                                    $.mobile.changePage("dashboard.html",{changeHash : true});
                                                                    
                                                                    } else {
-                                                                   alertSS(data.data);
+                                                                   alertSS("Incorrect Username or Password.");
                                                                    }
                                                                    loading_done();
                                                                    },
