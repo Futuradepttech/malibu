@@ -33,7 +33,7 @@
 		style="background-color: #FFFFFF; width: 100%; height: 100%; padding: 0em;">
 		<div style="width: 85%; margin-left: 7.5%; margin-top: 7%;">
 			<button id="change_Password"
-				style="background-color: #00D88E; color: #FFFFFF; border: 1px solid #00D88E; font-style: normal; height: 50px; font-weight: lighter; text-shadow: none;">Change
+				style="background-color: #00D88E; color: #FFFFFF; border: 1px solid #00D88E; font-style: normal; height: 50px; font-weight: lighter; text-shadow: none;">Changess
 				Password</button>
 			<button id="report"
 				style="background-color: #00D88E; color: #FFFFFF; border: 1px solid #00D88E; font-style: normal; height: 50px; font-weight: lighter; text-shadow: none;">Report</button>
@@ -42,17 +42,29 @@
 			<button id="termsCond"
 				style="background-color: #00D88E; color: #FFFFFF; border: 1px solid #00D88E; font-style: normal; height: 50px; font-weight: lighter; text-shadow: none;">Terms
 				and Conditions</button>
+                        
+            <button id="privacy_policy"
+                style="background-color: #00D88E; color: #FFFFFF; border: 1px solid #00D88E; font-style: normal; height: 50px; font-weight: lighter; text-shadow: none;">Privacy Policy</button>
+            
+            <button id="lang_eng"
+                style="background-color: #00D88E; color: #FFFFFF; border: 1px solid #00D88E; font-style: normal; height: 50px; font-weight: lighter; text-shadow: none;display:none;">Change language (English)</button>
+            
+            <button id="lang_spa"
+                style="background-color: #00D88E; color: #FFFFFF; border: 1px solid #00D88E; font-style: normal; height: 50px; font-weight: lighter; text-shadow: none;display:none;">Change language (Spanish)</button>
+            
+            
 			<button id="logout"
 				style="background-color: #00D88E; color: #FFFFFF; border: 1px solid #00D88E; font-style: normal; height: 50px; font-weight: lighter; text-shadow: none;">Sign
 				Out</button>
 		</div>
 		<div id="popupPassword"
-			style="z-index: 2; position: absolute; left: 12.5%; top: 24%; width: 75%; height: 200px; box-shadow: 5px 5px 5px #888888; background-color: #43D3F7; display: none;">
+			style="z-index: 2; position: absolute; left: 12.5%; top: 24%; width: 75%; height: 230px; box-shadow: 5px 5px 5px #888888; background-color: #43D3F7; display: none;">
 			<img src="img/ic_cross.png" id="popclose1"
 				style="float: right; position: absolute; right: 0em; top: 0em;">
 			<div style="margin-top: 32px; margin-left: 15%; width: 70%;">
+                <input type="password" id="old_passw" placeholder="Old Password">
 				<input type="password" id="passw" placeholder="New Password">
-				<input type="password" placeholder="Confirm Password"
+				<input type="text" placeholder="Confirm Password"
 					id="confirmpassw">
 				<button id="update_pass_btn"
 					style="background-color: #00D88E; color: #FFFFFF; border: 1px solid #00D88E; font-style: normal; height: 45px; font-weight: lighter; text-shadow: none;">Update

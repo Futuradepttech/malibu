@@ -32,6 +32,86 @@
 	var to_view_profile='';
 	var show_all_msg='0';
 	var show_cmtss='';
+
+var user_id = localStorage.getItem('userid');
+
+//alert(user_id)
+
+var lan_code = {"english":[{"login":"Login",
+                           "register":"Register",
+                           "Forgot_username":"Forgot Password/Username?",
+                           "profile":"Profile",
+                           "email":"Email",
+                           "name":"Name",
+                           "city":"City",
+                           "sex":"Sex",
+                           "dob":"Dob",
+                           "friends":"Friends",
+                           "post":"Posts",
+                           "acinfo":"Account Info",
+                           "editprof":"Edit Profile",
+                           "change_pass":"Change Password",
+                           "report":"Report",
+                           "terms_cond":"Terms and Condition",
+                           "policy":"Privacy Policy",
+                           "lan_engl":"Change Language (English)",
+                           "lan_span":"Change Language (Spanish)",
+                           "signout":"Sign Out",
+                           "updatebtn":" Update",
+                           "notiftext":"Notification",
+                           "selfietext":"Selfies",
+                           "searchtext":"Search",
+                           "btn_alltext":"All",
+                           "btn_phototext":"Photo",
+                           "btn_videotext":"Video",
+                           "dashboardtext":"Dashboard",
+                           "btn_private_text":"Private",
+                           "btn_public_text":"Public",
+                           "home":"Home"
+
+                           }],
+    
+                "spanish":[{"login":"iniciar sesión",
+                           "register":"registro",
+                           "Forgot_username":"Olvidaste tu nombre de usuario o contraseña",
+                           "profile":"perfil",
+                           "email":"Email",
+                           "name":"Nombre",
+                           "city":"Ciudad",
+                           "sex":"Sexo",
+                           "dob":"Fecha de nacimiento",
+                           "friends":"amigos",
+                           "post":"Publicaciones",
+                           "acinfo":"Informacion de cuenta",
+                           "editprof":"Editar perfil",
+                           "change_pass":"Cambia la contraseña",
+                           "report":"informe",
+                           "terms_cond":"términos y Condiciones",
+                           "policy":"política de privacidad",
+                           "lan_engl":"Cambiar idioma (inglés)",
+                           "lan_span":"Cambiar idioma (Español)",
+                           "signout":"Desconectar",
+                           "updateprof":"Actualización del perfil",
+                           "updatebtn": "Actualización",
+                           "notiftext":"Notificación",
+                           "selfietext":"Selfies",
+                           "searchtext":"Buscar",
+                           "btn_alltext":"Todas",
+                           "btn_phototext":"Foto",
+                           "btn_videotext":"Vídeo",
+                           "dashboardtext":"Tablero",
+                           "btn_private_text":"Privado",
+                           "btn_public_text":"Público",
+                           "home":"Casa"
+
+                           }
+                           
+                           ]}
+
+
+
+
+
 	/*
 	To set space for top status bar in IOS 
 	when device camera and gallery is used
@@ -195,6 +275,8 @@
 		}
 
 	
+      
+      
 
 		/*
 		To show all post and post by the user and its followers
@@ -202,6 +284,22 @@
 		
 		$(document).on("pageshow","#dashboard",function() {
 			mytopmargin();
+                       
+                       //Ashutosh mishra11
+                       var set_lang = localStorage.getItem('lang_select');
+                       if(set_lang == "en_en"){
+                       $("#dashboard_text").html(lan_code.english[0].dashboardtext);
+                       $("#btn_public").html(lan_code.english[0].btn_public_text);
+                       $("#btn_private").html(lan_code.english[0].btn_private_text);
+
+                       }else{
+                       $("#dashboard_text").html(lan_code.spanish[0].dashboardtext);
+                       $("#btn_public").html(lan_code.spanish[0].btn_public_text);
+                       $("#btn_private").html(lan_code.spanish[0].btn_private_text);
+
+                       }
+
+                       
 			//initial Display
 			var pp="public";
 			var load_val = 0;
@@ -291,7 +389,6 @@
 //                                            }
                        
                        mmg = "img/suer_profile.png";
-
 											if (data[i].type == "image") {
 												url = BASE_URL
 														+ data[i].file_name;
@@ -306,19 +403,21 @@
 //                                                        + data[i].likes_data.total_likes + "</label><div id='cmtss' data-value='"+ data[i].post_data.id+ "'><img class='ui-block-c' src='img/ic_comment.png' style='width: 20px; height: 20px; margin-left: 5px;'><label class='ui-block-d' style='color: #525456; text-transform: none; text-shadow: none; font-size: small; font-weight: bold; margin-left: 5px; padding-top: 3px;'>Comments</label></div></div>");
 											} else {
 													
-											
+											//alert(12)
 												url = BASE_URL
 														+ (data[i].file_name
 																.replace('.mp4',
 																		'.jpg'));
 												post = ("<li data-value='"
-														+ data[i].post_data.id
-														+ "' style='background-color: transparent; color: #303638; text-transform: none; overflow: auto; padding: 5px; -webkit-transform: translateZ(0);' ><div class='ui-grid-b'><div class='ui-block-a' style='width: 15%;'><img src='"+mmg+"' id='showpic' data-value='"+ data[i].post_data.user_id+ "' style='height: 45px; width: 45px; border-radius: 23px;'></div><div class='ui-block-b' style='width: 65%; padding-top: 15px;'><label id='showname' data-value='"+ data[i].post_data.user_id+ "' style='font-size: medium; margin-left: 10px; color: #525456; text-shadow: none; text-transform: none; font-weight: bold;'>"
-														+ data[i].post_data.name
-														+ "</label></div><img id='deleteimg' data-value='"+data[i].post_data.id+"' class='ui-block-c' style='width:12.4%;float:right;' src='img/viewData.png'></div> <div><img id='videos' data-value='"+ data[i].post_data.id+ "' src='"
-														+ url
-														+ "'style='width: 100%; background-size: cover; margin-top: 18px;'><span style='position:absolute;left:0;top:0;right:0;bottom:0;z-index:1;display:none;background: url(img/ic_video_up.png) no-repeat center center;'></div><div class='ui-grid-c' style='width: 50%; margin-top: 7px; height: 30px;margin-left:12px;'><img class='ui-block-a' src='img/ic_heart_icon.png' id='like1' data-value='"+data[i].post_data.id+"' style='width: 20px; height: 20px;'> <label id='like2' data-value='"+data[i].post_data.id+"' class='ui-block-b' style='color: #525456; text-transform: none; text-shadow: none; font-size: small; font-weight: bold; margin-left: 5px; padding-top: 3px;'>"
-														+ data[i].likes_data.total_likes + "</label><div id='cmtss' data-value='"+ data[i].post_data.id+ "'><img class='ui-block-c' src='img/ic_comment.png' style='width: 20px; height: 20px; margin-left: 5px;'><label class='ui-block-d' style='color: #525456; text-transform: none; text-shadow: none; font-size: small; font-weight: bold; margin-left: 5px; padding-top: 3px;'>Comments</label></div></div>");
+														+ data[i].id
+														+ "' style='background-color: transparent; color: #303638; text-transform: none; overflow: auto; padding: 5px; -webkit-transform: translateZ(0);' ><div class='ui-grid-b'><div class='ui-block-a' style='width: 15%;'><img src='"+mmg+"' id='showpic' data-value='"+ data[i].user_id+ "' style='height: 45px; width: 45px; border-radius: 23px;'></div><div class='ui-block-b' style='width: 65%; padding-top: 15px;'><label id='showname' data-value='"+ data[i].user_id+ "' style='font-size: medium; margin-left: 10px; color: #525456; text-shadow: none; text-transform: none; font-weight: bold;'>"
+														+ data[i].name
+														+ "</label></div><img id='deleteimg' data-value='"+data[i].id+"' class='ui-block-c' style='width:12.4%;float:right;' src='img/viewData.png'></div> <div>"
+                                                        +"<video style='margin-top: 18px;' width='100%' height='100%' controls> <source src='"
+														+ BASE_URL+data[i].file_name
+                                                        + "'type='video/mp4'></video>"
+                                                        +"<span style='position:absolute;left:0;top:0;right:0;bottom:0;z-index:1;display:none;background: url(img/ic_video_up.png) no-repeat center center;'></div><div class='ui-grid-c' style='width: 50%; margin-top: 7px; height: 30px;margin-left:12px;'><img class='ui-block-a' src='img/ic_heart_icon.png' id='like1' data-value='"+data[i].id+"' style='width: 20px; height: 20px;'> <label id='like2' data-value='"+data[i].id+"' class='ui-block-b' style='color: #525456; text-transform: none; text-shadow: none; font-size: small; font-weight: bold; margin-left: 5px; padding-top: 3px;'>");
+//                                                        + data[i].likes_data.total_likes + "</label><div id='cmtss' data-value='"+ data[i].post_data.id+ "'><img class='ui-block-c' src='img/ic_comment.png' style='width: 20px; height: 20px; margin-left: 5px;'><label class='ui-block-d' style='color: #525456; text-transform: none; text-shadow: none; font-size: small; font-weight: bold; margin-left: 5px; padding-top: 3px;'>Comments</label></div></div>");
 											}
 
 											var comments = "";
@@ -2638,7 +2737,7 @@
 
 							function accounts_data(about, email, username,
 									city, sex, dob) {
-                       alert(1)
+                      // alert(1)
 								$('#about').text(about);
 								$('#email').text(email);
 								$('#username').text(username);
@@ -2953,6 +3052,23 @@
 		$(document).on("pageshow","#search",function() {
 							//initial Display
 							mytopmargin();
+                       
+                       //Ashutosh mishra11
+                       var set_lang = localStorage.getItem('lang_select');
+                       if(set_lang == "en_en"){
+                       $("#search_text").html(lan_code.english[0].searchtext);
+                       $("#btn_all").html(lan_code.english[0].btn_alltext);
+                       $("#btn_photo").html(lan_code.english[0].btn_phototext);
+                       $("#btn_video").html(lan_code.english[0].btn_videotext);
+
+                       }else{
+                       $("#search_text").html(lan_code.spanish[0].searchtext);
+                       $("#btn_all").html(lan_code.spanish[0].btn_alltext);
+                       $("#btn_photo").html(lan_code.spanish[0].btn_phototext);
+                       $("#btn_video").html(lan_code.spanish[0].btn_videotext);
+                       }
+
+                       
 							document.addEventListener("backbutton",back,false);
 							var selected = 0;
 							function initial() {
@@ -2984,8 +3100,9 @@
 
 							function all(data) {
 								console.log("ALL");
+                       console.log("DATA Valueeeeee >>>> "+JSON.stringify(data));
 								$('#not_noresult').css('display','none');
-								if(data.length==0){
+								if(data.length == 0){
 									$('#not_noresult').css('display','');
 								}
 								$('#photo_list').empty();
@@ -3005,16 +3122,24 @@
 													+ '" style="width: 31%;height: '
 													+ grid_item_height + ';"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');
 										} else {
-											var fl_name = data[i].file_name
-													.replace("mp4", "jpg");
+											//var fl_name = data[i].file_name
+													//.replace("mp4", "jpg");
 											console.log(fl_name);
-											let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div><img id="mm1" data-value="'
-													+ data[i].id
-													+ '" class="ui-block-b" src="'
-													+ BASE_URL
-													+ fl_name
-													+ '" style="width: 31%;height: '
-													+ grid_item_height + ';z-index:0;"><img class="ui-block-b" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:9%;display:none;"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');
+											let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div>'
+                                                    
+                                                    +'<video style="margin-top: 18px;" width="31%" controls> <source src='
+                                                    + BASE_URL+data[i].file_name
+                                                    + 'type="video/mp4"></video>'
+
+                                                    
+//                                                    +'<img id="mm1" data-value="'
+//                                                    + data[i].id
+//                                                    + '" class="ui-block-b" src="'
+//                                                    + BASE_URL
+//                                                    + fl_name
+                                                   // + '" style="width: 31%;height: '
+													//+ grid_item_height + ';z-index:0;">
+                                                    +'<img class="ui-block-b" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:9%;display:none;"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');
 										}
 
 										if (i + 1 < data.length) {
@@ -3053,13 +3178,13 @@
 															+ data[i + 2].id
 															+ '" class="ui-block-f" src="'
 															+ BASE_URL
-															+ data[i + 2].file_name
+															+ data[i].file_name
 															+ '" style="width: 31%;height: '
 															+ grid_item_height + ';"><div class="ui-block-g" style="background-color: transparent; width: 1.75%;"></div>');
 												} else {
-													var fl_name = data[i + 2].file_name
-															.replace("mp4",
-																	"jpg");
+													//var fl_name = data[i + 2].file_name
+															//.replace("mp4",
+															//		"jpg");
 													console.log(fl_name);
 													let3 = ('<img id="mm3" data-value="'
 															+ data[i + 2].id
@@ -3119,7 +3244,7 @@
 										console.log(JSON.stringify(data[i]));
 										console.log(BASE_URL
 												+ data[i].file_name);
-										//	if(data[i].type=='image'){
+											if(data[i].type=='image'){
 										let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div><img id="mm1" data-value="'
 												+ data[i].id
 												+ '" class="ui-block-b" src="'
@@ -3127,11 +3252,7 @@
 												+ data[i].file_name
 												+ '" style="width: 31%;height: '
 												+ grid_item_height + ';"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');
-										//	}else{
-										//		var fl_name=data[i].file_name.replace("mp4", "jpg");
-										//		console.log(fl_name);
-										//		let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div><img class="ui-block-b" src="'+BASE_URL+fl_name+'" style="width: 31%;height: '+grid_item_height+';z-index:0;"><img class="ui-block-b" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:9%;"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');
-										//	}
+											}
 
 										if (i + 1 < data.length) {
 											console.log(JSON
@@ -3356,7 +3477,7 @@
 									loading();
 									$.ajax({
 												url : BASE_URL
-														+ 'api/app/get_image_files',
+														+ 'home.php',
 												dataType : 'json',
 												type : 'post',
 												contentType : 'application/x-www-form-urlencoded',
@@ -3366,16 +3487,17 @@
 												success : function(data,
 														textStatus, jQxhr) {
 													console.log(JSON.stringify(data));
-													if (data.status == '1') {
+													if (data.post_data.length > 0) {
 														$('#noti_count').css('display','');
-														if(data.notification.unread==0){
-															$('#noti_count').css('display','none');
-														}else if(data.notification.unread > 7){
-															$('#noti_count').text('7+');
-														}else{
-															$('#noti_count').text(data.notification.unread);
-														}
-														photos(data.data);
+//                                                        if(data.notification.unread==0){
+//                                                            $('#noti_count').css('display','none');
+//                                                        }else if(data.notification.unread > 7){
+//                                                            $('#noti_count').text('7+');
+//                                                        }else{
+//                                                            $('#noti_count').text(data.notification.unread);
+//                                                        }
+                                           full_data = data.post_data;
+														photos(full_data);
 														var tt = $(
 																'#photo_list')
 																.height();
@@ -3398,7 +3520,7 @@
 									loading();
 									$.ajax({
 												url : BASE_URL
-														+ 'api/app/get_all_files',
+														+ 'home.php',
 												dataType : 'json',
 												type : 'post',
 												contentType : 'application/x-www-form-urlencoded',
@@ -3409,21 +3531,23 @@
 														textStatus, jQxhr) {
 													console.log(JSON
 															.stringify(data));
-													if (data.status == '1') {
+													if (data.post_data.length > 0) {
 														$('#noti_count').css('display','');
-														if(data.notification.unread==0){
-															$('#noti_count').css('display','none');
-														}else if(data.notification.unread > 7){
-															$('#noti_count').text('7+');
-														}else{
-															$('#noti_count').text(data.notification.unread);
-														}
-														all(data.data);
+//                                                        if(data.notification.unread==0){
+//                                                            $('#noti_count').css('display','none');
+//                                                        }else if(data.notification.unread > 7){
+//                                                            $('#noti_count').text('7+');
+//                                                        }else{
+//                                                            $('#noti_count').text(data.notification.unread);
+//                                                        }
+                                           full_data = data.post_data;
+
+														all(full_data);
 														var tt = $(
 																'#photo_list')
 																.height();
 														console.log("as>" + tt);
-														if (data.data.length > 0) {
+														if (full_data.length > 0) {
 															$('#photo_list')
 																	.height(
 																			tt + 50);
@@ -3515,6 +3639,15 @@
 		$(document).on("pageshow","#notification",function() {
 							mytopmargin();
 							
+                       //Ashutosh mishra11
+                       var set_lang = localStorage.getItem('lang_select');
+                       if(set_lang == "en_en"){
+                       $("#notif_text").html(lan_code.english[0].notiftext);
+                       }else{
+                       $("#notif_text").html(lan_code.spanish[0].notiftext);
+                       }
+
+                       
 							document.addEventListener("backbutton",back,false);
 							var noti_click_check=true;
 							function readD(){
@@ -4332,6 +4465,28 @@
 		$(document).on("pageshow","#login",function() {
 							console.log("DATA>>>");
 							mytopmargin();
+
+                       var set_lang = localStorage.getItem('lang_select');
+                       if(set_lang == null){
+                       localStorage.setItem("lang_select", "en_en");
+                       }
+                       setTimeout(function(){
+                       var set_lang = localStorage.getItem('lang_select');
+                       if(set_lang == "en_en"){
+                       $('#login_btn').html(lan_code.english[0].login)
+                       $('#forgetPass').html(lan_code.english[0].Forgot_username)
+                       $('#homeid').html(lan_code.english[0].home)
+                                  
+                       }else{
+                       $('#login_btn').html(lan_code.spanish[0].login)
+                       $('#forgetPass').html(lan_code.spanish[0].Forgot_username)
+                       $('#homeid').html(lan_code.spanish[0].home)
+                       }
+                        }, 100);
+
+                       
+                       //changeLanguage();
+
 							document.removeEventListener("backbutton",back,false);
 
 							var type = '1';
@@ -4850,40 +5005,39 @@
 													alertSS("Enter valid Email");
 												} else {
 													loading();
-													$.ajax({
-																url : BASE_URL
-																		+ 'api/app/forgot_password',
-																dataType : 'json',
-																type : 'post',
-																contentType : 'application/x-www-form-urlencoded',
-																data : {
-																	email : nm
-																},
-																success : function(
-																		data,
-																		textStatus,
-																		jQxhr) {
-																	//console.log(JSON.stringify(data));
-
-																	if (data.status == '1') {
-																		alertSS("Email Sent");
-																		$('#forgetemail').val('');
-																		$('#forgetPassDiv').css('display','none');
-																	} else {
-																		alertSS(data.data);
-																	}
-																	loading_done();
-																},
-																error : function(
-																		jqXhr,
-																		textStatus,
-																		errorThrown) {
-																	console
-																			.log(errorThrown);
-																	alertSS('Server Error');
-																	loading_done();
-																}
-															});
+                                                        $.ajax({
+                                                               url : BASE_URL
+                                                               + 'forgot_password.php',
+                                                               dataType : 'json',
+                                                               type : 'post',
+                                                               contentType : 'application/x-www-form-urlencoded',
+                                                               data : {
+                                                               email : nm
+                                                               },
+                                                               success : function(
+                                                                                  data,
+                                                                                  textStatus,
+                                                                                  jQxhr) {
+                                                               console.log(JSON.stringify(data));
+                                                               if (data.password.length > 0) {
+                                                               alertSS("Email Sent");
+                                                               $('#forgetemail').val('');
+                                                               $('#forgetPassDiv').css('display','none');
+                                                               } else {
+                                                               alertSS(data.data);
+                                                               }
+                                                               loading_done();
+                                                               },
+                                                               error : function(
+                                                                                jqXhr,
+                                                                                textStatus,
+                                                                                errorThrown) {
+                                                               console
+                                                               .log(errorThrown);
+                                                               alertSS('Server Error');
+                                                               loading_done();
+                                                               }
+                                                               });
 												}
 											});
 							$('#login_btn').click(function() {
@@ -4955,6 +5109,42 @@
 		$(document).on("pageshow","#profile",function() {
 							console.log("Profile>>>" + user_id);
 							mytopmargin();
+                       
+                       //profile language code
+                       
+                       var set_lang = localStorage.getItem('lang_select');
+
+                       setTimeout(function(){
+                                  if(set_lang == "en_en"){
+                                  $('#abtlable').html(lan_code.english[0].profile)
+                                  $('#emaillable').html(lan_code.english[0].email)
+                                  $('#namellable').html(lan_code.english[0].name)
+                                  $('#citylable').html(lan_code.english[0].city)
+                                  $('#sexlable').html(lan_code.english[0].sex)
+                                  $('#doblable').html(lan_code.english[0].dob)
+                                  $('#btn_friends').html(lan_code.english[0].friends)
+                                  $('#btn_settings').html(lan_code.english[0].post)
+                                  $('#btn_accounts').html(lan_code.english[0].acinfo)
+                                  $('#edit_profile_btn').html(lan_code.english[0].editprof)
+                                  $('#header_profile').html(lan_code.english[0].profile)
+                                  }else{
+                                  $('#abtlable').html(lan_code.spanish[0].profile)
+                                  $('#emaillable').html(lan_code.spanish[0].email)
+                                  $('#namellable').html(lan_code.spanish[0].name)
+                                  $('#citylable').html(lan_code.spanish[0].city)
+                                  $('#sexlable').html(lan_code.spanish[0].sex)
+                                  $('#doblable').html(lan_code.spanish[0].dob)
+                                  $('#btn_friends').html(lan_code.spanish[0].friends)
+                                  $('#btn_settings').html(lan_code.spanish[0].post)
+                                  $('#btn_accounts').html(lan_code.spanish[0].acinfo)
+                                  $('#edit_profile_btn').html(lan_code.spanish[0].editprof)
+                                  $('#header_profile').html(lan_code.spanish[0].profile)
+                                  }
+                                  }, 100);
+                       
+                       
+                       
+                       
 							document.addEventListener("backbutton",back,false);
 							//initial Display
 							function initial() {
@@ -4998,9 +5188,9 @@
                                     data.profile[0].gender,
                                     data.profile[0].dob);
                            // all(data.data.posts_data);
-                            if (data.profile_pic != BASE_URL) {
-                              //  $('#profile_pic').attr("src",data.profile[0].profile_pic);
-                            }
+                                       if (data.profile[0].profile_pic != "") {
+                                       $('#profile_pic').attr("src",BASE_URL+'/'+data.profile[0].profile_pic);
+                                       }
                             $('#noti_count').css('display','');
 //                            if(data.profile[0].notification.unread==0){
 //                                $('#noti_count').css('display','none');
@@ -5436,6 +5626,14 @@
 									changeHash : true
 								});
 							});
+                       
+                       
+                       $("#termsCond").click(function() {
+                                          $.mobile.changePage("terms.html", {
+                                                              changeHash : true
+                                                              });
+                                          });
+                       
 							$("#blog").click(function() {
 								alertSS("Blog Show");
 							});
@@ -5476,35 +5674,9 @@
 											});
 							$("#termsCond").click(function() {
 												//alert("Terms and Conditions");
-												$.ajax({
-															url : BASE_URL
-																	+ 'api/app/get_terms',
-															dataType : 'json',
-															type : 'post',
-															contentType : 'application/x-www-form-urlencoded',
-															data : {
-																user_id : user_id
-															},
-															success : function(
-																	data,
-																	textStatus,
-																	jQxhr) {
-																//console.log(JSON.stringify(data));
-																if (data.status == '1') {
-																	alertSS(data.data);
-																} else {
-																	alertSS(data.data);
-																}
-															},
-															error : function(
-																	jqXhr,
-																	textStatus,
-																	errorThrown) {
-																console
-																		.log(errorThrown);
-																alertSS('Server Error');
-															}
-														});
+                                                  $.mobile.changePage("terms.html", {
+                                                                      changeHash : true
+                                                                      });
 											});
 							$('#popclose1').click(function() {
 								$('#popupPassword').css('display', 'none');
@@ -5513,6 +5685,7 @@
 							$('#update_pass_btn').click(
 											function() {
 												var pass = $('#passw').val();
+                                                var old_pass = $('#old_passw').val();
 												var confirmpass = $(
 														'#confirmpassw').val();
 												if (pass.length > 0
@@ -5522,26 +5695,27 @@
 														loading();
 														$.ajax({
 																	url : BASE_URL
-																			+ 'api/app/change_password',
+																			+ 'update_pass.php',
 																	dataType : 'json',
 																	type : 'post',
 																	contentType : 'application/x-www-form-urlencoded',
 																	data : {
 																		user_id : user_id,
-																		password : pass
+																		password : pass,
+                                                                        old_pass:old_pass
 																	},
 																	success : function(
 																			data,
 																			textStatus,
 																			jQxhr) {
 																		//console.log(JSON.stringify(data));
-																		if (data.status == '1') {
+																		if (data.profile[0] == 'sucess') {
 																			alertSS("Password Updated Succesfully");
 																			$('#passw').val('');
 																			$('#confirmpassw').val('');
 																			$('#popupPassword').css('display', 'none');
 																		} else {
-																			alertSS(data.data);
+																			alertSS(data.profile);
 																		}
 																		loading_done();
 																	},
@@ -5794,6 +5968,34 @@
 		
 		$(document).on("pageshow", "#settings", function() {
 			mytopmargin();
+                       
+             var set_lang = localStorage.getItem('lang_select');
+               
+                       if(set_lang == "en_en"){
+                       $('#lang_spa').show();
+                       $('#change_Password').html(lan_code.english[0].change_pass)
+                       $('#report').html(lan_code.english[0].report)
+                       $('#termsCond').html(lan_code.english[0].terms_cond)
+                       $('#privacy_policy').html(lan_code.english[0].policy)
+                       $('#lang_eng').html(lan_code.english[0].lan_engl)
+                       $('#lang_spa').html(lan_code.english[0].lan_span)
+                       $('#logout').html(lan_code.english[0].signout)
+                       }else{
+                       $('#lang_eng').show();
+                       $('#change_Password').html(lan_code.spanish[0].change_pass)
+                       $('#report').html(lan_code.spanish[0].report)
+                       $('#termsCond').html(lan_code.spanish[0].terms_cond)
+                       $('#privacy_policy').html(lan_code.spanish[0].policy)
+                       $('#lang_eng').html(lan_code.spanish[0].lan_engl)
+                       $('#lang_spa').html(lan_code.spanish[0].lan_span)
+                       $('#logout').html(lan_code.spanish[0].signout)
+
+                       }
+                     
+                       
+        
+                       
+                       
 			document.removeEventListener("backbutton",back,false);
 			$("#change_Password").click(function() {
 				$('#popupPassword').css('display', '');
@@ -5803,6 +6005,20 @@
 					changeHash : true
 				});
 			});
+                       
+            $("#lang_eng").click(function() {
+            localStorage.setItem("lang_select", "en_en");
+            $.mobile.changePage("profile.html",{changeHash : true});
+            alertSS("Language Changed to English");
+            });
+
+            $("#lang_spa").click(function() {
+              localStorage.setItem("lang_select", "en_sp");
+            $.mobile.changePage("profile.html",{changeHash : true});
+            alertSS("Idioma cambiado al español");
+            });
+                       
+                       
 			$("#blog").click(function() {
 				alertSS("Blog Show");
 			});
@@ -5843,36 +6059,20 @@
 							});
 			$("#termsCond").click(function() {
 								//alert("Terms and Conditions");
-								$.ajax({
-											url : BASE_URL
-													+ 'api/app/get_terms',
-											dataType : 'json',
-											type : 'post',
-											contentType : 'application/x-www-form-urlencoded',
-											data : {
-												user_id : user_id
-											},
-											success : function(
-													data,
-													textStatus,
-													jQxhr) {
-												//console.log(JSON.stringify(data));
-												if (data.status == '1') {
-													alertSS(data.data);
-												} else {
-													alertSS(data.data);
-												}
-											},
-											error : function(
-													jqXhr,
-													textStatus,
-													errorThrown) {
-												console
-														.log(errorThrown);
-												alertSS('Server Error');
-											}
-										});
+                                  $.mobile.changePage("policy.html", {
+                                                      changeHash : true
+                                                      });
 							});
+                       
+                       
+                       $("#privacy_policy").click(function() {
+                                             //alert("Terms and Conditions");
+                                             $.mobile.changePage("terms.html", {
+                                                                 changeHash : true
+                                                                 });
+                                             });
+
+                       
 			$('#popclose1').click(function() {
 				$('#popupPassword').css('display', 'none');
 			});
@@ -5880,6 +6080,7 @@
 			$('#update_pass_btn').click(
 							function() {
 								var pass = $('#passw').val();
+                                         var old_pass = $('#old_passw').val();
 								var confirmpass = $('#confirmpassw').val();
 								if(pass.length < 6 && pass.length > 0 && confirmpass.length > 0 && confirmpass.length < 6 ){
 									alertSS("Password should be 6 characters or more");
@@ -5891,26 +6092,28 @@
 										loading();
 										$.ajax({
 													url : BASE_URL
-															+ 'api/app/change_password',
+															+ 'update_pass.php',
 													dataType : 'json',
 													type : 'post',
 													contentType : 'application/x-www-form-urlencoded',
 													data : {
 														user_id : user_id,
-														password : pass
+														password : pass,
+                                               old_pass:old_pass
 													},
 													success : function(
 															data,
 															textStatus,
 															jQxhr) {
 														//console.log(JSON.stringify(data));
-														if (data.status == '1') {
+														if (data.profile[0] == 'sucess') {
 															alertSS("Password Updated Succesfully");
 															$('#passw').val('');
 															$('#confirmpassw').val('');
+                                                            $('#old_passw').val('');
 															$('#popupPassword').css('display', 'none');
 														} else {
-															alertSS(data.data);
+															alertSS(data.profile[0]);
 														}
 														loading_done();
 													},
@@ -5987,6 +6190,18 @@
 		
 		$(document).on("pageshow","#camera",function() {
 							mytopmargin();
+                       
+                       
+                       //Ashutosh mishra11
+                       var set_lang = localStorage.getItem('lang_select');
+                       if(set_lang == "en_en"){
+                       $("#selfie_text").html(lan_code.english[0].selfietext);
+                       }else{
+                       $("#selfie_text").html(lan_code.spanish[0].selfietext);
+                       }
+
+                       
+
 							document.addEventListener("backbutton",back,false);
 							var image = true;
 							cap_to_show='';
@@ -6165,19 +6380,20 @@
 									loading_done();
 									var msg = JSON.parse(r.response);
 									console.log("ad>" + msg.status)
-									if (msg.status == '1') {
+									if (msg.status == 'success') {
 										console.log(msg.data);
-										var mdata = (msg.data[0]);
-										console.log(mdata.id);
-										img_to_show = msg.baseurl
-												+ (mdata.file_name.replace(
-														'.mp4', '.jpg'));
-										img_to_show1 = msg.baseurl
-										+ (mdata.file_name);
-										img_temp_id = mdata.id;
-										console.log(img_to_show + "--"
-												+ img_temp_id);
-										new_img_vid=1;
+//                                        var mdata = (msg.data[0]);
+//                                        console.log(mdata.id);
+//                                        img_to_show = msg.baseurl
+//                                                + (mdata.file_name.replace(
+//                                                        '.mp4', '.jpg'));
+//                                        img_to_show1 = msg.baseurl
+//                                        + (mdata.file_name);
+//                                        img_temp_id = mdata.id;
+//                                        console.log(img_to_show + "--"
+//                                                + img_temp_id);
+//                                        new_img_vid=1;
+                                          img_temp_id = msg.filename
 										img_to_show_type='vid';
 										$.mobile.changePage("add_details.html",
 												{
@@ -6285,6 +6501,7 @@
 								$('#frameImg').attr('src', src);
 								$('#frameImg').css('display', '');
 								frame_name = src.replace('img/frames/', '');
+                                             
 								//frame_name = src.replace('img/realframes/','') ;
 							});
 							$('#frm2').click(function() {
@@ -6434,7 +6651,36 @@
 							}
 							new_img_vid=1;
 							$('#editImage_save').click(function() {
-
+                                                      // myeditcanvas = "myCanvas";
+                                                       
+                                                       //
+                                                       var element = document.getElementById("test_img");
+                                                   //    alert(66)
+                                                       html2canvas(element).then(function(canvas) {
+                                                                             //    alert(canvas)
+                                                                                 document.body.appendChild(canvas);
+                                                                                 canvas.id = "h2canvas";
+                                                                                 
+                                                                                 window.canvas2ImagePlugin.saveImageDataToLibrary(
+                                                                                                                                  function(msg) {
+                                                                                                                                  //alert(msg);
+                                                                            $("#chkuploadimg").remove();
+                                                                                                                                  myeditcanvas = null;
+                                                                                                                                  
+                                                                                                                                  uploadImage("file://" +msg);
+                                                                                                                                  },
+                                                                                                                                  function(err) {
+                                                                                                                                  console.log("err>"+ err);
+                                                                                                                                  },
+                                                                                                                                  document.getElementById('h2canvas'));
+                                                                                 
+                                                                                 
+                                                                                 //var dataURL = canvas.toDataURL();
+                                                                                 //alert(dataURL)
+                                                                                 //uploadImage(dataURL);
+                                                                                 });
+                                                       return;
+                                                       
 												var body23 = document
 														.getElementsByTagName("body")[0];
 												if (myeditcanvas != null) {
@@ -6460,7 +6706,7 @@
 
             function uploadImage(fileURL) {
                 console.log("dedede : : " + fileURL);
-                var fileURL = fileURL.split("?")[0]
+              //  var fileURL = fileURL.split("?")[0]
                 loading();
 //                                var op = new FileUploadOptions();
 //                                op.fileKey = "file_name";
@@ -6471,6 +6717,8 @@
 //                                op.fileName = "sadfdsffdfdsd." + ext;
 //                                op.mimeType = "text/plain";
 
+                       var newdate = new Date();
+                       var timestamp = newdate.getTime();
 
                 var options = new FileUploadOptions();
                 options.fileKey = "file";
@@ -6478,6 +6726,7 @@
                 options.mimeType = "text/plain";
                 var params = new Object();
                 params.type = "image";
+                
                 //params.user_id = user_id;
                 params.frame_name = frame_name;
                 options.params = params;
@@ -6730,7 +6979,8 @@
 													caption : capText,
 													loc_log : current_lng,
 													loc_lat : current_lat,
-                                                    userid : user_id
+                                                    userid : user_id,
+                                                  file_type_name:img_to_show_type
 												};
                                                   
                                                  // alert(JSON.stringify(login))
@@ -6761,7 +7011,7 @@
 																					changeHash : true
 																		});
 																	}else{
-																		$.mobile.changePage("data_view.html",
+																		$.mobile.changePage("dashboard.html",
 																				{
 																					changeHash : true
 																		});
@@ -6892,6 +7142,18 @@
 		*/
 		$(document).on("pageshow","#update_profile",function() {
 							mytopmargin();
+                       
+                       //Ashutosh mishra11
+                       var set_lang = localStorage.getItem('lang_select');
+                       if(set_lang == "en_en"){
+                       $("#update_profile_text").html(lan_code.english[0].updateprof);
+                       $("#update_btn").html(lan_code.english[0].updatebtn);
+                       }else{
+                       $("#update_profile_text").html(lan_code.spanish[0].updateprof);
+                       $("#update_btn").html(lan_code.spanish[0].updatebtn);
+                       }
+
+                       
 							document.removeEventListener("backbutton",back,false);
 							var final_date, final_month, final_year, final_gender;
 							var user_pic = null;
@@ -7072,6 +7334,45 @@
 								camera_use = true;
 								user_pic = imageData;
 								$('#user_img').attr("src", user_pic);
+                       //ashutosh imageupload
+                       
+                       var fileURL = user_pic;
+                       var fileURL = fileURL.split("?")[0];
+                       console.log("dedede : : " + fileURL);
+                       // loading();
+                       var options = new FileUploadOptions();
+                       options.fileKey = "file";
+                       //options.fileName = fileURL.slice(0,fileURL.lastIndexOf('?'));
+                       options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+                       
+                       options.mimeType = "text/plain";
+                       var params = new Object();
+                       params.type = "image";
+                       params.user_id = user_id;
+                       //params.frame_name = frame_name;
+                       options.params = params;
+                       var up = new FileTransfer();
+                       up.upload(fileURL, BASE_URL
+                                 + "image.php", function(r) {
+                                 
+                                 videosrc = "";
+                                 console.log("MM>>"
+                                             + JSON.stringify(r.response));
+                                 var msg = JSON.parse(r.response);
+                                 console.log("ad>" + msg.status)
+                                 if (msg.status == 'success') {
+                                 img_temp_id = msg.filename
+                                 
+                                 loading_done();
+                                 img_to_show_type='img';
+                                 
+                                 } else {
+                                 alertSS("Server Error");
+                                 }
+                                 }, function(error) {
+                                 alertSS("Error");
+                                 
+                                 }, options);
 								$('#popupMenu').css('display', 'none');
 							}
 
@@ -7081,6 +7382,7 @@
 
 							$('#update_pass_btn').click(function() {
 												var pass = $('#passw').val();
+                                                         var old_pass = $('#old_passw').val();
 												var confirmpass = $(
 														'#confirmpassw').val();
 												if(pass.length > 0 && pass.length < 6 ){
@@ -7093,25 +7395,26 @@
 														loading();
 														$.ajax({
 																	url : BASE_URL
-																			+ 'api/app/change_password',
+																			+ 'update_pass.php',
 																	dataType : 'json',
 																	type : 'post',
 																	contentType : 'application/x-www-form-urlencoded',
 																	data : {
 																		user_id : user_id,
-																		password : pass
+																		password : pass,
+                                                               old_pass:old_pass
 																	},
 																	success : function(
 																			data,
 																			textStatus,
 																			jQxhr) {
 																		//console.log(JSON.stringify(data));
-																		if (data.status == '1') {
+																		if (data.profile[0] == 'sucess') {
 																			alertSS("Password Updated Succesfully");
 																			$('#passw').val('');
 																			$('#confirmpassw').val('');
 																		} else {
-																			alertSS(data.data);
+																			alertSS(data.profile[0]);
 																		}
 																		loading_done();
 																	},
@@ -7254,7 +7557,7 @@
 													console.log("female");
 												}
 												if (data.profile[0].profile_pic != "") {
-													$('#user_img').attr("src",data.profile[0].profile_pic);
+													$('#user_img').attr("src",BASE_URL+'/'+data.profile[0].profile_pic);
 												}
 											} else {
 												alertSS(data.profile[0]);
@@ -7866,15 +8169,16 @@
                                                                                       textStatus,
                                                                                       jQxhr) {
                                                                    
-                                                                   if (data.users.length > 0) {
+                                                                   if (data.status == 'success') {
                                                                       // alert('Login Successfully');
                                                                    $('#username').val('');
                                                                    $('#password').val('');
                                                                    user_id = data.users[0].id;
-                                                                   $.mobile.changePage("profile.html",{changeHash : true});
+                                                                   localStorage.setItem("userid", user_id);
+                                                                   $.mobile.changePage("dashboard.html",{changeHash : true});
                                                                    
                                                                    } else {
-                                                                   alertSS(data.data);
+                                                                   alertSS("Incorrect Username or Password.");
                                                                    }
                                                                    loading_done();
                                                                    },
@@ -8090,3 +8394,9 @@ var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))
     }
 
 
+                            function changeLanguage(){
+                           // alert(33)
+                           // alert(lan_code.english[0].login);
+                            $('#login_btn').html(lan_code.spanish[0].login)
+                            $('#forgetPass').html(lan_code.spanish[0].Forgot_username)
+                            }

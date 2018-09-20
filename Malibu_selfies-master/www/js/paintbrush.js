@@ -577,7 +577,7 @@ function destroyStash(img, preserve) {
 }
 
 function stashOriginal(img, originalSuffix, ref, buffer) {
-
+//alert(33)
 	// store the original image in the DOM
 	var stashed = stashInDom(img, originalSuffix);
 

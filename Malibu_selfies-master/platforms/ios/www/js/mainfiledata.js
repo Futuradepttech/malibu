@@ -39,7 +39,7 @@ var user_id = localStorage.getItem('userid');
 
 var lan_code = {"english":[{"login":"Login",
                            "register":"Register",
-                           "Forgot_username":"Forgot Username or Password",
+                           "Forgot_username":"Forgot Password/Username?",
                            "profile":"Profile",
                            "email":"Email",
                            "name":"Name",

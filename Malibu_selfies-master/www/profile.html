@@ -43,6 +43,8 @@
                 <script type="text/javascript" src="js/paintbrush.js"></script>
                 <script type="text/javascript" src="js/playground.js"></script>
                 <script type="text/javascript" src="js/jquery.cycle.all.js"></script>
+                <script type="text/javascript" src="js/html2canvas.js"></script>
+
                 <script
                 src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
                 
@@ -125,7 +127,7 @@
 		style="background-color: #43D3F7; text-align: center; display: table-cell; vertical-align: middle;">
 		<img src="img/logo.png"
 			style="width: 50px; float: left; margin-right: 5px; margin-left: 5px;">
-		<span
+		<span id="header_profile"
 			style="color: #FFFFFF; font-weight: normal; font-size: medium; text-transform: none; text-align: center; margin-top: 1em; float: left; text-shadow: none;">Profile</span>
 		<img src="img/ques.png"
 			onclick='$.mobile.changePage("faq.html", {changeHash : true});'
@@ -194,7 +196,7 @@
 			style="background-color: white; height: 42%; margin-left: 0em; left: 0em; float: left; padding: 20px 10px; display: none; width: 100%;">
 			<div
 				style="border-bottom: 1px solid #F6F6F6; min-height: 38px; padding-bottom: 5px; width: 90%; margin-top: 16px;">
-				<label
+				<label id="abtlable"
 					style="text-transform: none; text-shadow: none; font-size: small; font-weight: bold; color: #525456;">About</label>
 				<label id="about"
 					style="text-transform: none; text-shadow: none; font-size: small; font-weight: normal; color: #6D6D6D; float: left; width: 95%;"></label>
@@ -202,7 +204,7 @@
 			<div style="width: 90%; float: left;">
 				<div
 					style="float: left; margin-top: 5px; clear: left; height: 26px; width: 100%; border-bottom: 1px solid #F6F6F6">
-					<label
+					<label id="emaillable"
 						style="color: #525456; text-shadow: none; font-size: small; text-transform: none; text-align: left; font-weight: bold; float: left; vertical-align: middle;">Email</label>
 					<label
 						style="color: #8A8A8A; text-shadow: none; font-size: small; text-transform: none; text-align: left; font-weight: normal; float: right; margin-left: 1.6em; vertical-align: middle;"
@@ -210,7 +212,7 @@
 				</div>
 				<div
 					style="float: left; margin-top: 5px; clear: left; height: 26px; width: 100%; border-bottom: 1px solid #F6F6F6">
-					<label
+					<label id="namellable"
 						style="color: #525456; text-shadow: none; font-size: small; text-transform: none; text-align: left; font-weight: bold; float: left; vertical-align: middle;">Name</label>
 					<label
 						style="color: #8A8A8A; text-shadow: none; font-size: small; text-transform: none; text-align: left; font-weight: normal; float: right; margin-left: 1.6em; vertical-align: middle;"
@@ -218,7 +220,7 @@
 				</div>
 				<div
 					style="float: left; margin-top: 5px; clear: left; height: 26px; width: 100%; border-bottom: 1px solid #F6F6F6">
-					<label
+					<label id="citylable"
 						style="color: #525456; text-shadow: none; font-size: small; text-transform: none; text-align: left; font-weight: bold; float: left; vertical-align: middle;">City</label>
 					<label
 						style="color: #8A8A8A; text-shadow: none; font-size: small; text-transform: none; text-align: left; font-weight: normal; float: right; margin-left: 1.6em; vertical-align: middle;"
@@ -226,7 +228,7 @@
 				</div>
 				<div
 					style="float: left; margin-top: 5px; clear: left; height: 26px; width: 100%; border-bottom: 1px solid #F6F6F6">
-					<label
+					<label id="sexlable"
 						style="color: #525456; text-shadow: none; font-size: small; text-transform: none; text-align: left; font-weight: bold; float: left; vertical-align: middle;">Sex</label>
 					<label
 						style="color: #8A8A8A; text-shadow: none; font-size: small; text-transform: none; text-align: left; font-weight: normal; float: right; margin-left: 1.6em; vertical-align: middle;"
@@ -234,7 +236,7 @@
 				</div>
 				<div
 					style="float: left; margin-top: 5px; clear: left; height: 26px; width: 100%; border-bottom: 1px solid #F6F6F6">
-					<label
+					<label id="doblable"
 						style="color: #525456; text-shadow: none; font-size: small; text-transform: none; text-align: left; font-weight: bold; float: left; vertical-align: middle;">Dob
 					</label> <label
 						style="color: #8A8A8A; text-shadow: none; font-size: small; text-transform: none; text-align: left; font-weight: normal; float: right; margin-left: 1.6em; vertical-align: middle;"
