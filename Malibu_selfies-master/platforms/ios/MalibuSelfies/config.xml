@@ -71,6 +71,10 @@
     <feature name="Globalization">
         <param name="ios-package" value="CDVGlobalization" />
     </feature>
+    <feature name="Canvas2ImagePlugin">
+        <param name="ios-package" value="Canvas2ImagePlugin" />
+        <param name="onload" value="true" />
+    </feature>
     <name>MalibuSelfies</name>
     <description>
         MalibuSelfies is the app for people who want to share their lives, business or brand name with the World.
@@ -105,8 +109,4 @@
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="StatusBarBackgroundColor" value="#000000" />
-    <feature name="Canvas2ImagePlugin">
-        <param name="ios-package" value="Canvas2ImagePlugin" />
-        <param name="onload" value="true" />
-    </feature>
 </widget>

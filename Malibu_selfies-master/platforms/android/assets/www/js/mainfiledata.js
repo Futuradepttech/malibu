@@ -33,11 +33,14 @@
 	var show_all_msg='0';
 	var show_cmtss='';
 
+var user_id = localStorage.getItem('userid');
 
-var lan_code = {"english":[{"login":"login",
-                           "register":"register",
-                           "Forgot_username":"Forgot Username or Password",
-                           "profile":"profile",
+//alert(user_id)
+
+var lan_code = {"english":[{"login":"Login",
+                           "register":"Register",
+                           "Forgot_username":"Forgot Password/Username?",
+                           "profile":"Profile",
                            "email":"Email",
                            "name":"Name",
                            "city":"City",
@@ -63,7 +66,8 @@ var lan_code = {"english":[{"login":"login",
                            "btn_videotext":"Video",
                            "dashboardtext":"Dashboard",
                            "btn_private_text":"Private",
-                           "btn_public_text":"Public"
+                           "btn_public_text":"Public",
+                           "home":"Home"
 
                            }],
     
@@ -97,7 +101,8 @@ var lan_code = {"english":[{"login":"login",
                            "btn_videotext":"Vídeo",
                            "dashboardtext":"Tablero",
                            "btn_private_text":"Privado",
-                           "btn_public_text":"Público"
+                           "btn_public_text":"Público",
+                           "home":"Casa"
 
                            }
                            
@@ -2732,7 +2737,7 @@ var lan_code = {"english":[{"login":"login",
 
 							function accounts_data(about, email, username,
 									city, sex, dob) {
-                       alert(1)
+                      // alert(1)
 								$('#about').text(about);
 								$('#email').text(email);
 								$('#username').text(username);
@@ -4462,17 +4467,20 @@ var lan_code = {"english":[{"login":"login",
 							mytopmargin();
 
                        var set_lang = localStorage.getItem('lang_select');
-                       
                        if(set_lang == null){
                        localStorage.setItem("lang_select", "en_en");
                        }
                        setTimeout(function(){
+                       var set_lang = localStorage.getItem('lang_select');
                        if(set_lang == "en_en"){
                        $('#login_btn').html(lan_code.english[0].login)
                        $('#forgetPass').html(lan_code.english[0].Forgot_username)
+                       $('#homeid').html(lan_code.english[0].home)
+                                  
                        }else{
                        $('#login_btn').html(lan_code.spanish[0].login)
                        $('#forgetPass').html(lan_code.spanish[0].Forgot_username)
+                       $('#homeid').html(lan_code.spanish[0].home)
                        }
                         }, 100);
 
@@ -5677,6 +5685,7 @@ var lan_code = {"english":[{"login":"login",
 							$('#update_pass_btn').click(
 											function() {
 												var pass = $('#passw').val();
+                                                var old_pass = $('#old_passw').val();
 												var confirmpass = $(
 														'#confirmpassw').val();
 												if (pass.length > 0
@@ -5686,26 +5695,27 @@ var lan_code = {"english":[{"login":"login",
 														loading();
 														$.ajax({
 																	url : BASE_URL
-																			+ 'api/app/change_password',
+																			+ 'update_pass.php',
 																	dataType : 'json',
 																	type : 'post',
 																	contentType : 'application/x-www-form-urlencoded',
 																	data : {
 																		user_id : user_id,
-																		password : pass
+																		password : pass,
+                                                                        old_pass:old_pass
 																	},
 																	success : function(
 																			data,
 																			textStatus,
 																			jQxhr) {
 																		//console.log(JSON.stringify(data));
-																		if (data.status == '1') {
+																		if (data.profile[0] == 'sucess') {
 																			alertSS("Password Updated Succesfully");
 																			$('#passw').val('');
 																			$('#confirmpassw').val('');
 																			$('#popupPassword').css('display', 'none');
 																		} else {
-																			alertSS(data.data);
+																			alertSS(data.profile);
 																		}
 																		loading_done();
 																	},
@@ -6070,6 +6080,7 @@ var lan_code = {"english":[{"login":"login",
 			$('#update_pass_btn').click(
 							function() {
 								var pass = $('#passw').val();
+                                         var old_pass = $('#old_passw').val();
 								var confirmpass = $('#confirmpassw').val();
 								if(pass.length < 6 && pass.length > 0 && confirmpass.length > 0 && confirmpass.length < 6 ){
 									alertSS("Password should be 6 characters or more");
@@ -6081,26 +6092,28 @@ var lan_code = {"english":[{"login":"login",
 										loading();
 										$.ajax({
 													url : BASE_URL
-															+ 'api/app/change_password',
+															+ 'update_pass.php',
 													dataType : 'json',
 													type : 'post',
 													contentType : 'application/x-www-form-urlencoded',
 													data : {
 														user_id : user_id,
-														password : pass
+														password : pass,
+                                               old_pass:old_pass
 													},
 													success : function(
 															data,
 															textStatus,
 															jQxhr) {
 														//console.log(JSON.stringify(data));
-														if (data.status == '1') {
+														if (data.profile[0] == 'sucess') {
 															alertSS("Password Updated Succesfully");
 															$('#passw').val('');
 															$('#confirmpassw').val('');
+                                                            $('#old_passw').val('');
 															$('#popupPassword').css('display', 'none');
 														} else {
-															alertSS(data.data);
+															alertSS(data.profile[0]);
 														}
 														loading_done();
 													},
@@ -6488,7 +6501,7 @@ var lan_code = {"english":[{"login":"login",
 								$('#frameImg').attr('src', src);
 								$('#frameImg').css('display', '');
 								frame_name = src.replace('img/frames/', '');
-								displayControls();
+                                             
 								//frame_name = src.replace('img/realframes/','') ;
 							});
 							$('#frm2').click(function() {
@@ -6498,7 +6511,6 @@ var lan_code = {"english":[{"login":"login",
 								$('#frameImg').attr('src', src);
 								$('#frameImg').css('display', '');
 								frame_name = src.replace('img/frames/', '');
-								displayControls();
 								//	frame_name = src.replace('img/realframes/','') ;
 							});
 							$('#frm3').click(function() {
@@ -6508,7 +6520,6 @@ var lan_code = {"english":[{"login":"login",
 								$('#frameImg').attr('src', src);
 								$('#frameImg').css('display', '');
 								frame_name = src.replace('img/frames/', '');
-								displayControls();
 								//frame_name = src.replace('img/realframes/','') ;
 							});
 							$('#frm4').click(function() {
@@ -6518,7 +6529,6 @@ var lan_code = {"english":[{"login":"login",
 								$('#frameImg').attr('src', src);
 								$('#frameImg').css('display', '');
 								frame_name = src.replace('img/frames/', '');
-								displayControls();
 								//frame_name = src.replace('img/realframes/','') ;
 							});
 							$('#frm5').click(function() {
@@ -6528,7 +6538,6 @@ var lan_code = {"english":[{"login":"login",
 								$('#frameImg').attr('src', src);
 								$('#frameImg').css('display', '');
 								frame_name = src.replace('img/frames/', '');
-								displayControls();
 								//frame_name = src.replace('img/realframes/','') ;
 							});
 							$('#frm6').click(function() {
@@ -6644,58 +6653,51 @@ var lan_code = {"english":[{"login":"login",
 							$('#editImage_save').click(function() {
                                                       // myeditcanvas = "myCanvas";
                                                        
+                                                       //
                                                        var element = document.getElementById("test_img");
-                                                     //  alert(66)
+                                                   //    alert(66)
                                                        html2canvas(element).then(function(canvas) {
-                                                      // alert(canvas)
+                                                                             //    alert(canvas)
                                                                                  document.body.appendChild(canvas);
                                                                                  canvas.id = "h2canvas";
-
-                                                            window.canvas2ImagePlugin.saveImageDataToLibrary(
-                                                            function(msg) {
-                                                           // alert(msg);
-
-                                                            //return;
-                                                                $("#chkuploadimg").remove();
-                                                                myeditcanvas = null;
-
-                                                                uploadImage(msg);
-                                                            },
-                                                            function(err) {
-                                                                console.log("err>"+ err);
-                                                            },
-                                                            document.getElementById('h2canvas'));
-
-
+                                                                                 
+                                                                                 window.canvas2ImagePlugin.saveImageDataToLibrary(
+                                                                                                                                  function(msg) {
+                                                                                                                                  //alert(msg);
+                                                                            $("#chkuploadimg").remove();
+                                                                                                                                  myeditcanvas = null;
+                                                                                                                                  
+                                                                                                                                  uploadImage("file://" +msg);
+                                                                                                                                  },
+                                                                                                                                  function(err) {
+                                                                                                                                  console.log("err>"+ err);
+                                                                                                                                  },
+                                                                                                                                  document.getElementById('h2canvas'));
+                                                                                 
+                                                                                 
                                                                                  //var dataURL = canvas.toDataURL();
                                                                                  //alert(dataURL)
                                                                                  //uploadImage(dataURL);
                                                                                  });
                                                        return;
-                                                      alert(myeditcanvas)
+                                                       
 												var body23 = document
 														.getElementsByTagName("body")[0];
 												if (myeditcanvas != null) {
-												alert(22)
 													myeditcanvas.id = "chkuploadimg";
 													myeditcanvas.style.display = "none";
 													body23.appendChild(myeditcanvas);
 
 													window.canvas2ImagePlugin.saveImageDataToLibrary(
 																	function(msg) {
-
-																	alert(msg);
-
-																	//return;
 																		$("#chkuploadimg").remove();
 																		myeditcanvas = null;
-
-																		//uploadImage(msg);
+																		uploadImage(msg);
 																	},
 																	function(err) {
 																		console.log("err>"+ err);
 																	},
-																	document.getElementById('myCanvas'));
+																	document.getElementById('chkuploadimg'));
 												} else {
 													console.log("noedit");
 													uploadImage(videosrc);
@@ -6704,7 +6706,7 @@ var lan_code = {"english":[{"login":"login",
 
             function uploadImage(fileURL) {
                 console.log("dedede : : " + fileURL);
-                var fileURL = fileURL.split("?")[0]
+              //  var fileURL = fileURL.split("?")[0]
                 loading();
 //                                var op = new FileUploadOptions();
 //                                op.fileKey = "file_name";
@@ -6720,7 +6722,7 @@ var lan_code = {"english":[{"login":"login",
 
                 var options = new FileUploadOptions();
                 options.fileKey = "file";
-                options.fileName = timestamp+fileURL.substr(fileURL.lastIndexOf('/') + 1);
+                options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
                 options.mimeType = "text/plain";
                 var params = new Object();
                 params.type = "image";
@@ -7380,6 +7382,7 @@ var lan_code = {"english":[{"login":"login",
 
 							$('#update_pass_btn').click(function() {
 												var pass = $('#passw').val();
+                                                         var old_pass = $('#old_passw').val();
 												var confirmpass = $(
 														'#confirmpassw').val();
 												if(pass.length > 0 && pass.length < 6 ){
@@ -7392,25 +7395,26 @@ var lan_code = {"english":[{"login":"login",
 														loading();
 														$.ajax({
 																	url : BASE_URL
-																			+ 'api/app/change_password',
+																			+ 'update_pass.php',
 																	dataType : 'json',
 																	type : 'post',
 																	contentType : 'application/x-www-form-urlencoded',
 																	data : {
 																		user_id : user_id,
-																		password : pass
+																		password : pass,
+                                                               old_pass:old_pass
 																	},
 																	success : function(
 																			data,
 																			textStatus,
 																			jQxhr) {
 																		//console.log(JSON.stringify(data));
-																		if (data.status == '1') {
+																		if (data.profile[0] == 'sucess') {
 																			alertSS("Password Updated Succesfully");
 																			$('#passw').val('');
 																			$('#confirmpassw').val('');
 																		} else {
-																			alertSS(data.data);
+																			alertSS(data.profile[0]);
 																		}
 																		loading_done();
 																	},
@@ -8165,15 +8169,16 @@ var lan_code = {"english":[{"login":"login",
                                                                                       textStatus,
                                                                                       jQxhr) {
                                                                    
-                                                                   if (data.users.length > 0) {
+                                                                   if (data.status == 'success') {
                                                                       // alert('Login Successfully');
                                                                    $('#username').val('');
                                                                    $('#password').val('');
                                                                    user_id = data.users[0].id;
-                                                                   $.mobile.changePage("profile.html",{changeHash : true});
+                                                                   localStorage.setItem("userid", user_id);
+                                                                   $.mobile.changePage("dashboard.html",{changeHash : true});
                                                                    
                                                                    } else {
-                                                                   alertSS(data.data);
+                                                                   alertSS("Incorrect Username or Password.");
                                                                    }
                                                                    loading_done();
                                                                    },

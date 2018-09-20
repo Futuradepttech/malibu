@@ -578,7 +578,6 @@ function destroyStash(img, preserve) {
 
 function stashOriginal(img, originalSuffix, ref, buffer) {
 //alert(33)
-//alert(buffer)
 	// store the original image in the DOM
 	var stashed = stashInDom(img, originalSuffix);
 
@@ -589,7 +588,7 @@ function stashOriginal(img, originalSuffix, ref, buffer) {
 	//buffer.id="chkuploadimg";
 	//buffer.style.display="none";
 	myeditcanvas=buffer;
-	myeditcanvas.id="chkuploadimg";
+	//myeditcanvas.id="chkuploadimg";
 	console.log('videosrcchnge');
 	imgedit=true;
 //	videosrc=buffer.toDataURL("image/jpeg");
