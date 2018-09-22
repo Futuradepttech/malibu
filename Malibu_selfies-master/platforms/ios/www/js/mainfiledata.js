@@ -5173,13 +5173,13 @@ var lan_code = {"english":[{"login":"Login",
                                     data.profile[0].email);
                             $('#posts')
                                     .text(
-                                            data.profile[0].total_posts);
-//                            $('#followings')
-//                                    .text(
-//                                            data.data.total_followings);
-//                            $('#followers')
-//                                    .text(
-//                                            data.data.total_followers);
+                                            data.post_data);
+                            $('#followings')
+                                    .text(
+                                            data.Friends);
+                            $('#followers')
+                                    .text(
+                                            data.followers);
                             accounts_data(
                                     data.profile[0].about,
                                     data.profile[0].email,
