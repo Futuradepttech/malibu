@@ -1778,9 +1778,9 @@ var lan_code = {"english":[{"login":"Login",
 													}else{
 														img_to_show_type='img';
 													}
-//                                                if (data.post_user_data[0].profile_pic != '') {
-//                                                    $('#user_img').attr('src',BASE_URL+ data.post_user_data[0].profile_pic);
-//                                                }
+                                                if (data.post_user_data[0].profile_pic != '') {
+                                                    $('#user_img').attr('src',BASE_URL+ data.post_user_data[0].profile_pic);
+                                                }
 												temp_view_id = data.post_user_data[0].user_id;
 												
 												
