@@ -5020,12 +5020,12 @@ var lan_code = {"english":[{"login":"Login",
                                                                                   textStatus,
                                                                                   jQxhr) {
                                                                console.log(JSON.stringify(data));
-                                                               if (data.password.length > 0) {
-                                                               alertSS("Email Sent");
+                                                               if (data.status ==  'sucess') {
+                                                               alertSS(data.password[0]);
                                                                $('#forgetemail').val('');
                                                                $('#forgetPassDiv').css('display','none');
                                                                } else {
-                                                               alertSS(data.data);
+                                                               alertSS(data.password[0]);
                                                                }
                                                                loading_done();
                                                                },
@@ -5639,39 +5639,12 @@ var lan_code = {"english":[{"login":"Login",
 								alertSS("Blog Show");
 							});
 							$("#logout").click(function() {
-												loading();
-												$.ajax({
-															url : BASE_URL
-																	+ 'api/app/logout',
-															dataType : 'json',
-															type : 'post',
-															contentType : 'application/x-www-form-urlencoded',
-															data : {
-																device_id : device.uuid
-															},
-															success : function(
-																	data,
-																	textStatus,
-																	jQxhr) {
-																//console.log(JSON.stringify(data));
-																loading_done();
-																if (data.status == '1') {
-																	alertSS(data.data);
-																	$.mobile.changePage("register_login.html",{changeHash : true});
-																} else {
-																	//alert(data.data);
-																}
-															},
-															error : function(
-																	jqXhr,
-																	textStatus,
-																	errorThrown) {
-																console
-																		.log(errorThrown);
-																loading_done();
-																alertSS('Server Error');
-															}
-														});
+												//loading();
+                                               localStorage.clear();
+                                               $.mobile.changePage("login.html", {
+                                                                   changeHash : true
+                                                                   });
+												
 											});
 							$("#termsCond").click(function() {
 												//alert("Terms and Conditions");
@@ -6024,39 +5997,10 @@ var lan_code = {"english":[{"login":"Login",
 				alertSS("Blog Show");
 			});
 			$("#logout").click(function() {
-								loading();
-								$.ajax({
-											url : BASE_URL
-													+ 'api/app/logout',
-											dataType : 'json',
-											type : 'post',
-											contentType : 'application/x-www-form-urlencoded',
-											data : {
-												device_id : device.uuid
-											},
-											success : function(
-													data,
-													textStatus,
-													jQxhr) {
-												//console.log(JSON.stringify(data));
-												loading_done();
-												if (data.status == '1') {
-													alertSS(data.data);
-													$.mobile.changePage("register_login.html",{changeHash : true});
-												} else {
-													//alert(data.data);
-												}
-											},
-											error : function(
-													jqXhr,
-													textStatus,
-													errorThrown) {
-												console
-														.log(errorThrown);
-												loading_done();
-												alertSS('Server Error');
-											}
-										});
+                               localStorage.clear();
+                               $.mobile.changePage("login.html", {
+                                                   changeHash : true
+                                                   });
 							});
 			$("#termsCond").click(function() {
 								//alert("Terms and Conditions");
