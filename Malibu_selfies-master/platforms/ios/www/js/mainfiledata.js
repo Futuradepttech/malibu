@@ -6954,7 +6954,7 @@ var lan_code = {"english":[{"login":"Login",
 
 																if (data.update.length > 0) {
 																	if (data.update[0] == 'sucess') {
-																		alertSS('Image Updated Successfully');
+																		alertSS('Post Uploaded Successfully');
 																	} else {
 																		alertSS('Video Updated Successfully');
 																	}
