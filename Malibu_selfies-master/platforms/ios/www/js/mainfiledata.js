@@ -2977,63 +2977,54 @@ var lan_code = {"english":[{"login":"Login",
 								loading();
 								$.ajax({
 											url : BASE_URL
-													+ 'profile.php',
+													+ 'api/app/view_user_profile',
 											dataType : 'json',
 											type : 'post',
 											contentType : 'application/x-www-form-urlencoded',
 											data : {
-												userid : id,
+												user_id : user_id,
 												view_user_id : id
 											},
 											success : function(data,
 													textStatus, jQxhr) {
 												console.log(JSON.stringify(data));
-												if (data.profile.length > 0) {
-                                       if (data.profile[0].profile_pic != "") {
-                                       $('#profile_pic').attr("src",BASE_URL+'/'+data.profile[0].profile_pic);
-                                       }
-//                                                    conversation_id='';
-//                                                    conversation_id=data.data.conversation_id;
-//                                                    for_chat_user_id=id;
-//                                                    for_chat_user_name=data.data.user_name;
-//                                                    for_chat_user_pic=data.data.profile_pic;
-//                                                    console.log(">>"+data.data.conversation_id);
-                                       $('#pr_name')
-                                       .text(
-                                             data.profile[0].user_name);
-                                       $('#pr_email').text(
-                                                           data.profile[0].email);
-                                       $('#posts')
-                                       .text(
-                                             data.post_data);
-                                       $('#followings')
-                                       .text(
-                                             data.Friends);
-                                       $('#followers')
-                                       .text(
-                                             data.followers);
-//                                                    if (data.data.is_followed == '1') {
-//                                                        $('#follow').text('following');
-//                                                        $('#follow').css(
-//                                                                'color',
-//                                                                'green');
-//                                                        $('#follow')
-//                                                                .css('border',
-//                                                                        '1px solid green');
-//                                                    }
+												if (data.status == '1') {
+													if (data.data.profile_pic != '') {
+														$('#profile_pic').attr('src',BASE_URL+ data.data.profile_pic);
+													}
+													conversation_id='';
+													conversation_id=data.data.conversation_id;
+													for_chat_user_id=id;
+													for_chat_user_name=data.data.user_name;
+													for_chat_user_pic=data.data.profile_pic;
+													console.log(">>"+data.data.conversation_id);
+													$("#pr_name").text(data.data.user_name);
+													$('#pr_email').text(data.data.email);
+													$('#posts').text(data.data.total_posts);
+													$("#followings").text(data.data.total_followings);
+													$("#followers").text(data.data.total_followers);
+													if (data.data.is_followed == '1') {
+														$('#follow').text('following');
+														$('#follow').css(
+																'color',
+																'green');
+														$('#follow')
+																.css('border',
+																		'1px solid green');
+													}
 													if (id == user_id) {
 														$('#follow').css(
 																'display',
 																'none');
 													}
 													accounts_data(
-                                                                  data.profile[0].about,
-                                                                  data.profile[0].email,
-                                                                  data.profile[0].name,
-                                                                  data.profile[0].city,
-                                                                  data.profile[0].gender,
-                                                                  data.profile[0].dob);
-													//all(data.data.posts_data);
+															data.data.about,
+															data.data.email,
+															data.data.username,
+															data.data.city,
+															data.data.gender,
+															data.data.dob);
+													all(data.data.posts_data);
 												} else {
 													alertSS(data.data);
 												}
@@ -4402,12 +4393,13 @@ var lan_code = {"english":[{"login":"Login",
 													return expr.test(email);
 												};
 												if (username == ''	|| email == '') {
-													alertSS("Field cannot be Empty");
+													alertSS("Please enter all fields");
 												} else if (!ValidateEmail(email)) {
 													alertSS("Enter valid Email");
 												}else if(username.charAt(0)=='0' || username.charAt(0)=='1' || username.charAt(0)=='2' || username.charAt(0)=='3' || username.charAt(0)=='4' || username.charAt(0)=='5' || username.charAt(0)=='6' || username.charAt(0)=='7' || username.charAt(0)=='8'|| username.charAt(0)=='9' ){
 													alertSS("Username should starts with a character");
-												}else if((type == '1')){
+												}
+                                                else if((type == '1')){
 													if(password.length < 6){
 														alertSS("Password should be 6 character or more");														
 													}else{
@@ -4421,7 +4413,7 @@ var lan_code = {"english":[{"login":"Login",
 														} else {
 															console.log("dahrid");
 															if (password == '') {
-																alertSS("Field cannot be Empty");
+																alertSS("Please enter all fields");
 															} else {
 																console.log("INI");
 																reg_user(
@@ -4449,7 +4441,7 @@ var lan_code = {"english":[{"login":"Login",
 													} else {
 														console.log("dahrid");
 														if (password == '') {
-															alertSS("Field cannot be Empty");
+															alertSS("Please enter all fields");
 														} else {
 															console.log("INI");
 															reg_user(
@@ -5028,12 +5020,12 @@ var lan_code = {"english":[{"login":"Login",
                                                                                   textStatus,
                                                                                   jQxhr) {
                                                                console.log(JSON.stringify(data));
-                                                               if (data.password.length > 0) {
-                                                               alertSS("Email Sent");
+                                                               if (data.status ==  'sucess') {
+                                                               alertSS(data.password[0]);
                                                                $('#forgetemail').val('');
                                                                $('#forgetPassDiv').css('display','none');
                                                                } else {
-                                                               alertSS(data.data);
+                                                               alertSS(data.password[0]);
                                                                }
                                                                loading_done();
                                                                },
@@ -5061,7 +5053,7 @@ var lan_code = {"english":[{"login":"Login",
 														+ device.uuid);
 												if (username == ''
 														|| password == '') {
-													alertSS("Field cannot be Empty");
+													alertSS("Please enter all fields");
 												} else {
 													var login = {
 														user_name : username,
@@ -5182,13 +5174,13 @@ var lan_code = {"english":[{"login":"Login",
                                     data.profile[0].email);
                             $('#posts')
                                     .text(
-                                            data.profile[0].total_posts);
-//                            $('#followings')
-//                                    .text(
-//                                            data.data.total_followings);
-//                            $('#followers')
-//                                    .text(
-//                                            data.data.total_followers);
+                                            data.post_data);
+                            $('#followings')
+                                    .text(
+                                            data.Friends);
+                            $('#followers')
+                                    .text(
+                                            data.followers);
                             accounts_data(
                                     data.profile[0].about,
                                     data.profile[0].email,
@@ -5647,39 +5639,12 @@ var lan_code = {"english":[{"login":"Login",
 								alertSS("Blog Show");
 							});
 							$("#logout").click(function() {
-												loading();
-												$.ajax({
-															url : BASE_URL
-																	+ 'api/app/logout',
-															dataType : 'json',
-															type : 'post',
-															contentType : 'application/x-www-form-urlencoded',
-															data : {
-																device_id : device.uuid
-															},
-															success : function(
-																	data,
-																	textStatus,
-																	jQxhr) {
-																//console.log(JSON.stringify(data));
-																loading_done();
-																if (data.status == '1') {
-																	alertSS(data.data);
-																	$.mobile.changePage("register_login.html",{changeHash : true});
-																} else {
-																	//alert(data.data);
-																}
-															},
-															error : function(
-																	jqXhr,
-																	textStatus,
-																	errorThrown) {
-																console
-																		.log(errorThrown);
-																loading_done();
-																alertSS('Server Error');
-															}
-														});
+												//loading();
+                                               localStorage.clear();
+                                               $.mobile.changePage("login.html", {
+                                                                   changeHash : true
+                                                                   });
+												
 											});
 							$("#termsCond").click(function() {
 												//alert("Terms and Conditions");
@@ -6032,39 +5997,10 @@ var lan_code = {"english":[{"login":"Login",
 				alertSS("Blog Show");
 			});
 			$("#logout").click(function() {
-								loading();
-								$.ajax({
-											url : BASE_URL
-													+ 'api/app/logout',
-											dataType : 'json',
-											type : 'post',
-											contentType : 'application/x-www-form-urlencoded',
-											data : {
-												device_id : device.uuid
-											},
-											success : function(
-													data,
-													textStatus,
-													jQxhr) {
-												//console.log(JSON.stringify(data));
-												loading_done();
-												if (data.status == '1') {
-													alertSS(data.data);
-													$.mobile.changePage("register_login.html",{changeHash : true});
-												} else {
-													//alert(data.data);
-												}
-											},
-											error : function(
-													jqXhr,
-													textStatus,
-													errorThrown) {
-												console
-														.log(errorThrown);
-												loading_done();
-												alertSS('Server Error');
-											}
-										});
+                               localStorage.clear();
+                               $.mobile.changePage("login.html", {
+                                                   changeHash : true
+                                                   });
 							});
 			$("#termsCond").click(function() {
 								//alert("Terms and Conditions");
@@ -7239,14 +7175,24 @@ var lan_code = {"english":[{"login":"Login",
 								  return /\d/.test(n);
 								}
 							$('#update_btn').click(function() {
+                                                   alert(111)
 										var password = $('#password').val();
 										console.log(password);
 										var username=$('#username').val();
 										var city= $('#city').val();
 										var nmp= $('#name').val();
+                                                   if(nmp.charAt(0)=='0' || nmp.charAt(0)=='1' || nmp.charAt(0)=='2' || nmp.charAt(0)=='3' || nmp.charAt(0)=='4' || nmp.charAt(0)=='5' || nmp.charAt(0)=='6' || nmp.charAt(0)=='7' || nmp.charAt(0)=='8'|| nmp.charAt(0)=='9'|| nmp.charAt(0)==' ' ){
+                                                   alertSS("Name should starts with a character");
+                                                   return;
+                                                   }
+                                                   if((nmp == "") || (nmp == " ")){
+                                                   alertSS("Name shouldn't be empty");
+                                                   return;
+                                                   }
 										if(username.charAt(0)=='0' || username.charAt(0)=='1' || username.charAt(0)=='2' || username.charAt(0)=='3' || username.charAt(0)=='4' || username.charAt(0)=='5' || username.charAt(0)=='6' || username.charAt(0)=='7' || username.charAt(0)=='8'|| username.charAt(0)=='9' ){
 											alertSS("Username should starts with a character");
-										}else if(isNumeric(nmp)){
+										}
+                                         else if(isNumeric(nmp)){
 											alertSS("Name should contain characters and not Number");
 										}else if(isNumeric(city)){
 											alertSS("City should contain characters and not Number");
@@ -8158,7 +8104,7 @@ var lan_code = {"english":[{"login":"Login",
                                                                         + device.uuid);
                                                             if (username == ''
                                                                 || password == '') {
-                                                            alertSS("Field cannot be Empty");
+                                                            alertSS("Please enter all fields");
                                                             } else {
                                                             var login = {
                                                             user_name : username,
@@ -8212,8 +8158,7 @@ var lan_code = {"english":[{"login":"Login",
 function doRegistration11(){
 var type = '1';
 //alert(fb_tw_id+"---"+type);
-var username = $('#username')
-.val();
+var username = $('#username').val();
 var email = $('#email').val();
 var password = $('#password').val();
 function ValidateEmail(email) {
@@ -8221,12 +8166,16 @@ var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))
         return expr.test(email);
         };
         if (username == ''    || email == '') {
-        alertSS("Field cannot be Empty");
+        alertSS("Please enter all fields");
         } else if (!ValidateEmail(email)) {
         alertSS("Enter valid Email");
         }else if(username.charAt(0)=='0' || username.charAt(0)=='1' || username.charAt(0)=='2' || username.charAt(0)=='3' || username.charAt(0)=='4' || username.charAt(0)=='5' || username.charAt(0)=='6' || username.charAt(0)=='7' || username.charAt(0)=='8'|| username.charAt(0)=='9' ){
         alertSS("Username should starts with a character");
-        }else if((type == '1')){
+                            }
+        else if(!username.match(/^[0-9a-zA-Z]+$/)){
+        alertSS("Username shouldn't contain special characters ");
+        }
+        else if((type == '1')){
         if(password.length < 6){
         alertSS("Password should be 6 character or more");
         }else{
@@ -8240,7 +8189,7 @@ var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))
         } else {
         console.log("dahrid");
         if (password == '') {
-        alertSS("Field cannot be Empty");
+        alertSS("Please enter all fields");
         } else {
         console.log("INI");
                             var fb_tw_id = 'dferfrfrf';
@@ -8258,9 +8207,7 @@ var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))
         }
         }else if(username.length < 2){
         alertSS("Username should be 2 or more than 2 characters");
-                            
-        }
-        else {
+        }else {
         console.log("sadasd3223");
         if (type == '2'    || type == '3') {
         reg_user(username,
@@ -8272,7 +8219,7 @@ var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))
         } else {
         console.log("dahrid");
         if (password == '') {
-        alertSS("Field cannot be Empty");
+        alertSS("Please enter all fields");
         } else {
         console.log("INI");
         reg_user(
@@ -8379,7 +8326,7 @@ var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))
                                                       textStatus, jQxhr) {
                                    console.log(JSON.stringify(data));
                                    if (data.follower[0] == 'sucess') {
-                                   alertSS('Follow sucessfully');
+                                   //alertSS('Follow sucessfully');
                                    
                                    $('#tb_following').click();
                                    
