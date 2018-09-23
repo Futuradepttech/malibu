@@ -4393,12 +4393,13 @@ var lan_code = {"english":[{"login":"Login",
 													return expr.test(email);
 												};
 												if (username == ''	|| email == '') {
-													alertSS("Field cannot be Empty");
+													alertSS("Please enter all fields");
 												} else if (!ValidateEmail(email)) {
 													alertSS("Enter valid Email");
 												}else if(username.charAt(0)=='0' || username.charAt(0)=='1' || username.charAt(0)=='2' || username.charAt(0)=='3' || username.charAt(0)=='4' || username.charAt(0)=='5' || username.charAt(0)=='6' || username.charAt(0)=='7' || username.charAt(0)=='8'|| username.charAt(0)=='9' ){
 													alertSS("Username should starts with a character");
-												}else if((type == '1')){
+												}
+                                                else if((type == '1')){
 													if(password.length < 6){
 														alertSS("Password should be 6 character or more");														
 													}else{
@@ -4412,7 +4413,7 @@ var lan_code = {"english":[{"login":"Login",
 														} else {
 															console.log("dahrid");
 															if (password == '') {
-																alertSS("Field cannot be Empty");
+																alertSS("Please enter all fields");
 															} else {
 																console.log("INI");
 																reg_user(
@@ -4440,7 +4441,7 @@ var lan_code = {"english":[{"login":"Login",
 													} else {
 														console.log("dahrid");
 														if (password == '') {
-															alertSS("Field cannot be Empty");
+															alertSS("Please enter all fields");
 														} else {
 															console.log("INI");
 															reg_user(
@@ -5052,7 +5053,7 @@ var lan_code = {"english":[{"login":"Login",
 														+ device.uuid);
 												if (username == ''
 														|| password == '') {
-													alertSS("Field cannot be Empty");
+													alertSS("Please enter all fields");
 												} else {
 													var login = {
 														user_name : username,
@@ -7230,14 +7231,24 @@ var lan_code = {"english":[{"login":"Login",
 								  return /\d/.test(n);
 								}
 							$('#update_btn').click(function() {
+                                                   alert(111)
 										var password = $('#password').val();
 										console.log(password);
 										var username=$('#username').val();
 										var city= $('#city').val();
 										var nmp= $('#name').val();
+                                                   if(nmp.charAt(0)=='0' || nmp.charAt(0)=='1' || nmp.charAt(0)=='2' || nmp.charAt(0)=='3' || nmp.charAt(0)=='4' || nmp.charAt(0)=='5' || nmp.charAt(0)=='6' || nmp.charAt(0)=='7' || nmp.charAt(0)=='8'|| nmp.charAt(0)=='9'|| nmp.charAt(0)==' ' ){
+                                                   alertSS("Name should starts with a character");
+                                                   return;
+                                                   }
+                                                   if((nmp == "") || (nmp == " ")){
+                                                   alertSS("Name shouldn't be empty");
+                                                   return;
+                                                   }
 										if(username.charAt(0)=='0' || username.charAt(0)=='1' || username.charAt(0)=='2' || username.charAt(0)=='3' || username.charAt(0)=='4' || username.charAt(0)=='5' || username.charAt(0)=='6' || username.charAt(0)=='7' || username.charAt(0)=='8'|| username.charAt(0)=='9' ){
 											alertSS("Username should starts with a character");
-										}else if(isNumeric(nmp)){
+										}
+                                         else if(isNumeric(nmp)){
 											alertSS("Name should contain characters and not Number");
 										}else if(isNumeric(city)){
 											alertSS("City should contain characters and not Number");
@@ -8149,7 +8160,7 @@ var lan_code = {"english":[{"login":"Login",
                                                                         + device.uuid);
                                                             if (username == ''
                                                                 || password == '') {
-                                                            alertSS("Field cannot be Empty");
+                                                            alertSS("Please enter all fields");
                                                             } else {
                                                             var login = {
                                                             user_name : username,
@@ -8201,11 +8212,9 @@ var lan_code = {"english":[{"login":"Login",
                                                             
                                                             
 function doRegistration11(){
-
 var type = '1';
 //alert(fb_tw_id+"---"+type);
-var username = $('#username')
-.val();
+var username = $('#username').val();
 var email = $('#email').val();
 var password = $('#password').val();
 function ValidateEmail(email) {
@@ -8213,12 +8222,16 @@ var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))
         return expr.test(email);
         };
         if (username == ''    || email == '') {
-        alertSS("Field cannot be Empty");
+        alertSS("Please enter all fields");
         } else if (!ValidateEmail(email)) {
         alertSS("Enter valid Email");
         }else if(username.charAt(0)=='0' || username.charAt(0)=='1' || username.charAt(0)=='2' || username.charAt(0)=='3' || username.charAt(0)=='4' || username.charAt(0)=='5' || username.charAt(0)=='6' || username.charAt(0)=='7' || username.charAt(0)=='8'|| username.charAt(0)=='9' ){
         alertSS("Username should starts with a character");
-        }else if((type == '1')){
+                            }
+        else if(!username.match(/^[0-9a-zA-Z]+$/)){
+        alertSS("Username shouldn't contain special characters ");
+        }
+        else if((type == '1')){
         if(password.length < 6){
         alertSS("Password should be 6 character or more");
         }else{
@@ -8232,7 +8245,7 @@ var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))
         } else {
         console.log("dahrid");
         if (password == '') {
-        alertSS("Field cannot be Empty");
+        alertSS("Please enter all fields");
         } else {
         console.log("INI");
                             var fb_tw_id = 'dferfrfrf';
@@ -8262,7 +8275,7 @@ var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))
         } else {
         console.log("dahrid");
         if (password == '') {
-        alertSS("Field cannot be Empty");
+        alertSS("Please enter all fields");
         } else {
         console.log("INI");
         reg_user(
@@ -8369,7 +8382,7 @@ var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))
                                                       textStatus, jQxhr) {
                                    console.log(JSON.stringify(data));
                                    if (data.follower[0] == 'sucess') {
-                                   alertSS('Follow sucessfully');
+                                   //alertSS('Follow sucessfully');
                                    
                                    $('#tb_following').click();
                                    

@@ -8201,7 +8201,6 @@ var lan_code = {"english":[{"login":"Login",
                                                             
                                                             
 function doRegistration11(){
-
 var type = '1';
 //alert(fb_tw_id+"---"+type);
 var username = $('#username')
@@ -8250,7 +8249,9 @@ var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))
         }
         }else if(username.length < 2){
         alertSS("Username should be 2 or more than 2 characters");
-        }else {
+                            
+        }
+        else {
         console.log("sadasd3223");
         if (type == '2'    || type == '3') {
         reg_user(username,
