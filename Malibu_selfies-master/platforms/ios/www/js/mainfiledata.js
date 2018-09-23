@@ -381,14 +381,14 @@ var lan_code = {"english":[{"login":"Login",
 											var url = "";
 											var post = "";
 											var mmg = "";
-//                                            if (data[i].post_data.profile_pic == '') {
-//                                                mmg = "img/suer_profile.png";
-//                                            } else {
-//                                                mmg = BASE_URL
-//                                                        + data[i].post_data.profile_pic;
-//                                            }
+                                            if (data[i].profile_pic == '') {
+                                                mmg = "img/suer_profile.png";
+                                            } else {
+                                                mmg = BASE_URL
+                                                        + data[i].profile_pic;
+                                            }
                        
-                       mmg = "img/suer_profile.png";
+                      // mmg = "img/suer_profile.png";
 											if (data[i].type == "image") {
 												url = BASE_URL
 														+ data[i].file_name;
