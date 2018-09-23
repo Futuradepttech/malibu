@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/pbehera/Downloads/Personal_Work/malibu/Malibu_selfies-master/platforms/android/CordovaLib/src/main/shaders"/></dataSet><dataSet config="release"><source path="/Users/pbehera/Downloads/Personal_Work/malibu/Malibu_selfies-master/platforms/android/CordovaLib/src/release/shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/wayindia/Documents/GitHub/malibu/Malibu_selfies-master/platforms/android/CordovaLib/src/main/shaders"/></dataSet><dataSet config="release"><source path="/Users/wayindia/Documents/GitHub/malibu/Malibu_selfies-master/platforms/android/CordovaLib/src/release/shaders"/></dataSet></merger>
