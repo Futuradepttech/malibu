@@ -4402,13 +4402,12 @@ var lan_code = {"english":[{"login":"Login",
 													return expr.test(email);
 												};
 												if (username == ''	|| email == '') {
-													alertSS("Please enter all fields");
+													alertSS("Field cannot be Empty");
 												} else if (!ValidateEmail(email)) {
 													alertSS("Enter valid Email");
 												}else if(username.charAt(0)=='0' || username.charAt(0)=='1' || username.charAt(0)=='2' || username.charAt(0)=='3' || username.charAt(0)=='4' || username.charAt(0)=='5' || username.charAt(0)=='6' || username.charAt(0)=='7' || username.charAt(0)=='8'|| username.charAt(0)=='9' ){
 													alertSS("Username should starts with a character");
-												}
-                                                else if((type == '1')){
+												}else if((type == '1')){
 													if(password.length < 6){
 														alertSS("Password should be 6 character or more");														
 													}else{
@@ -4422,7 +4421,7 @@ var lan_code = {"english":[{"login":"Login",
 														} else {
 															console.log("dahrid");
 															if (password == '') {
-																alertSS("Please enter all fields");
+																alertSS("Field cannot be Empty");
 															} else {
 																console.log("INI");
 																reg_user(
@@ -4450,7 +4449,7 @@ var lan_code = {"english":[{"login":"Login",
 													} else {
 														console.log("dahrid");
 														if (password == '') {
-															alertSS("Please enter all fields");
+															alertSS("Field cannot be Empty");
 														} else {
 															console.log("INI");
 															reg_user(
@@ -5029,12 +5028,12 @@ var lan_code = {"english":[{"login":"Login",
                                                                                   textStatus,
                                                                                   jQxhr) {
                                                                console.log(JSON.stringify(data));
-                                                               if (data.status ==  'sucess') {
-                                                               alertSS(data.password[0]);
+                                                               if (data.password.length > 0) {
+                                                               alertSS("Email Sent");
                                                                $('#forgetemail').val('');
                                                                $('#forgetPassDiv').css('display','none');
                                                                } else {
-                                                               alertSS(data.password[0]);
+                                                               alertSS(data.data);
                                                                }
                                                                loading_done();
                                                                },
@@ -5062,7 +5061,7 @@ var lan_code = {"english":[{"login":"Login",
 														+ device.uuid);
 												if (username == ''
 														|| password == '') {
-													alertSS("Please enter all fields");
+													alertSS("Field cannot be Empty");
 												} else {
 													var login = {
 														user_name : username,
@@ -5183,13 +5182,13 @@ var lan_code = {"english":[{"login":"Login",
                                     data.profile[0].email);
                             $('#posts')
                                     .text(
-                                            data.post_data);
-                            $('#followings')
-                                    .text(
-                                            data.Friends);
-                            $('#followers')
-                                    .text(
-                                            data.followers);
+                                            data.profile[0].total_posts);
+//                            $('#followings')
+//                                    .text(
+//                                            data.data.total_followings);
+//                            $('#followers')
+//                                    .text(
+//                                            data.data.total_followers);
                             accounts_data(
                                     data.profile[0].about,
                                     data.profile[0].email,
@@ -5648,12 +5647,39 @@ var lan_code = {"english":[{"login":"Login",
 								alertSS("Blog Show");
 							});
 							$("#logout").click(function() {
-												//loading();
-                                               localStorage.clear();
-                                               $.mobile.changePage("login.html", {
-                                                                   changeHash : true
-                                                                   });
-												
+												loading();
+												$.ajax({
+															url : BASE_URL
+																	+ 'api/app/logout',
+															dataType : 'json',
+															type : 'post',
+															contentType : 'application/x-www-form-urlencoded',
+															data : {
+																device_id : device.uuid
+															},
+															success : function(
+																	data,
+																	textStatus,
+																	jQxhr) {
+																//console.log(JSON.stringify(data));
+																loading_done();
+																if (data.status == '1') {
+																	alertSS(data.data);
+																	$.mobile.changePage("register_login.html",{changeHash : true});
+																} else {
+																	//alert(data.data);
+																}
+															},
+															error : function(
+																	jqXhr,
+																	textStatus,
+																	errorThrown) {
+																console
+																		.log(errorThrown);
+																loading_done();
+																alertSS('Server Error');
+															}
+														});
 											});
 							$("#termsCond").click(function() {
 												//alert("Terms and Conditions");
@@ -6006,10 +6032,39 @@ var lan_code = {"english":[{"login":"Login",
 				alertSS("Blog Show");
 			});
 			$("#logout").click(function() {
-                               localStorage.clear();
-                               $.mobile.changePage("login.html", {
-                                                   changeHash : true
-                                                   });
+								loading();
+								$.ajax({
+											url : BASE_URL
+													+ 'api/app/logout',
+											dataType : 'json',
+											type : 'post',
+											contentType : 'application/x-www-form-urlencoded',
+											data : {
+												device_id : device.uuid
+											},
+											success : function(
+													data,
+													textStatus,
+													jQxhr) {
+												//console.log(JSON.stringify(data));
+												loading_done();
+												if (data.status == '1') {
+													alertSS(data.data);
+													$.mobile.changePage("register_login.html",{changeHash : true});
+												} else {
+													//alert(data.data);
+												}
+											},
+											error : function(
+													jqXhr,
+													textStatus,
+													errorThrown) {
+												console
+														.log(errorThrown);
+												loading_done();
+												alertSS('Server Error');
+											}
+										});
 							});
 			$("#termsCond").click(function() {
 								//alert("Terms and Conditions");
@@ -7184,24 +7239,14 @@ var lan_code = {"english":[{"login":"Login",
 								  return /\d/.test(n);
 								}
 							$('#update_btn').click(function() {
-                                                   alert(111)
 										var password = $('#password').val();
 										console.log(password);
 										var username=$('#username').val();
 										var city= $('#city').val();
 										var nmp= $('#name').val();
-                                                   if(nmp.charAt(0)=='0' || nmp.charAt(0)=='1' || nmp.charAt(0)=='2' || nmp.charAt(0)=='3' || nmp.charAt(0)=='4' || nmp.charAt(0)=='5' || nmp.charAt(0)=='6' || nmp.charAt(0)=='7' || nmp.charAt(0)=='8'|| nmp.charAt(0)=='9'|| nmp.charAt(0)==' ' ){
-                                                   alertSS("Name should starts with a character");
-                                                   return;
-                                                   }
-                                                   if((nmp == "") || (nmp == " ")){
-                                                   alertSS("Name shouldn't be empty");
-                                                   return;
-                                                   }
 										if(username.charAt(0)=='0' || username.charAt(0)=='1' || username.charAt(0)=='2' || username.charAt(0)=='3' || username.charAt(0)=='4' || username.charAt(0)=='5' || username.charAt(0)=='6' || username.charAt(0)=='7' || username.charAt(0)=='8'|| username.charAt(0)=='9' ){
 											alertSS("Username should starts with a character");
-										}
-                                         else if(isNumeric(nmp)){
+										}else if(isNumeric(nmp)){
 											alertSS("Name should contain characters and not Number");
 										}else if(isNumeric(city)){
 											alertSS("City should contain characters and not Number");
@@ -8113,7 +8158,7 @@ var lan_code = {"english":[{"login":"Login",
                                                                         + device.uuid);
                                                             if (username == ''
                                                                 || password == '') {
-                                                            alertSS("Please enter all fields");
+                                                            alertSS("Field cannot be Empty");
                                                             } else {
                                                             var login = {
                                                             user_name : username,
@@ -8167,7 +8212,8 @@ var lan_code = {"english":[{"login":"Login",
 function doRegistration11(){
 var type = '1';
 //alert(fb_tw_id+"---"+type);
-var username = $('#username').val();
+var username = $('#username')
+.val();
 var email = $('#email').val();
 var password = $('#password').val();
 function ValidateEmail(email) {
@@ -8175,16 +8221,12 @@ var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))
         return expr.test(email);
         };
         if (username == ''    || email == '') {
-        alertSS("Please enter all fields");
+        alertSS("Field cannot be Empty");
         } else if (!ValidateEmail(email)) {
         alertSS("Enter valid Email");
         }else if(username.charAt(0)=='0' || username.charAt(0)=='1' || username.charAt(0)=='2' || username.charAt(0)=='3' || username.charAt(0)=='4' || username.charAt(0)=='5' || username.charAt(0)=='6' || username.charAt(0)=='7' || username.charAt(0)=='8'|| username.charAt(0)=='9' ){
         alertSS("Username should starts with a character");
-                            }
-        else if(!username.match(/^[0-9a-zA-Z]+$/)){
-        alertSS("Username shouldn't contain special characters ");
-        }
-        else if((type == '1')){
+        }else if((type == '1')){
         if(password.length < 6){
         alertSS("Password should be 6 character or more");
         }else{
@@ -8198,7 +8240,7 @@ var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))
         } else {
         console.log("dahrid");
         if (password == '') {
-        alertSS("Please enter all fields");
+        alertSS("Field cannot be Empty");
         } else {
         console.log("INI");
                             var fb_tw_id = 'dferfrfrf';
@@ -8216,7 +8258,9 @@ var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))
         }
         }else if(username.length < 2){
         alertSS("Username should be 2 or more than 2 characters");
-        }else {
+                            
+        }
+        else {
         console.log("sadasd3223");
         if (type == '2'    || type == '3') {
         reg_user(username,
@@ -8228,7 +8272,7 @@ var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))
         } else {
         console.log("dahrid");
         if (password == '') {
-        alertSS("Please enter all fields");
+        alertSS("Field cannot be Empty");
         } else {
         console.log("INI");
         reg_user(
@@ -8335,7 +8379,7 @@ var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))
                                                       textStatus, jQxhr) {
                                    console.log(JSON.stringify(data));
                                    if (data.follower[0] == 'sucess') {
-                                   //alertSS('Follow sucessfully');
+                                   alertSS('Follow sucessfully');
                                    
                                    $('#tb_following').click();
                                    
