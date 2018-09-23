@@ -2977,54 +2977,63 @@ var lan_code = {"english":[{"login":"Login",
 								loading();
 								$.ajax({
 											url : BASE_URL
-													+ 'api/app/view_user_profile',
+													+ 'profile.php',
 											dataType : 'json',
 											type : 'post',
 											contentType : 'application/x-www-form-urlencoded',
 											data : {
-												user_id : user_id,
+												userid : id,
 												view_user_id : id
 											},
 											success : function(data,
 													textStatus, jQxhr) {
 												console.log(JSON.stringify(data));
-												if (data.status == '1') {
-													if (data.data.profile_pic != '') {
-														$('#profile_pic').attr('src',BASE_URL+ data.data.profile_pic);
-													}
-													conversation_id='';
-													conversation_id=data.data.conversation_id;
-													for_chat_user_id=id;
-													for_chat_user_name=data.data.user_name;
-													for_chat_user_pic=data.data.profile_pic;
-													console.log(">>"+data.data.conversation_id);
-													$("#pr_name").text(data.data.user_name);
-													$('#pr_email').text(data.data.email);
-													$('#posts').text(data.data.total_posts);
-													$("#followings").text(data.data.total_followings);
-													$("#followers").text(data.data.total_followers);
-													if (data.data.is_followed == '1') {
-														$('#follow').text('following');
-														$('#follow').css(
-																'color',
-																'green');
-														$('#follow')
-																.css('border',
-																		'1px solid green');
-													}
-													if (id == user_id) {
-														$('#follow').css(
-																'display',
-																'none');
-													}
+												if (data.profile.length > 0) {
+                                       if (data.profile[0].profile_pic != "") {
+                                       $('#profile_pic').attr("src",BASE_URL+'/'+data.profile[0].profile_pic);
+                                       }
+//                                                    conversation_id='';
+//                                                    conversation_id=data.data.conversation_id;
+//                                                    for_chat_user_id=id;
+//                                                    for_chat_user_name=data.data.user_name;
+//                                                    for_chat_user_pic=data.data.profile_pic;
+//                                                    console.log(">>"+data.data.conversation_id);
+                                       $('#pr_name')
+                                       .text(
+                                             data.profile[0].user_name);
+                                       $('#pr_email').text(
+                                                           data.profile[0].email);
+                                       $('#posts')
+                                       .text(
+                                             data.post_data);
+                                       $('#followings')
+                                       .text(
+                                             data.Friends);
+                                       $('#followers')
+                                       .text(
+                                             data.followers);
+//                                                    if (data.data.is_followed == '1') {
+//                                                        $('#follow').text('following');
+//                                                        $('#follow').css(
+//                                                                'color',
+//                                                                'green');
+//                                                        $('#follow')
+//                                                                .css('border',
+//                                                                        '1px solid green');
+//                                                    }
+//                                                    if (id == user_id) {
+//                                                        $('#follow').css(
+//                                                                'display',
+//                                                                'none');
+//                                                    }
 													accounts_data(
-															data.data.about,
-															data.data.email,
-															data.data.username,
-															data.data.city,
-															data.data.gender,
-															data.data.dob);
-													all(data.data.posts_data);
+                                                                  data.profile[0].about,
+                                                                  data.profile[0].email,
+                                                                  data.profile[0].name,
+                                                                  data.profile[0].city,
+                                                                  data.profile[0].gender,
+                                                                  data.profile[0].dob);
+													//all(data.data.posts_data);
 												} else {
 													alertSS(data.data);
 												}
