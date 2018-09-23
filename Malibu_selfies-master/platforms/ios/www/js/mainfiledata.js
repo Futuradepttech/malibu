@@ -6246,7 +6246,7 @@ var lan_code = {"english":[{"login":"Login",
 												camera_use = true;
 												if (image) {
 													var options = {
-														quality : 100,
+														quality : 30,
 														destinationType : navigator.camera.DestinationType.FILE_URI,
 														sourceType : navigator.camera.PictureSourceType.SAVEDPHOTOALBUM,
 														allowEdit : true,
@@ -6676,7 +6676,7 @@ var lan_code = {"english":[{"login":"Login",
 
                 var options = new FileUploadOptions();
                 options.fileKey = "file";
-                options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+                options.fileName = timestamp + fileURL.substr(fileURL.lastIndexOf('/') + 1);
                 options.mimeType = "text/plain";
                 var params = new Object();
                 params.type = "image";
