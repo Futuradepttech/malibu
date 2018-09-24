@@ -3747,6 +3747,34 @@ var lan_code = {"english":[{"login":"Login",
 																		+ data[i].name
 																		+ ' has started following you.</label></div></div>');
 											}
+                       
+                       
+                       }else if(data[i].not_type == "like"){
+                       
+                       if (data[i].is_read == '0') {
+                       $("#notification_list").append(
+                                                      '<div id="noti" postID="'
+                                                      + data[i].post_id
+                                                      + '" data-value="'
+                                                      + data[i].notification_id
+                                                      + '" class="ui-grid-a" style="width: 100%;padding:2% 5%;background-color:#9FC5E8;border-bottom:1px solid #808080;"><img class="ui-block-a" src="'+bb+'" style="width: 45px; height: 45px;"><div class="ui-block-b" style="margin-left: 10px; width: 80%; padding-top: 3px;"><label id="unamee" data-value="'+data[i].user_id+'"  style="color: #000000; font-size: small; font-weight: bold; text-transform: none; text-shadow: none;">'
+                                                      + data[i].name
+                                                      + '</label><label class="ptag" id="user_msg" style="width: 95%; text-transform: none; text-shadow: none; font-size: x-small; font-weight: normal; color: #747474;text-overflow: ellipsis">'
+                                                      + data[i].name
+                                                      + ' has like your post.</label></div>></div>');
+                       } else {
+                       $("#notification_list").append(
+                                                      '<div id="noti" postID="'
+                                                      + data[i].post_id
+                                                      + '" data-value="'
+                                                      + data[i].notification_id
+                                                      + '" class="ui-grid-a" style="width: 100%;padding:2% 5%;background-color:#FFFFFF;border-bottom:1px solid #808080;"><img class="ui-block-a" src="'+bb+'" style="width: 45px; height: 45px;"><div class="ui-block-b" style="margin-left: 10px; width: 80%; padding-top: 3px;"><label id="unamee" data-value="'+data[i].user_id+'" style="color: #000000; font-size: small; font-weight: bold; text-transform: none; text-shadow: none;">'
+                                                      + data[i].name
+                                                      + '</label><label class="ptag" id="user_msg" style="width: 95%; text-transform: none; text-shadow: none; font-size: x-small; font-weight: normal; color: #747474;text-overflow: ellipsis">'
+                                                      + data[i].name
+                                                      + ' has started following you.</label></div></div>');
+                       }
+
 
 										} else {
 											if (data[i].file_type == 'image') {
