@@ -381,14 +381,14 @@ var lan_code = {"english":[{"login":"Login",
 											var url = "";
 											var post = "";
 											var mmg = "";
-//                                            if (data[i].post_data.profile_pic == '') {
-//                                                mmg = "img/suer_profile.png";
-//                                            } else {
-//                                                mmg = BASE_URL
-//                                                        + data[i].post_data.profile_pic;
-//                                            }
+                                            if (data[i].profile_pic == '') {
+                                                mmg = "img/suer_profile.png";
+                                            } else {
+                                                mmg = BASE_URL
+                                                        + data[i].profile_pic;
+                                            }
                        
-                       mmg = "img/suer_profile.png";
+                      // mmg = "img/suer_profile.png";
 											if (data[i].type == "image") {
 												url = BASE_URL
 														+ data[i].file_name;
@@ -1778,9 +1778,9 @@ var lan_code = {"english":[{"login":"Login",
 													}else{
 														img_to_show_type='img';
 													}
-//                                                if (data.post_user_data[0].profile_pic != '') {
-//                                                    $('#user_img').attr('src',BASE_URL+ data.post_user_data[0].profile_pic);
-//                                                }
+                                                if (data.post_user_data[0].profile_pic != '') {
+                                                    $('#user_img').attr('src',BASE_URL+ data.post_user_data[0].profile_pic);
+                                                }
 												temp_view_id = data.post_user_data[0].user_id;
 												
 												
@@ -2977,54 +2977,63 @@ var lan_code = {"english":[{"login":"Login",
 								loading();
 								$.ajax({
 											url : BASE_URL
-													+ 'api/app/view_user_profile',
+													+ 'profile.php',
 											dataType : 'json',
 											type : 'post',
 											contentType : 'application/x-www-form-urlencoded',
 											data : {
-												user_id : user_id,
+												userid : id,
 												view_user_id : id
 											},
 											success : function(data,
 													textStatus, jQxhr) {
 												console.log(JSON.stringify(data));
-												if (data.status == '1') {
-													if (data.data.profile_pic != '') {
-														$('#profile_pic').attr('src',BASE_URL+ data.data.profile_pic);
-													}
-													conversation_id='';
-													conversation_id=data.data.conversation_id;
-													for_chat_user_id=id;
-													for_chat_user_name=data.data.user_name;
-													for_chat_user_pic=data.data.profile_pic;
-													console.log(">>"+data.data.conversation_id);
-													$("#pr_name").text(data.data.user_name);
-													$('#pr_email').text(data.data.email);
-													$('#posts').text(data.data.total_posts);
-													$("#followings").text(data.data.total_followings);
-													$("#followers").text(data.data.total_followers);
-													if (data.data.is_followed == '1') {
-														$('#follow').text('following');
-														$('#follow').css(
-																'color',
-																'green');
-														$('#follow')
-																.css('border',
-																		'1px solid green');
-													}
-													if (id == user_id) {
-														$('#follow').css(
-																'display',
-																'none');
-													}
+												if (data.profile.length > 0) {
+                                       if (data.profile[0].profile_pic != "") {
+                                       $('#profile_pic').attr("src",BASE_URL+'/'+data.profile[0].profile_pic);
+                                       }
+//                                                    conversation_id='';
+//                                                    conversation_id=data.data.conversation_id;
+//                                                    for_chat_user_id=id;
+//                                                    for_chat_user_name=data.data.user_name;
+//                                                    for_chat_user_pic=data.data.profile_pic;
+//                                                    console.log(">>"+data.data.conversation_id);
+                                       $('#pr_name')
+                                       .text(
+                                             data.profile[0].user_name);
+                                       $('#pr_email').text(
+                                                           data.profile[0].email);
+                                       $('#posts')
+                                       .text(
+                                             data.post_data);
+                                       $('#followings')
+                                       .text(
+                                             data.Friends);
+                                       $('#followers')
+                                       .text(
+                                             data.followers);
+//                                                    if (data.data.is_followed == '1') {
+//                                                        $('#follow').text('following');
+//                                                        $('#follow').css(
+//                                                                'color',
+//                                                                'green');
+//                                                        $('#follow')
+//                                                                .css('border',
+//                                                                        '1px solid green');
+//                                                    }
+//                                                    if (id == user_id) {
+//                                                        $('#follow').css(
+//                                                                'display',
+//                                                                'none');
+//                                                    }
 													accounts_data(
-															data.data.about,
-															data.data.email,
-															data.data.username,
-															data.data.city,
-															data.data.gender,
-															data.data.dob);
-													all(data.data.posts_data);
+                                                                  data.profile[0].about,
+                                                                  data.profile[0].email,
+                                                                  data.profile[0].name,
+                                                                  data.profile[0].city,
+                                                                  data.profile[0].gender,
+                                                                  data.profile[0].dob);
+													//all(data.data.posts_data);
 												} else {
 													alertSS(data.data);
 												}
@@ -6237,7 +6246,7 @@ var lan_code = {"english":[{"login":"Login",
 												camera_use = true;
 												if (image) {
 													var options = {
-														quality : 100,
+														quality : 30,
 														destinationType : navigator.camera.DestinationType.FILE_URI,
 														sourceType : navigator.camera.PictureSourceType.SAVEDPHOTOALBUM,
 														allowEdit : true,
@@ -6667,7 +6676,7 @@ var lan_code = {"english":[{"login":"Login",
 
                 var options = new FileUploadOptions();
                 options.fileKey = "file";
-                options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+                options.fileName = timestamp + fileURL.substr(fileURL.lastIndexOf('/') + 1);
                 options.mimeType = "text/plain";
                 var params = new Object();
                 params.type = "image";
@@ -6945,7 +6954,7 @@ var lan_code = {"english":[{"login":"Login",
 
 																if (data.update.length > 0) {
 																	if (data.update[0] == 'sucess') {
-																		alertSS('Image Updated Successfully');
+																		alertSS('Post Uploaded Successfully');
 																	} else {
 																		alertSS('Video Updated Successfully');
 																	}
