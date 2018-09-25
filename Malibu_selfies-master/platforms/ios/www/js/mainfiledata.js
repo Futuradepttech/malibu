@@ -5796,7 +5796,7 @@ var lan_code = {"english":[{"login":"Login",
                                                            //var value = "hello";
                                                            
                                                            var str = '';
-                                                           
+                                                           if(data.follower != "no_data"){
                                                            for(var i=0;i<data.follower.length;i++){
                                                            
                                                            str+='<div style=" margin-top: 10px; position: relative ; margin-left: 20px">'
@@ -5804,6 +5804,9 @@ var lan_code = {"english":[{"login":"Login",
                                                            str+='<div style=" position: absolute; top: 2px; left: 50px; font-size: 14px">'+data.follower[i].name+'</div>'
                                                            str+='<div style=" position: absolute; right: 0px; top: 0px; font-size: 14px; border: 1px solid #E1E1E1; padding: 5px;border-radius:5px;">Follower</div>'
                                                            str+='</div>'
+                                                           }
+                                                           }else{
+                                                           alertSS('There is no record');
                                                            }
                                                            //alert(str)
                                                            $('#friends_list_followers').html(str);
