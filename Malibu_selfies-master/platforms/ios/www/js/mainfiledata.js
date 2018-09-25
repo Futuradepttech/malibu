@@ -5515,7 +5515,7 @@ var lan_code = {"english":[{"login":"Login",
                                                      userid : user_id
                                                      };
                                                      $.ajax({
-                                                            url : BASE_URL+'users.php',
+                                                            url : BASE_URL+'fetch_frnd.php',
                                                             dataType : 'json',
                                                             type : 'post',
                                                             contentType : 'application/x-www-form-urlencoded',
@@ -5529,12 +5529,12 @@ var lan_code = {"english":[{"login":"Login",
                                                             
                                                             var str = '';
                                                             
-                                                            for(var i=0;i<data.all_user.length;i++){
+                                                            for(var i=0;i<data.friends.length;i++){
                                                             //alert(data.all_user[i].name)
                                                             str+='<div style=" margin-top: 10px; position: relative ; margin-left: 20px">'
                                                             str+='<div><img src="img/suer_profile.png" width="40"/></div>'
-                                                            str+='<div style=" position: absolute; top: 2px; left: 50px; font-size: 14px">'+data.all_user[i].name+'</div>'
-                                                            str+='<div id="follower_'+data.all_user[i].id+'" style=" position: absolute; right: 0px; top: 0px; font-size: 14px; border: 1px solid #E1E1E1; padding: 5px;border-radius:5px;width:60px;" onclick="doFollowing(\''+data.all_user[i].id+'\')">Following</div>'
+                                                            str+='<div style=" position: absolute; top: 2px; left: 50px; font-size: 14px">'+data.friends[i].name+'</div>'
+                                                            str+='<div id="follower_'+data.friends[i].id+'" style=" position: absolute; right: 0px; top: 0px; font-size: 14px; border: 1px solid #E1E1E1; padding: 5px;border-radius:5px;width:60px;" >Friend</div>'
                                                             str+='</div>'
                                                             }
                                                            // alert(str)
