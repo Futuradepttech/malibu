@@ -2245,8 +2245,8 @@ var lan_code = {"english":[{"login":"Login",
 								    $(this).remove();
 								});*/
 							}
-							$("#edOption").append(new Option("Share via Facebook", "sharefb"));
-							$("#edOption").append(new Option("Share via Twitter", "sharetw"));
+//                            $("#edOption").append(new Option("Share via Facebook", "sharefb"));
+//                            $("#edOption").append(new Option("Share via Twitter", "sharetw"));
 							
 							
 							$('#edOption').change(function() {
@@ -2267,12 +2267,12 @@ var lan_code = {"english":[{"login":"Login",
 									if(temp_view_id==user_id){
 									$.ajax({
 										url : BASE_URL
-												+ 'api/app/delete_user',
+												+ 'delete_post.php',
 										dataType : 'json',
 										type : 'post',
 										contentType : 'application/x-www-form-urlencoded',
 										data : {
-											user_id : user_id,
+											userid : user_id,
 											post_id : dashboard_id
 										},
 										success : function(
@@ -2280,7 +2280,7 @@ var lan_code = {"english":[{"login":"Login",
 												textStatus,
 												jQxhr) {
 											console.log(JSON.stringify(data));
-											if (data.status == '1') {
+											if (data.status == 'sucess') {
 													alertSS("Deleted Successfully");
 													if (dvt.prevPage.attr('id') != "add_details") {
 													$.mobile.changePage(dvt.prevPage
@@ -3153,6 +3153,8 @@ var lan_code = {"english":[{"login":"Login",
 							//user_id="1"
 							if(view_profile_id==user_id){
 								$('#follow').css('display','none');
+                       $('#follow').css('display','none');
+
 							}
 							view_user(view_profile_id);
 						});
