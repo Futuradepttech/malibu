@@ -399,7 +399,7 @@ var lan_code = {"english":[{"login":"Login",
 														+ data[i].name
 														+ "</label></div></div> <img id='imgsss' data-value='"+ data[i].id+ "' class='img_"+data[i].id+"' src='"
 														+ url
-                                                        + "'style='width: 100%; background-size: cover; margin-top: 18px;'><div class='ui-grid-c' style='width: 50%; margin-top: 10px; height: 30px;margin-left:7px;'><img class='ui-block-a' src='img/ic_heart_icon.png' id='like1' data-value='"+data[i].id+"' style='width: 20px; height: 20px;'> <label id='like2' data-value='"+data[i].id+"' class='ui-block-b' style='color: #525456; text-transform: none; text-shadow: none; font-size: small; font-weight: bold; margin-left: 5px; padding-top: 3px;'>");
+                                                        + "'style='width: 100%; background-size: cover;'><div class='ui-grid-c' style='width: 50%; margin-top: 10px; height: 30px;margin-left:7px;display:none;'><img class='ui-block-a' src='img/ic_heart_icon.png' id='like1' data-value='"+data[i].id+"' style='width: 20px; height: 20px;'> <label id='like2' data-value='"+data[i].id+"' class='ui-block-b' style='color: #525456; text-transform: none; text-shadow: none; font-size: small; font-weight: bold; margin-left: 5px; padding-top: 3px;'>");
 //                                                        + data[i].likes_data.total_likes + "</label><div id='cmtss' data-value='"+ data[i].post_data.id+ "'><img class='ui-block-c' src='img/ic_comment.png' style='width: 20px; height: 20px; margin-left: 5px;'><label class='ui-block-d' style='color: #525456; text-transform: none; text-shadow: none; font-size: small; font-weight: bold; margin-left: 5px; padding-top: 3px;'>Comments</label></div></div>");
 											} else {
 													
@@ -761,7 +761,7 @@ var lan_code = {"english":[{"login":"Login",
 													+ data[i].comments_data.data[j].comment + "</label></div></div></div></div>");
 										}
 									}
-									var total_comments = "<div style='color: #BBB9BC; float: left; margin-left: 10%; margin-top: 10px;'	id='cmtcount' data-value='"
+                                var total_comments = "<div style='color: #BBB9BC; float: left; margin-left: 10%; margin-top: 10px;'	id='cmtcount' data-value='"
 											+ data[i].post_data.id
 											+ "'><label style='font-size: 80%;'>view all "
 											+ data[i].comments_data.total_comments
@@ -1844,7 +1844,8 @@ var lan_code = {"english":[{"login":"Login",
 												cap_to_show=data.post_user_data[0].caption;
 												$('#caption').text(data.post_user_data[0].caption);
 												$('#totallike').text(data.post_user_data[0].total_likes+ " Likes");
-												
+												$('#totalhate').text(data.post_user_data[0].total_dislike);
+                                   
                                    
                                    
 //                                                for ( var m = 0; m < data.likes_data.length; m++) {
@@ -2487,6 +2488,97 @@ var lan_code = {"english":[{"login":"Login",
 															});
 												}
 											});
+                       
+                       
+                       
+                       $('#ihate').click(function() {
+                                         var mm = parseInt($("#totalhate").text());
+                                         
+                                         if ($(this).attr('src') == 'img/thumbdown.png') {
+                                         $(this).attr('src','img/thumbdown1.png');
+                                         //    loading();
+                                         $('#totalhate')
+                                         .text((mm + 1));
+                                         $.ajax({
+                                                url : BASE_URL
+                                                + 'add_dislike.php',
+                                                dataType : 'json',
+                                                type : 'post',
+                                                contentType : 'application/x-www-form-urlencoded',
+                                                data : {
+                                                userid : user_id,
+                                                post_id : dashboard_id,
+                                                "like":1
+                                                },
+                                                success : function(
+                                                                   data,
+                                                                   textStatus,
+                                                                   jQxhr) {
+                                                //console.log(JSON.stringify(data));
+                                                if (data.update[0] == 'sucess' == '1') {
+                                                
+                                                } else {
+                                                console
+                                                .log(data.data);
+                                                }
+                                                //    loading_done();
+                                                },
+                                                error : function(
+                                                                 jqXhr,
+                                                                 textStatus,
+                                                                 errorThrown) {
+                                                console
+                                                .log(errorThrown);
+                                                alertSS('Server Error');
+                                                //    loading_done();
+                                                }
+                                                });
+                                         } else {
+                                         $(this)
+                                         .attr('src',
+                                               'img/thumbdown.png');
+                                         //loading();
+                                         $('#totalhate')
+                                         .text((mm - 1));
+                                         $.ajax({
+                                                url : BASE_URL
+                                                + 'add_dislike.php',
+                                                dataType : 'json',
+                                                type : 'post',
+                                                contentType : 'application/x-www-form-urlencoded',
+                                                data : {
+                                                userid : user_id,
+                                                post_id : dashboard_id,
+                                                "like":0
+                                                },
+                                                success : function(
+                                                                   data,
+                                                                   textStatus,
+                                                                   jQxhr) {
+                                                //console.log(JSON.stringify(data));
+                                                if (data.status == '1') {
+                                                
+                                                } else {
+                                                console
+                                                .log(data.data);
+                                                }
+                                                //    loading_done();
+                                                },
+                                                error : function(
+                                                                 jqXhr,
+                                                                 textStatus,
+                                                                 errorThrown) {
+                                                console
+                                                .log(errorThrown);
+                                                alertSS('Server Error');
+                                                //    loading_done();
+                                                }
+                                                });
+                                         }
+                                         });
+                       
+                       
+                       
 						});
 /*
  * Search User or your Friends and view Profile
