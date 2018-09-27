@@ -1844,7 +1844,7 @@ var lan_code = {"english":[{"login":"Login",
 												cap_to_show=data.post_user_data[0].caption;
 												$('#caption').text(data.post_user_data[0].caption);
 												$('#totallike').text(data.post_user_data[0].total_likes+ " Likes");
-												$('#totalhate').text(data.post_user_data[0].total_dislike);
+												$('#totalhate').text(data.total_dislike);
                                    
                                    
                                    
