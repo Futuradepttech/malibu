@@ -3122,13 +3122,9 @@ var lan_code = {"english":[{"login":"Login",
                                           
                                           
                                           } else {
-                                          $('#addfriend').text(
-                                                            'Unfriend');
-                                          $('#addfriend')
-                                          .css('border',
-                                               '1px solid #00D88E');
-                                          $('#addfriend').css('color',
-                                                           '#00D88E');
+                                          $('#addfriend').text('Unfriend');
+                                          $('#addfriend').css('border','1px solid #00D88E');
+                                          $('#addfriend').css('color','#00D88E');
                                           var login = {
                                           userid : user_id,
                                           fid:view_profile_id,
@@ -6088,20 +6084,21 @@ var lan_code = {"english":[{"login":"Login",
 			mytopmargin();
 			loading();
 			document.removeEventListener("backbutton",back,false);
+                      // alert(12)
 				$.ajax({
 						url : BASE_URL
-								+ 'api/app/get_tagging_list',
+								+ 'users.php',
 						dataType : 'json',
 						type : 'post',
 						contentType : 'application/x-www-form-urlencoded',
 						data : {
-							user_id : user_id
+							userid : user_id
 						},
 						success : function(data, textStatus,
 								jQxhr) {
 							console.log(JSON.stringify(data));
 							if (data.status == '1') {
-								add(data.data);
+								add(data.all_user);
 							} else {
 								alertSS(data.data);
 							}
@@ -6118,7 +6115,7 @@ var lan_code = {"english":[{"login":"Login",
 					for (i = 0; i < data.length; i++) {
 						console
 								.log(data[i].name);
-						$('#tag_friends_list').append('<li data-value="'+data[i].user_id+'"  style="background: transparent;height:50px;"><div class="ui-grid-b" style="height:50px;">		<div class="ui-block-a" style="width: 15%; height: 50px;display:none;"></div>		<div class="ui-block-b"		style="width: 70%; height: 50px; line-height: 50px; text-transform: none; text-shadow: none; font-size: medium; text-align: left; color: white; padding-left: 12px;">'+data[i].name+'</div>	<img class="ui-block-c" id="imgclk"  src="img/ic_checkbox_blank.png"	style="width: 15%;height:50px;">	</div><div style="background:white;height:1px;width:80%;"></div></li>');
+						$('#tag_friends_list').append('<li data-value="'+data[i].id+'"  style="background: transparent;height:50px;"><div class="ui-grid-b" style="height:50px;">		<div class="ui-block-a" style="width: 15%; height: 50px;display:none;"></div>		<div class="ui-block-b"		style="width: 70%; height: 50px; line-height: 50px; text-transform: none; text-shadow: none; font-size: medium; text-align: left; color: white; padding-left: 12px;">'+data[i].name+'</div>	<img class="ui-block-c" id="imgclk"  src="img/ic_checkbox_blank.png"	style="width: 15%;height:50px;">	</div><div style="background:white;height:1px;width:80%;"></div></li>');
 					}
 				$('#tag_friends_list li').click(function(){
 					var id=$(this).attr('data-value');
@@ -7061,27 +7058,28 @@ var lan_code = {"english":[{"login":"Login",
 							
 							//	tag_friends_list
 							loading();
+                      // alert(1222)
 							$.ajax({
 										url : BASE_URL
-												+ 'api/app/get_tagging_list',
+												+ 'users.php',
 										dataType : 'json',
 										type : 'post',
 										contentType : 'application/x-www-form-urlencoded',
 										data : {
-											user_id : user_id
+											userid : user_id
 										},
 										success : function(data, textStatus,
 												jQxhr) {
 											//console.log(JSON.stringify(data));
 
 											if (data.status == '1') {
-												for (i = 0; i < data.data.length; i++) {
-													console.log(data.data[i].name);
+												for (i = 0; i < data.all_user.length; i++) {
+													console.log(data.all_user[i].name);
 													//$('tag_friends_list').append('<option value="'+data.data[i].user_id+'">'+data.data[i].name+'</option>');
 													$('#tag_friends_list').append($('<option>',
 																			{
-																				value : data.data[i].user_id,
-																				text : data.data[i].name
+																				value : data.all_user[i].id,
+																				text : data.all_user[i].name
 													}));
 												}
 											} else {
@@ -7132,18 +7130,21 @@ var lan_code = {"english":[{"login":"Login",
 							$('#finalsave').click(function() {
 												var capText = $('#yourCaption')
 														.val();
+                                                  //alert(tags);
+                                                  
+                                                  //return;
 												console.log("TAGS>"+tags.length);
 												loading();
 												for(var ki=0;ki<tags.length;ki++){
 													console.log("s>"+tags[ki]);		
 													$.ajax({
 															url : BASE_URL
-																	+ 'api/app/tag_user',
+																	+ 'tag_user.php',
 																dataType : 'json',
 															type : 'post',
 															contentType : 'application/x-www-form-urlencoded',
 															data : {
-																user_id : user_id,
+																userid : user_id,
 																post_id : img_temp_id,
 																taged_user_id : tags[ki]
 																},
@@ -7152,7 +7153,7 @@ var lan_code = {"english":[{"login":"Login",
 																//console.log(JSON.stringify(data));
 
 																					if (data.status == '1') {
-																						console.log("tagged");
+																						console.log("tagged done");
 																					} else {
 																						console.log(data.data);
 																					}
