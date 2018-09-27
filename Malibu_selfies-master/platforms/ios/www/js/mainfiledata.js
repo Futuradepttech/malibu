@@ -1865,11 +1865,16 @@ var lan_code = {"english":[{"login":"Login",
 												});
 												//need to work ashutosh ..
                                    if(data.post_user_data[0].user_like == "yes"){
-                                   $('#ilike')
-                                   .attr('src',
-                                         'img/ic_heart_icon_clk.png');
+                                   $('#ilike').attr('src','img/ic_heart_icon_clk.png');
 
                                    }
+                                   
+                                   if(data.post_user_data[0].user_dislike == "yes"){
+                                   $('#ihate').attr('src','img/thumbdown1.png');
+                                   
+                                   }
+                                   
+                                   
                                    
 //                                                for ( var m = 0; m < data.likes_data.length; m++) {
 //                                                    if (data.likes_data[m].user_id == user_id) {
