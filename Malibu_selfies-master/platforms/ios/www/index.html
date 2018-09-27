@@ -34,8 +34,13 @@
 	function abc() {
         
  var userid = localStorage.getItem('userid');
- 
-        window.location = 'register_login.html';
+ if(userid > 0){
+  //   window.location = 'dashboard.html';
+  $.mobile.changePage("dashboard.html", {changeHash : true})
+ }else{
+    window.location = 'register_login.html';
+ }
+       // window.location = 'register_login.html';
         
       //  window.location = 'profile.html';
         
