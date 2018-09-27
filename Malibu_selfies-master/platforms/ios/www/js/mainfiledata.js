@@ -2986,7 +2986,7 @@ var lan_code = {"english":[{"login":"Login",
                                              //  alert(22)
 										var ff = $('#follow').text();
 												console.log(ff);
-												if (ff == 'following') {
+												if (ff == 'Unfollow') {
 													$('#follow').text('follow');
 													$('#follow').css('color',
 															'#43D3F7');
@@ -3031,7 +3031,7 @@ var lan_code = {"english":[{"login":"Login",
                                                
 												} else {
 													$('#follow').text(
-															'following');
+															'Unfollow');
 													$('#follow')
 															.css('border',
 																	'1px solid #00D88E');
@@ -3078,7 +3078,7 @@ var lan_code = {"english":[{"login":"Login",
                                           //  alert(22)
                                           var ff = $('#addfriend').text();
                                           console.log(ff);
-                                          if (ff == 'Friends') {
+                                          if (ff == 'Unfriend') {
                                           $('#addfriend').text('Add Friend');
                                           $('#addfriend').css('color',
                                                            '#43D3F7');
@@ -3123,7 +3123,7 @@ var lan_code = {"english":[{"login":"Login",
                                           
                                           } else {
                                           $('#addfriend').text(
-                                                            'Friends');
+                                                            'Unfriend');
                                           $('#addfriend')
                                           .css('border',
                                                '1px solid #00D88E');
@@ -3177,7 +3177,7 @@ var lan_code = {"english":[{"login":"Login",
 											contentType : 'application/x-www-form-urlencoded',
 											data : {
 												userid : id,
-												view_user_id : id
+												view_user_id : user_id
 											},
 											success : function(data,
 													textStatus, jQxhr) {
@@ -3206,6 +3206,20 @@ var lan_code = {"english":[{"login":"Login",
                                        $('#followers')
                                        .text(
                                              data.followers);
+                                       
+                                       if(data.is_friends == 1){
+                                       $('#addfriend').text('Unfriend');
+                                       $('#addfriend').css('border','1px solid #00D88E');
+                                       $('#addfriend').css('color','#00D88E');
+                                       }
+                                       
+                                       if(data.is_follower == 1){
+                                       $('#follow').text('Unfollow');
+                                       $('#follow').css('border','1px solid #00D88E');
+                                       $('#follow').css('color','#00D88E');                                       }
+                                       
+                                       
+                                       
 //                                                    if (data.data.is_followed == '1') {
 //                                                        $('#follow').text('following');
 //                                                        $('#follow').css(
