@@ -982,7 +982,7 @@ var lan_code = {"english":[{"login":"Login",
 								
 								for ( var j = 0; j < data.comments_data.length; j++) {
 									var mypic12 = BASE_URL
-											+ data.comments_data[j].profile_pic;
+											BASE_URL + data.comments_data[j].profile_pic;
 									if (data.comments_data[j].profile_pic == '') {
 										mypic12 = 'img/suer_profile.png';
 									}
@@ -1064,7 +1064,7 @@ var lan_code = {"english":[{"login":"Login",
 							//console.log(JSON.stringify(data));
 							if (data.profile.length > 0) {
 								myname = data.profile[0].user_name;
-								mypic = data.profile[0].profile_pic;
+								mypic = BASE_URL+data.profile[0].profile_pic;
 							} else {
 								console.log(data.data);
 							}
@@ -1092,13 +1092,13 @@ var lan_code = {"english":[{"login":"Login",
 							$('#cmt_msg').val('');
 							$.ajax({
 										url : BASE_URL
-												+ 'api/app/add_comment',
+												+ 'add_comment.php',
 										dataType : 'json',
 										type : 'post',
 										contentType : 'application/x-www-form-urlencoded',
 										data : {
 											post_id : dashboard_id,
-											user_id : user_id,
+											userid : user_id,
 											comment : msg
 										},
 										success : function(
@@ -2150,7 +2150,7 @@ var lan_code = {"english":[{"login":"Login",
 											//console.log(JSON.stringify(data));
 											if (data.profile.length > 0) {
 												myname = data.profile[0].user_name;
-												mypic = data.profile[0].profile_pic;
+												mypic = BASE_URL+data.profile[0].profile_pic;
 											} else {
 												console.log(data.data);
 											}
@@ -2192,13 +2192,13 @@ var lan_code = {"english":[{"login":"Login",
 																	'');
 															$.ajax({
 																		url : BASE_URL
-																				+ 'api/app/add_comment',
+																				+ 'add_comment.php',
 																		dataType : 'json',
 																		type : 'post',
 																		contentType : 'application/x-www-form-urlencoded',
 																		data : {
 																			post_id : dashboard_id,
-																			user_id : user_id,
+																			userid : user_id,
 																			comment : msg
 																		},
 																		success : function(
@@ -6118,9 +6118,8 @@ var lan_code = {"english":[{"login":"Login",
 					});
 				function add(data){
 					for (i = 0; i < data.length; i++) {
-						console
-								.log(data[i].name);
-                       $('#tag_friends_list').append('<li data-value="'+data[i].id+'"  style="background: transparent;height:50px;"><div class="ui-grid-b" style="height:50px;">		<div class="ui-block-a" style="width: 15%; height: 50px;display:none;"></div>		<div class="ui-block-b"		style="width: 79%; height: 50px; line-height: 50px; text-transform: none; text-shadow: none; font-size: medium; text-align: left; color: white; padding-left: 12px;">'+data[i].name+'</div>	<img class="ui-block-c" id="imgclk"  src="img/ic_checkbox_blank.png"	style="width: 50px;height:50px;position:absolute;right:9%">	</div><div style="background:white;height:1px;width:92%;"></div></li>');
+						console.log(data[i].name);
+                       $('#tag_friends_list').append('<li data-value="'+data[i].id+'"  style="background: transparent;height:50px;"><div class="ui-grid-b" style="height:50px;">		<div class="ui-block-a" style="width: 15%; height: 50px;display:none;"></div>		<div class="ui-block-b"		style="width: 79%; height: 50px; line-height: 50px; text-transform: none; text-shadow: none; font-size: medium; text-align: left; color: white; padding-left: 12px;">'+data[i].name+'</div>	<img class="ui-block-c" id="imgclk"  src="img/ic_checkbox_blank.png"	style="width: 50px;height:50px;position:absolute;right:9%"></div><div style="background:white;height:1px;width:92%;"></div></li>');
 					}
 				$('#tag_friends_list li').click(function(){
 					var id=$(this).attr('data-value');
