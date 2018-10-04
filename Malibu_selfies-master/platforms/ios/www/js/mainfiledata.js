@@ -1843,7 +1843,7 @@ var lan_code = {"english":[{"login":"Login",
 												$('#topcaption').text(data.post_user_data[0].name);
 												cap_to_show=data.post_user_data[0].caption;
 												$('#caption').text(data.post_user_data[0].caption);
-												$('#totallike').text(data.post_user_data[0].total_likes+ " Likes");
+												$('#totallike').text(data.total_like+ " Likes");
 												$('#totalhate').text(data.total_dislike);
                                    
                                    
@@ -1884,7 +1884,7 @@ var lan_code = {"english":[{"login":"Login",
 //                                                        break;
 //                                                    }
 //                                                }
-												$('#totalcomments').text(data.post_user_data[0].total_comment+ " Comments");
+												$('#totalcomments').text(data.total_comments+ " Comments");
 												comments_checked = parseInt(data.total_comments);
 												
 												if (data.post_user_data[0].is_followed == '1') {
@@ -1902,7 +1902,7 @@ var lan_code = {"english":[{"login":"Login",
 													$('#locname').text(data.post_user_data[0].address);
 												}
 
-//                                                $('#totaltags').text(data.total_tagged_users);
+                                                $('#totaltags').text(data.total_tagged_users);
 //
 //                                                for ( var i = 0; i < data.tagged_users.length; i++) {
 //                                                    $('#taglist').append('<label style="float: left; margin: 5px; text-transform: none; text-align: center; background-color: #d3d3d3; border: 1px solid #d3d3d3; border-radius: 5px; font-size: small; padding: 2px;" data-value="'+data.tagged_users[i].taged_user_id+'">'
@@ -7138,42 +7138,9 @@ var lan_code = {"english":[{"login":"Login",
                                                   //alert(tags);
                                                   
                                                   //return;
-												console.log("TAGS>"+tags.length);
-												loading();
-												for(var ki=0;ki<tags.length;ki++){
-													console.log("s>"+tags[ki]);		
-													$.ajax({
-															url : BASE_URL
-																	+ 'tag_user.php',
-																dataType : 'json',
-															type : 'post',
-															contentType : 'application/x-www-form-urlencoded',
-															data : {
-																userid : user_id,
-																post_id : img_temp_id,
-																taged_user_id : tags[ki]
-																},
-															success : function(
-																data,textStatus,jQxhr) {
-																//console.log(JSON.stringify(data));
-
-																					if (data.status == '1') {
-																						console.log("tagged done");
-																					} else {
-																						console.log(data.data);
-																					}
-																				},
-																				error : function(
-																						jqXhr,
-																						textStatus,
-																						errorThrown) {
-																					console.log(errorThrown);
-																					//alertSS('Server Error');
-																				}
-																			});
-												}
+												
 																
-												tags=[];
+												//tags=[];
 
 												var login = {
 													file_id : img_temp_id,
@@ -7206,6 +7173,45 @@ var lan_code = {"english":[{"login":"Login",
 																		alertSS('Video Updated Successfully');
 																	}
 																	loading_done();
+                                                       
+                                                       
+                                                       console.log("TAGS>"+tags.length);
+                                                       loading();
+                                                       for(var ki=0;ki<tags.length;ki++){
+                                                       console.log("s>"+tags[ki]);
+                                                       $.ajax({
+                                                              url : BASE_URL
+                                                              + 'tag_user.php',
+                                                              dataType : 'json',
+                                                              type : 'post',
+                                                              contentType : 'application/x-www-form-urlencoded',
+                                                              data : {
+                                                              userid : user_id,
+                                                              post_id : data.lastid,
+                                                              taged_user_id : tags[ki]
+                                                              },
+                                                              success : function(
+                                                                                 data,textStatus,jQxhr) {
+                                                              //console.log(JSON.stringify(data));
+                                                              
+                                                              if (data.status == '1') {
+                                                              console.log("tagged done");
+                                                              } else {
+                                                              console.log(data.data);
+                                                              }
+                                                              },
+                                                              error : function(
+                                                                               jqXhr,
+                                                                               textStatus,
+                                                                               errorThrown) {
+                                                              console.log(errorThrown);
+                                                              //alertSS('Server Error');
+                                                              }
+                                                              });
+                                                       }
+                                                       
+                                                       
+                                                       
 																	if(new_img_vid==1){
 																		$.mobile.changePage("dashboard.html",
 																				{
