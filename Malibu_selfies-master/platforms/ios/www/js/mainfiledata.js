@@ -1904,12 +1904,12 @@ var lan_code = {"english":[{"login":"Login",
 
                                                 $('#totaltags').text(data.total_tagged_users);
 //
-//                                                for ( var i = 0; i < data.tagged_users.length; i++) {
-//                                                    $('#taglist').append('<label style="float: left; margin: 5px; text-transform: none; text-align: center; background-color: #d3d3d3; border: 1px solid #d3d3d3; border-radius: 5px; font-size: small; padding: 2px;" data-value="'+data.tagged_users[i].taged_user_id+'">'
-//                                                                            + data.tagged_users[i].name
-//                                                                            + '</label>');
-//                                                    tags.push(data.tagged_users[i].taged_user_id);
-//                                                }
+                                                for ( var i = 0; i < data.tagged_users.length; i++) {
+                                                    $('#taglist').append('<label style="float: left; margin: 5px; text-transform: none; text-align: center; background-color: #d3d3d3; border: 1px solid #d3d3d3; border-radius: 5px; font-size: small; padding: 2px;" data-value="'+data.tagged_users[i].taged_user_id+'">'
+                                                                            + data.tagged_users[i].name
+                                                                            + '</label>');
+                                                    tags.push(data.tagged_users[i].taged_user_id);
+                                                }
 												for ( var j = 0; j < data.comments_data.length; j++) {
 													var mypic12 = BASE_URL
 															+ data.comments_data[j].profile_pic;
