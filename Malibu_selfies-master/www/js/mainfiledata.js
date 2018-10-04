@@ -399,7 +399,7 @@ var lan_code = {"english":[{"login":"Login",
 														+ data[i].name
 														+ "</label></div></div> <img id='imgsss' data-value='"+ data[i].id+ "' class='img_"+data[i].id+"' src='"
 														+ url
-                                                        + "'style='width: 100%; background-size: cover; margin-top: 18px;'><div class='ui-grid-c' style='width: 50%; margin-top: 10px; height: 30px;margin-left:7px;'><img class='ui-block-a' src='img/ic_heart_icon.png' id='like1' data-value='"+data[i].id+"' style='width: 20px; height: 20px;'> <label id='like2' data-value='"+data[i].id+"' class='ui-block-b' style='color: #525456; text-transform: none; text-shadow: none; font-size: small; font-weight: bold; margin-left: 5px; padding-top: 3px;'>");
+                                                        + "'style='width: 100%; background-size: cover;'><div class='ui-grid-c' style='width: 50%; margin-top: 10px; height: 30px;margin-left:7px;display:none;'><img class='ui-block-a' src='img/ic_heart_icon.png' id='like1' data-value='"+data[i].id+"' style='width: 20px; height: 20px;'> <label id='like2' data-value='"+data[i].id+"' class='ui-block-b' style='color: #525456; text-transform: none; text-shadow: none; font-size: small; font-weight: bold; margin-left: 5px; padding-top: 3px;'>");
 //                                                        + data[i].likes_data.total_likes + "</label><div id='cmtss' data-value='"+ data[i].post_data.id+ "'><img class='ui-block-c' src='img/ic_comment.png' style='width: 20px; height: 20px; margin-left: 5px;'><label class='ui-block-d' style='color: #525456; text-transform: none; text-shadow: none; font-size: small; font-weight: bold; margin-left: 5px; padding-top: 3px;'>Comments</label></div></div>");
 											} else {
 													
@@ -761,7 +761,7 @@ var lan_code = {"english":[{"login":"Login",
 													+ data[i].comments_data.data[j].comment + "</label></div></div></div></div>");
 										}
 									}
-									var total_comments = "<div style='color: #BBB9BC; float: left; margin-left: 10%; margin-top: 10px;'	id='cmtcount' data-value='"
+                                var total_comments = "<div style='color: #BBB9BC; float: left; margin-left: 10%; margin-top: 10px;'	id='cmtcount' data-value='"
 											+ data[i].post_data.id
 											+ "'><label style='font-size: 80%;'>view all "
 											+ data[i].comments_data.total_comments
@@ -1844,7 +1844,8 @@ var lan_code = {"english":[{"login":"Login",
 												cap_to_show=data.post_user_data[0].caption;
 												$('#caption').text(data.post_user_data[0].caption);
 												$('#totallike').text(data.post_user_data[0].total_likes+ " Likes");
-												
+												$('#totalhate').text(data.total_dislike);
+                                   
                                    
                                    
 //                                                for ( var m = 0; m < data.likes_data.length; m++) {
@@ -1864,11 +1865,16 @@ var lan_code = {"english":[{"login":"Login",
 												});
 												//need to work ashutosh ..
                                    if(data.post_user_data[0].user_like == "yes"){
-                                   $('#ilike')
-                                   .attr('src',
-                                         'img/ic_heart_icon_clk.png');
+                                   $('#ilike').attr('src','img/ic_heart_icon_clk.png');
 
                                    }
+                                   
+                                   if(data.post_user_data[0].user_dislike == "yes"){
+                                   $('#ihate').attr('src','img/thumbdown1.png');
+                                   
+                                   }
+                                   
+                                   
                                    
 //                                                for ( var m = 0; m < data.likes_data.length; m++) {
 //                                                    if (data.likes_data[m].user_id == user_id) {
@@ -2245,8 +2251,8 @@ var lan_code = {"english":[{"login":"Login",
 								    $(this).remove();
 								});*/
 							}
-							$("#edOption").append(new Option("Share via Facebook", "sharefb"));
-							$("#edOption").append(new Option("Share via Twitter", "sharetw"));
+//                            $("#edOption").append(new Option("Share via Facebook", "sharefb"));
+//                            $("#edOption").append(new Option("Share via Twitter", "sharetw"));
 							
 							
 							$('#edOption').change(function() {
@@ -2267,12 +2273,12 @@ var lan_code = {"english":[{"login":"Login",
 									if(temp_view_id==user_id){
 									$.ajax({
 										url : BASE_URL
-												+ 'api/app/delete_user',
+												+ 'delete_post.php',
 										dataType : 'json',
 										type : 'post',
 										contentType : 'application/x-www-form-urlencoded',
 										data : {
-											user_id : user_id,
+											userid : user_id,
 											post_id : dashboard_id
 										},
 										success : function(
@@ -2280,7 +2286,7 @@ var lan_code = {"english":[{"login":"Login",
 												textStatus,
 												jQxhr) {
 											console.log(JSON.stringify(data));
-											if (data.status == '1') {
+											if (data.status == 'sucess') {
 													alertSS("Deleted Successfully");
 													if (dvt.prevPage.attr('id') != "add_details") {
 													$.mobile.changePage(dvt.prevPage
@@ -2487,6 +2493,97 @@ var lan_code = {"english":[{"login":"Login",
 															});
 												}
 											});
+                       
+                       
+                       
+                       $('#ihate').click(function() {
+                                         var mm = parseInt($("#totalhate").text());
+                                         
+                                         if ($(this).attr('src') == 'img/thumbdown.png') {
+                                         $(this).attr('src','img/thumbdown1.png');
+                                         //    loading();
+                                         $('#totalhate')
+                                         .text((mm + 1));
+                                         $.ajax({
+                                                url : BASE_URL
+                                                + 'add_dislike.php',
+                                                dataType : 'json',
+                                                type : 'post',
+                                                contentType : 'application/x-www-form-urlencoded',
+                                                data : {
+                                                userid : user_id,
+                                                post_id : dashboard_id,
+                                                "like":1
+                                                },
+                                                success : function(
+                                                                   data,
+                                                                   textStatus,
+                                                                   jQxhr) {
+                                                //console.log(JSON.stringify(data));
+                                                if (data.update[0] == 'sucess' == '1') {
+                                                
+                                                } else {
+                                                console
+                                                .log(data.data);
+                                                }
+                                                //    loading_done();
+                                                },
+                                                error : function(
+                                                                 jqXhr,
+                                                                 textStatus,
+                                                                 errorThrown) {
+                                                console
+                                                .log(errorThrown);
+                                                alertSS('Server Error');
+                                                //    loading_done();
+                                                }
+                                                });
+                                         } else {
+                                         $(this)
+                                         .attr('src',
+                                               'img/thumbdown.png');
+                                         //loading();
+                                         $('#totalhate')
+                                         .text((mm - 1));
+                                         $.ajax({
+                                                url : BASE_URL
+                                                + 'add_dislike.php',
+                                                dataType : 'json',
+                                                type : 'post',
+                                                contentType : 'application/x-www-form-urlencoded',
+                                                data : {
+                                                userid : user_id,
+                                                post_id : dashboard_id,
+                                                "like":0
+                                                },
+                                                success : function(
+                                                                   data,
+                                                                   textStatus,
+                                                                   jQxhr) {
+                                                //console.log(JSON.stringify(data));
+                                                if (data.status == '1') {
+                                                
+                                                } else {
+                                                console
+                                                .log(data.data);
+                                                }
+                                                //    loading_done();
+                                                },
+                                                error : function(
+                                                                 jqXhr,
+                                                                 textStatus,
+                                                                 errorThrown) {
+                                                console
+                                                .log(errorThrown);
+                                                alertSS('Server Error');
+                                                //    loading_done();
+                                                }
+                                                });
+                                         }
+                                         });
+                       
+                       
+                       
 						});
 /*
  * Search User or your Friends and view Profile
@@ -2891,88 +2988,186 @@ var lan_code = {"english":[{"login":"Login",
 							
 							
 							$('#follow').click(function() {
+                                             //  alert(22)
 										var ff = $('#follow').text();
 												console.log(ff);
-												if (ff == 'following') {
+												if (ff == 'Unfollow') {
 													$('#follow').text('follow');
 													$('#follow').css('color',
 															'#43D3F7');
 													$('#follow')
 															.css('border',
 																	'1px solid #43D3F7');
-													$.ajax({
-																url : BASE_URL
-																		+ 'api/app/unfollow',
-																dataType : 'json',
-																type : 'post',
-																contentType : 'application/x-www-form-urlencoded',
-																data : {
-																	user_id : user_id,
-																	follower_id : view_profile_id
-																},
-																success : function(
-																		data,
-																		textStatus,
-																		jQxhr) {
-																	//console.log(JSON.stringify(data));
-																	if (data.status == '1') {
-
-																	} else {
-																		console
-																				.log(data.data);
-																	}
-																},
-																error : function(
-																		jqXhr,
-																		textStatus,
-																		errorThrown) {
-																	console
-																			.log(errorThrown);
-																	alertSS('Server Error');
-																}
-															});
+												
+                                               var login = {
+                                               userid : user_id,
+                                               fid:view_profile_id,
+                                               "type":"unfollow"
+                                               
+                                               };
+                                               
+                                               $.ajax({
+                                                      url : BASE_URL + 'following.php',
+                                                      dataType : 'json',
+                                                      type : 'post',
+                                                      contentType : 'application/x-www-form-urlencoded',
+                                                      data : login,
+                                                      success : function(data,
+                                                                         textStatus, jQxhr) {
+                                                      console.log(JSON.stringify(data));
+                                                      if (data.follower[0] == 'sucess') {
+                                                      //alertSS('Follow sucessfully');
+                                                      
+                                                      $('#tb_following').click();
+                                                      
+                                                      } else {
+                                                      alertSS(data.data);
+                                                      }
+                                                      loading_done();
+                                                      },
+                                                      error : function(jqXhr, textStatus,
+                                                                       errorThrown) {
+                                                      console.log(errorThrown);
+                                                      alertSS('Server Error');
+                                                      loading_done();
+                                                      }
+                                                      });
+                                               
+                                               
 												} else {
 													$('#follow').text(
-															'following');
+															'Unfollow');
 													$('#follow')
 															.css('border',
 																	'1px solid #00D88E');
 													$('#follow').css('color',
 															'#00D88E');
-													$.ajax({
-																url : BASE_URL
-																		+ 'api/app/add_follower',
-																dataType : 'json',
-																type : 'post',
-																contentType : 'application/x-www-form-urlencoded',
-																data : {
-																	user_id : user_id,
-																	follower_id : view_profile_id
-																},
-																success : function(
-																		data,
-																		textStatus,
-																		jQxhr) {
-																	//console.log(JSON.stringify(data));
-																	if (data.status == '1') {
-
-																	} else {
-																		console
-																				.log(data.data);
-																	}
-																},
-																error : function(
-																		jqXhr,
-																		textStatus,
-																		errorThrown) {
-																	console
-																			.log(errorThrown);
-																	alertSS('Server Error');
-																}
-															});
+                                               var login = {
+                                               userid : user_id,
+                                               fid:view_profile_id,
+                                               "type":"follow"
+                                               
+                                               };
+                                               
+                                               $.ajax({
+                                                      url : BASE_URL + 'following.php',
+                                                      dataType : 'json',
+                                                      type : 'post',
+                                                      contentType : 'application/x-www-form-urlencoded',
+                                                      data : login,
+                                                      success : function(data,
+                                                                         textStatus, jQxhr) {
+                                                      console.log(JSON.stringify(data));
+                                                      if (data.follower[0] == 'sucess') {
+                                                      //alertSS('Follow sucessfully');
+                                                      
+                                                      $('#tb_following').click();
+                                                      
+                                                      } else {
+                                                      alertSS(data.data);
+                                                      }
+                                                      loading_done();
+                                                      },
+                                                      error : function(jqXhr, textStatus,
+                                                                       errorThrown) {
+                                                      console.log(errorThrown);
+                                                      alertSS('Server Error');
+                                                      loading_done();
+                                                      }
+                                                      });
 												}
 											});
 
+                       
+                       $('#addfriend').click(function() {
+                                          //  alert(22)
+                                          var ff = $('#addfriend').text();
+                                          console.log(ff);
+                                          if (ff == 'Unfriend') {
+                                          $('#addfriend').text('Add Friend');
+                                          $('#addfriend').css('color',
+                                                           '#43D3F7');
+                                          $('#addfriend')
+                                          .css('border',
+                                               '1px solid #43D3F7');
+                                          
+                                          var login = {
+                                          userid : user_id,
+                                          fid:view_profile_id,
+                                          "type":"unfriend"
+                                          
+                                          };
+                                          
+                                          $.ajax({
+                                                 url : BASE_URL + 'friend.php',
+                                                 dataType : 'json',
+                                                 type : 'post',
+                                                 contentType : 'application/x-www-form-urlencoded',
+                                                 data : login,
+                                                 success : function(data,
+                                                                    textStatus, jQxhr) {
+                                                 console.log(JSON.stringify(data));
+                                                 if (data.follower[0] == 'sucess') {
+                                                 //alertSS('Follow sucessfully');
+                                                 
+                                                // $('#tb_following').click();
+                                                 
+                                                 } else {
+                                                 alertSS(data.data);
+                                                 }
+                                                 loading_done();
+                                                 },
+                                                 error : function(jqXhr, textStatus,
+                                                                  errorThrown) {
+                                                 console.log(errorThrown);
+                                                 alertSS('Server Error');
+                                                 loading_done();
+                                                 }
+                                                 });
+                                          
+                                          
+                                          } else {
+                                          $('#addfriend').text('Unfriend');
+                                          $('#addfriend').css('border','1px solid #00D88E');
+                                          $('#addfriend').css('color','#00D88E');
+                                          var login = {
+                                          userid : user_id,
+                                          fid:view_profile_id,
+                                          "type":"friend"
+                                          
+                                          };
+                                          
+                                          $.ajax({
+                                                 url : BASE_URL + 'friend.php',
+                                                 dataType : 'json',
+                                                 type : 'post',
+                                                 contentType : 'application/x-www-form-urlencoded',
+                                                 data : login,
+                                                 success : function(data,
+                                                                    textStatus, jQxhr) {
+                                                 console.log(JSON.stringify(data));
+                                                 if (data.follower[0] == 'sucess') {
+                                                 //alertSS('Follow sucessfully');
+                                                 
+                                                // $('#tb_following').click();
+                                                 
+                                                 } else {
+                                                 alertSS(data.data);
+                                                 }
+                                                 loading_done();
+                                                 },
+                                                 error : function(jqXhr, textStatus,
+                                                                  errorThrown) {
+                                                 console.log(errorThrown);
+                                                 alertSS('Server Error');
+                                                 loading_done();
+                                                 }
+                                                 });
+                                          }
+                                          });
+                       
+                       
+                       
 							function view_user(id) {
 								loading();
 								$.ajax({
@@ -2983,7 +3178,7 @@ var lan_code = {"english":[{"login":"Login",
 											contentType : 'application/x-www-form-urlencoded',
 											data : {
 												userid : id,
-												view_user_id : id
+												view_user_id : user_id
 											},
 											success : function(data,
 													textStatus, jQxhr) {
@@ -3012,6 +3207,20 @@ var lan_code = {"english":[{"login":"Login",
                                        $('#followers')
                                        .text(
                                              data.followers);
+                                       
+                                       if(data.is_friends == 1){
+                                       $('#addfriend').text('Unfriend');
+                                       $('#addfriend').css('border','1px solid #00D88E');
+                                       $('#addfriend').css('color','#00D88E');
+                                       }
+                                       
+                                       if(data.is_follower == 1){
+                                       $('#follow').text('Unfollow');
+                                       $('#follow').css('border','1px solid #00D88E');
+                                       $('#follow').css('color','#00D88E');                                       }
+                                       
+                                       
+                                       
 //                                                    if (data.data.is_followed == '1') {
 //                                                        $('#follow').text('following');
 //                                                        $('#follow').css(
@@ -3051,6 +3260,8 @@ var lan_code = {"english":[{"login":"Login",
 							//user_id="1"
 							if(view_profile_id==user_id){
 								$('#follow').css('display','none');
+                       $('#follow').css('display','none');
+
 							}
 							view_user(view_profile_id);
 						});
@@ -3747,6 +3958,34 @@ var lan_code = {"english":[{"login":"Login",
 																		+ data[i].name
 																		+ ' has started following you.</label></div></div>');
 											}
+                       
+                       
+                       }else if(data[i].not_type == "like"){
+                       
+                       if (data[i].is_read == '0') {
+                       $("#notification_list").append(
+                                                      '<div id="noti" postID="'
+                                                      + data[i].post_id
+                                                      + '" data-value="'
+                                                      + data[i].notification_id
+                                                      + '" class="ui-grid-a" style="width: 100%;padding:2% 5%;background-color:#9FC5E8;border-bottom:1px solid #808080;"><img class="ui-block-a" src="'+bb+'" style="width: 45px; height: 45px;"><div class="ui-block-b" style="margin-left: 10px; width: 80%; padding-top: 3px;"><label id="unamee" data-value="'+data[i].user_id+'"  style="color: #000000; font-size: small; font-weight: bold; text-transform: none; text-shadow: none;">'
+                                                      + data[i].name
+                                                      + '</label><label class="ptag" id="user_msg" style="width: 95%; text-transform: none; text-shadow: none; font-size: x-small; font-weight: normal; color: #747474;text-overflow: ellipsis">'
+                                                      + data[i].name
+                                                      + ' has like your post.</label></div>></div>');
+                       } else {
+                       $("#notification_list").append(
+                                                      '<div id="noti" postID="'
+                                                      + data[i].post_id
+                                                      + '" data-value="'
+                                                      + data[i].notification_id
+                                                      + '" class="ui-grid-a" style="width: 100%;padding:2% 5%;background-color:#FFFFFF;border-bottom:1px solid #808080;"><img class="ui-block-a" src="'+bb+'" style="width: 45px; height: 45px;"><div class="ui-block-b" style="margin-left: 10px; width: 80%; padding-top: 3px;"><label id="unamee" data-value="'+data[i].user_id+'" style="color: #000000; font-size: small; font-weight: bold; text-transform: none; text-shadow: none;">'
+                                                      + data[i].name
+                                                      + '</label><label class="ptag" id="user_msg" style="width: 95%; text-transform: none; text-shadow: none; font-size: x-small; font-weight: normal; color: #747474;text-overflow: ellipsis">'
+                                                      + data[i].name
+                                                      + ' has started following you.</label></div></div>');
+                       }
+
 
 										} else {
 											if (data[i].file_type == 'image') {
@@ -5385,7 +5624,7 @@ var lan_code = {"english":[{"login":"Login",
                                                      userid : user_id
                                                      };
                                                      $.ajax({
-                                                            url : BASE_URL+'users.php',
+                                                            url : BASE_URL+'fetch_frnd.php',
                                                             dataType : 'json',
                                                             type : 'post',
                                                             contentType : 'application/x-www-form-urlencoded',
@@ -5399,12 +5638,12 @@ var lan_code = {"english":[{"login":"Login",
                                                             
                                                             var str = '';
                                                             
-                                                            for(var i=0;i<data.all_user.length;i++){
+                                                            for(var i=0;i<data.friends.length;i++){
                                                             //alert(data.all_user[i].name)
                                                             str+='<div style=" margin-top: 10px; position: relative ; margin-left: 20px">'
                                                             str+='<div><img src="img/suer_profile.png" width="40"/></div>'
-                                                            str+='<div style=" position: absolute; top: 2px; left: 50px; font-size: 14px">'+data.all_user[i].name+'</div>'
-                                                            str+='<div id="follower_'+data.all_user[i].id+'" style=" position: absolute; right: 0px; top: 0px; font-size: 14px; border: 1px solid #E1E1E1; padding: 5px;border-radius:5px;width:60px;" onclick="doFollowing(\''+data.all_user[i].id+'\')">Following</div>'
+                                                            str+='<div style=" position: absolute; top: 2px; left: 50px; font-size: 14px">'+data.friends[i].name+'</div>'
+                                                            str+='<div id="follower_'+data.friends[i].id+'" style=" position: absolute; right: 0px; top: 0px; font-size: 14px; border: 1px solid #E1E1E1; padding: 5px;border-radius:5px;width:60px;" >Friend</div>'
                                                             str+='</div>'
                                                             }
                                                            // alert(str)
@@ -5768,7 +6007,7 @@ var lan_code = {"english":[{"login":"Login",
                                                            //var value = "hello";
                                                            
                                                            var str = '';
-                                                           
+                                                           if(data.follower != "no_data"){
                                                            for(var i=0;i<data.follower.length;i++){
                                                            
                                                            str+='<div style=" margin-top: 10px; position: relative ; margin-left: 20px">'
@@ -5776,6 +6015,9 @@ var lan_code = {"english":[{"login":"Login",
                                                            str+='<div style=" position: absolute; top: 2px; left: 50px; font-size: 14px">'+data.follower[i].name+'</div>'
                                                            str+='<div style=" position: absolute; right: 0px; top: 0px; font-size: 14px; border: 1px solid #E1E1E1; padding: 5px;border-radius:5px;">Follower</div>'
                                                            str+='</div>'
+                                                           }
+                                                           }else{
+                                                           alertSS('There is no record');
                                                            }
                                                            //alert(str)
                                                            $('#friends_list_followers').html(str);
@@ -5847,20 +6089,21 @@ var lan_code = {"english":[{"login":"Login",
 			mytopmargin();
 			loading();
 			document.removeEventListener("backbutton",back,false);
+                      // alert(12)
 				$.ajax({
 						url : BASE_URL
-								+ 'api/app/get_tagging_list',
+								+ 'users.php',
 						dataType : 'json',
 						type : 'post',
 						contentType : 'application/x-www-form-urlencoded',
 						data : {
-							user_id : user_id
+							userid : user_id
 						},
 						success : function(data, textStatus,
 								jQxhr) {
 							console.log(JSON.stringify(data));
 							if (data.status == '1') {
-								add(data.data);
+								add(data.all_user);
 							} else {
 								alertSS(data.data);
 							}
@@ -5877,7 +6120,7 @@ var lan_code = {"english":[{"login":"Login",
 					for (i = 0; i < data.length; i++) {
 						console
 								.log(data[i].name);
-						$('#tag_friends_list').append('<li data-value="'+data[i].user_id+'"  style="background: transparent;height:50px;"><div class="ui-grid-b" style="height:50px;">		<div class="ui-block-a" style="width: 15%; height: 50px;display:none;"></div>		<div class="ui-block-b"		style="width: 70%; height: 50px; line-height: 50px; text-transform: none; text-shadow: none; font-size: medium; text-align: left; color: white; padding-left: 12px;">'+data[i].name+'</div>	<img class="ui-block-c" id="imgclk"  src="img/ic_checkbox_blank.png"	style="width: 15%;height:50px;">	</div><div style="background:white;height:1px;width:80%;"></div></li>');
+                       $('#tag_friends_list').append('<li data-value="'+data[i].id+'"  style="background: transparent;height:50px;"><div class="ui-grid-b" style="height:50px;">		<div class="ui-block-a" style="width: 15%; height: 50px;display:none;"></div>		<div class="ui-block-b"		style="width: 79%; height: 50px; line-height: 50px; text-transform: none; text-shadow: none; font-size: medium; text-align: left; color: white; padding-left: 12px;">'+data[i].name+'</div>	<img class="ui-block-c" id="imgclk"  src="img/ic_checkbox_blank.png"	style="width: 50px;height:50px;position:absolute;right:9%">	</div><div style="background:white;height:1px;width:92%;"></div></li>');
 					}
 				$('#tag_friends_list li').click(function(){
 					var id=$(this).attr('data-value');
@@ -6820,27 +7063,28 @@ var lan_code = {"english":[{"login":"Login",
 							
 							//	tag_friends_list
 							loading();
+                      // alert(1222)
 							$.ajax({
 										url : BASE_URL
-												+ 'api/app/get_tagging_list',
+												+ 'users.php',
 										dataType : 'json',
 										type : 'post',
 										contentType : 'application/x-www-form-urlencoded',
 										data : {
-											user_id : user_id
+											userid : user_id
 										},
 										success : function(data, textStatus,
 												jQxhr) {
 											//console.log(JSON.stringify(data));
 
 											if (data.status == '1') {
-												for (i = 0; i < data.data.length; i++) {
-													console.log(data.data[i].name);
+												for (i = 0; i < data.all_user.length; i++) {
+													console.log(data.all_user[i].name);
 													//$('tag_friends_list').append('<option value="'+data.data[i].user_id+'">'+data.data[i].name+'</option>');
 													$('#tag_friends_list').append($('<option>',
 																			{
-																				value : data.data[i].user_id,
-																				text : data.data[i].name
+																				value : data.all_user[i].id,
+																				text : data.all_user[i].name
 													}));
 												}
 											} else {
@@ -6891,18 +7135,21 @@ var lan_code = {"english":[{"login":"Login",
 							$('#finalsave').click(function() {
 												var capText = $('#yourCaption')
 														.val();
+                                                  //alert(tags);
+                                                  
+                                                  //return;
 												console.log("TAGS>"+tags.length);
 												loading();
 												for(var ki=0;ki<tags.length;ki++){
 													console.log("s>"+tags[ki]);		
 													$.ajax({
 															url : BASE_URL
-																	+ 'api/app/tag_user',
+																	+ 'tag_user.php',
 																dataType : 'json',
 															type : 'post',
 															contentType : 'application/x-www-form-urlencoded',
 															data : {
-																user_id : user_id,
+																userid : user_id,
 																post_id : img_temp_id,
 																taged_user_id : tags[ki]
 																},
@@ -6911,7 +7158,7 @@ var lan_code = {"english":[{"login":"Login",
 																//console.log(JSON.stringify(data));
 
 																					if (data.status == '1') {
-																						console.log("tagged");
+																						console.log("tagged done");
 																					} else {
 																						console.log(data.data);
 																					}
