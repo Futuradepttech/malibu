@@ -982,7 +982,7 @@ var lan_code = {"english":[{"login":"Login",
 								
 								for ( var j = 0; j < data.comments_data.length; j++) {
 									var mypic12 = BASE_URL
-											BASE_URL + data.comments_data[j].profile_pic;
+											+ data.comments_data[j].profile_pic;
 									if (data.comments_data[j].profile_pic == '') {
 										mypic12 = 'img/suer_profile.png';
 									}
@@ -1092,13 +1092,13 @@ var lan_code = {"english":[{"login":"Login",
 							$('#cmt_msg').val('');
 							$.ajax({
 										url : BASE_URL
-												+ 'add_comment.php',
+												+ 'api/app/add_comment',
 										dataType : 'json',
 										type : 'post',
 										contentType : 'application/x-www-form-urlencoded',
 										data : {
 											post_id : dashboard_id,
-											userid : user_id,
+											user_id : user_id,
 											comment : msg
 										},
 										success : function(
@@ -1902,15 +1902,14 @@ var lan_code = {"english":[{"login":"Login",
 													$('#locname').text(data.post_user_data[0].address);
 												}
 
-												//$('#totaltags').text(data.total_tagged_users);
-												
+//                                                $('#totaltags').text(data.total_tagged_users);
+//
 //                                                for ( var i = 0; i < data.tagged_users.length; i++) {
 //                                                    $('#taglist').append('<label style="float: left; margin: 5px; text-transform: none; text-align: center; background-color: #d3d3d3; border: 1px solid #d3d3d3; border-radius: 5px; font-size: small; padding: 2px;" data-value="'+data.tagged_users[i].taged_user_id+'">'
 //                                                                            + data.tagged_users[i].name
 //                                                                            + '</label>');
 //                                                    tags.push(data.tagged_users[i].taged_user_id);
 //                                                }
-//                                   alert(data.comments_data.length)
 												for ( var j = 0; j < data.comments_data.length; j++) {
 													var mypic12 = BASE_URL
 															+ data.comments_data[j].profile_pic;
@@ -2583,7 +2582,7 @@ var lan_code = {"english":[{"login":"Login",
                                          }
                                          });
                        
-                      // alert(3344)
+                       
                        
 						});
 /*
@@ -6119,8 +6118,9 @@ var lan_code = {"english":[{"login":"Login",
 					});
 				function add(data){
 					for (i = 0; i < data.length; i++) {
-						console.log(data[i].name);
-                       $('#tag_friends_list').append('<li data-value="'+data[i].id+'"  style="background: transparent;height:50px;"><div class="ui-grid-b" style="height:50px;">		<div class="ui-block-a" style="width: 15%; height: 50px;display:none;"></div>		<div class="ui-block-b"		style="width: 79%; height: 50px; line-height: 50px; text-transform: none; text-shadow: none; font-size: medium; text-align: left; color: white; padding-left: 12px;">'+data[i].name+'</div>	<img class="ui-block-c" id="imgclk"  src="img/ic_checkbox_blank.png"	style="width: 50px;height:50px;position:absolute;right:9%"></div><div style="background:white;height:1px;width:92%;"></div></li>');
+						console
+								.log(data[i].name);
+                       $('#tag_friends_list').append('<li data-value="'+data[i].id+'"  style="background: transparent;height:50px;"><div class="ui-grid-b" style="height:50px;">		<div class="ui-block-a" style="width: 15%; height: 50px;display:none;"></div>		<div class="ui-block-b"		style="width: 79%; height: 50px; line-height: 50px; text-transform: none; text-shadow: none; font-size: medium; text-align: left; color: white; padding-left: 12px;">'+data[i].name+'</div>	<img class="ui-block-c" id="imgclk"  src="img/ic_checkbox_blank.png"	style="width: 50px;height:50px;position:absolute;right:9%">	</div><div style="background:white;height:1px;width:92%;"></div></li>');
 					}
 				$('#tag_friends_list li').click(function(){
 					var id=$(this).attr('data-value');
@@ -7431,6 +7431,7 @@ var lan_code = {"english":[{"login":"Login",
 								  return /\d/.test(n);
 								}
 							$('#update_btn').click(function() {
+                                                   alert(111)
 										var password = $('#password').val();
 										console.log(password);
 										var username=$('#username').val();
