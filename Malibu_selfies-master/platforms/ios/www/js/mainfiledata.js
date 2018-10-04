@@ -2602,7 +2602,7 @@ var lan_code = {"english":[{"login":"Login",
 								loading();
 								$.ajax({
 											url : BASE_URL
-													+ 'api/app/search_users',
+													+ 'search_users.php',
 											dataType : 'json',
 											type : 'post',
 											contentType : 'application/x-www-form-urlencoded',
@@ -2613,7 +2613,7 @@ var lan_code = {"english":[{"login":"Login",
 													textStatus, jQxhr) {
 												//console.log(JSON.stringify(data));
 												if (data.status == '1') {
-													user(data.data);
+													user(data.search_data);
 												} else {
 													alertSS(data.data);
 												}
@@ -5643,7 +5643,7 @@ var lan_code = {"english":[{"login":"Login",
                                                             str+='<div style=" margin-top: 10px; position: relative ; margin-left: 20px">'
                                                             str+='<div><img src="img/suer_profile.png" width="40"/></div>'
                                                             str+='<div style=" position: absolute; top: 2px; left: 50px; font-size: 14px">'+data.friends[i].name+'</div>'
-                                                            str+='<div id="follower_'+data.friends[i].id+'" style=" position: absolute; right: 0px; top: 0px; font-size: 14px; border: 1px solid #E1E1E1; padding: 5px;border-radius:5px;width:60px;" >Friend</div>'
+                                                            str+='<div id="follower_'+data.friends[i].id+'" style=" position: absolute; right: 0px; top: 0px; font-size: 14px; border: 1px solid #E1E1E1; padding: 5px;border-radius:5px;width:60px;text-align:center;" >Friend</div>'
                                                             str+='</div>'
                                                             }
                                                            // alert(str)
@@ -6948,7 +6948,7 @@ var lan_code = {"english":[{"login":"Login",
 //                                        console.log(img_to_show + "--"
 //                                                + img_temp_id);
                         img_temp_id = msg.filename
-
+                          img_to_show = msg.filename;
                         loading_done();
                         img_to_show_type='img';
                         $.mobile.changePage("add_details.html",
@@ -6994,8 +6994,7 @@ var lan_code = {"english":[{"login":"Login",
 											timeout : 6000
 										});
 							}
-
-							$('#main_img').attr("src", img_to_show);
+							$('#main_img').attr("src", BASE_URL+img_to_show);
 							$('#yourCaption').val(cap_to_show);
 							$('#shared').click(
 									function() {
@@ -7437,7 +7436,6 @@ var lan_code = {"english":[{"login":"Login",
 								  return /\d/.test(n);
 								}
 							$('#update_btn').click(function() {
-                                                   alert(111)
 										var password = $('#password').val();
 										console.log(password);
 										var username=$('#username').val();
