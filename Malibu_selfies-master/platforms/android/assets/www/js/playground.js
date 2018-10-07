@@ -142,7 +142,6 @@ function changefnn() {
 }
 // add events to update the image upon various interactions
 function loadimgform() {
-
 	// get our two main interaction objects, the form and the image
 	var thisForm = getInteractionForm();
 	var interaction = getInteractionTarget();
