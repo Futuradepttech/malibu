@@ -8551,7 +8551,7 @@ var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))
                                    }
                                    
                                    } else {
-                                   alertSS(data.data);
+                                   alertSS(data.register[0]);
                                    }
                                    loading_done();
                                    },

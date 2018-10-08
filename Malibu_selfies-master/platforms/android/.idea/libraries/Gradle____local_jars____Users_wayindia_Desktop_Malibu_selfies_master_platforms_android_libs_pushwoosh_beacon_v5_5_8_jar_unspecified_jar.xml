@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: __local_jars__:/Users/wayindia/Desktop/Malibu_selfies-master/platforms/android/libs/pushwoosh-beacon_v5.5.8.jar:unspecified@jar">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/pushwoosh-beacon_v5.5.8.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
