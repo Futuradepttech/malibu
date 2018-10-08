@@ -412,7 +412,7 @@ var lan_code = {"english":[{"login":"Login",
 														+ data[i].id
 														+ "' style='background-color: transparent; color: #303638; text-transform: none; overflow: auto; padding: 5px; -webkit-transform: translateZ(0);' ><div class='ui-grid-b'><div class='ui-block-a' style='width: 15%;'><img src='"+mmg+"' id='showpic' data-value='"+ data[i].user_id+ "' style='height: 45px; width: 45px; border-radius: 23px;'></div><div class='ui-block-b' style='width: 65%; padding-top: 15px;'><label id='showname' data-value='"+ data[i].user_id+ "' style='font-size: medium; margin-left: 10px; color: #525456; text-shadow: none; text-transform: none; font-weight: bold;'>"
 														+ data[i].name
-														+ "</label></div><img id='deleteimg' data-value='"+data[i].id+"' class='ui-block-c' style='width:12.4%;float:right;' src='img/viewData.png'></div> <div>"
+                                                        + "</label></div><img id='deleteimg' data-value='"+data[i].id+"' class='ui-block-c' style='width:12.4%;float:right;' src='img/viewData.png'></div> <div style='border: 2px solid #00BEEE;'id='imgsss' data-value='"+data[i].id+"'>"
                                                         +"<video style='margin-top: 18px;' width='100%' height='100%' controls> <source src='"
 														+ BASE_URL+data[i].file_name
                                                         + "'type='video/mp4'></video>"
