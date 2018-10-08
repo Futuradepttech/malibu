@@ -3327,100 +3327,90 @@ var lan_code = {"english":[{"login":"Login",
 									$('#not_noresult').css('display','');
 								}
 								$('#photo_list').empty();
-								var grid_item_height = '115px';
-								for ( var i = 0; i < data.length; i += 3) {
-									var let1 = '', let2 = '', let3 = '';
+								var grid_item_height = '127px';
+                       var let1 = '', let2 = '', let3 = '';
+								for ( var i = 0; i < data.length; i ++) {
+									
 									if (i < data.length) {
 										console.log(JSON.stringify(data[i]));
 										console.log(BASE_URL
 												+ data[i].file_name);
 										if (data[i].type == 'image') {
-											let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div><img id="mm1" data-value="'
-													+ data[i].id
-													+ '" class="ui-block-b" src="'
-													+ BASE_URL
-													+ data[i].file_name
-													+ '" style="width: 31%;height: '
-													+ grid_item_height + ';"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');
-										} else {
-											//var fl_name = data[i].file_name
-													//.replace("mp4", "jpg");
-											console.log(fl_name);
-											let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div>'
-                                                    
-                                                    +'<video style="margin-top: 18px;" width="31%" controls> <source src='
-                                                    + BASE_URL+data[i].file_name
-                                                    + 'type="video/mp4"></video>'
+                       let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div><img id="mm1" data-value="'
+                               + data[i].id
+                               + '" class="ui-block-b" src="'
+                               + BASE_URL
+                               + data[i].file_name
+                               + '" style="width: 100%;height: '
+                               + grid_item_height + ';"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');
 
-                                                    
-//                                                    +'<img id="mm1" data-value="'
-//                                                    + data[i].id
-//                                                    + '" class="ui-block-b" src="'
-//                                                    + BASE_URL
-//                                                    + fl_name
-                                                   // + '" style="width: 31%;height: '
-													//+ grid_item_height + ';z-index:0;">
+										} else {
+											//console.log(fl_name);
+											let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div>'
+                                                    +'<video style="height:'+grid_item_height+'" width="'+grid_item_height+'" controls> <source src='
+                                                    + BASE_URL+data[i].file_name
+                                                    + ' type="video/mp4"></video>'
                                                     +'<img class="ui-block-b" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:9%;display:none;"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');
 										}
 
-										if (i + 1 < data.length) {
-											console.log(JSON
-													.stringify(data[i + 1]));
-											console.log(BASE_URL
-													+ data[i].file_name);
-											if (data[i + 1].type == 'image') {
-												let2 = ('<img id="mm2" data-value="'
-														+ data[i + 1].id
-														+ '" class="ui-block-d" src="'
-														+ BASE_URL
-														+ data[i + 1].file_name
-														+ '" style="width: 31%;height: '
-														+ grid_item_height + ';"><div class="ui-block-e" style="background-color: transparent; width: 1.75%;"></div>');
-											} else {
-												var fl_name = data[i + 1].file_name
-														.replace("mp4", "jpg");
-												console.log(fl_name);
-												let2 = ('<img id="mm2" data-value="'
-														+ data[i + 1].id
-														+ '" class="ui-block-d" src="'
-														+ BASE_URL
-														+ fl_name
-														+ '" style="width: 31%;height: '
-														+ grid_item_height + ';"><img class="ui-block-d" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:42%;display:none;"><div class="ui-block-e" style="background-color: transparent; width: 1.75%;"></div>');
-											}
-											if (i + 2 < data.length) {
-												console
-														.log(JSON
-																.stringify(data[i + 2]));
-												console.log(BASE_URL
-														+ data[i].file_name);
-												if (data[i + 2].type == 'image') {
-													let3 = ('<img id="mm3" data-value="'
-															+ data[i + 2].id
-															+ '" class="ui-block-f" src="'
-															+ BASE_URL
-															+ data[i].file_name
-															+ '" style="width: 31%;height: '
-															+ grid_item_height + ';"><div class="ui-block-g" style="background-color: transparent; width: 1.75%;"></div>');
-												} else {
-													//var fl_name = data[i + 2].file_name
-															//.replace("mp4",
-															//		"jpg");
-													console.log(fl_name);
-													let3 = ('<img id="mm3" data-value="'
-															+ data[i + 2].id
-															+ '" class="ui-block-f" src="'
-															+ BASE_URL
-															+ fl_name
-															+ '" style="width: 31%;height: '
-															+ grid_item_height + ';"><img class="ui-block-b" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:74%;display:none;"><div class="ui-block-g" style="background-color: transparent; width: 1.75%;"></div>');
-												}
-											}
-										}
+//                                        if (i + 1 < data.length) {
+//                                            console.log(JSON
+//                                                    .stringify(data[i + 1]));
+//                                            console.log(BASE_URL
+//                                                    + data[i].file_name);
+//                                            if (data[i + 1].type == 'image') {
+//                                                let2 = ('<img id="mm2" data-value="'
+//                                                        + data[i + 1].id
+//                                                        + '" class="ui-block-d" src="'
+//                                                        + BASE_URL
+//                                                        + data[i + 1].file_name
+//                                                        + '" style="width: 31%;height: '
+//                                                        + grid_item_height + ';"><div class="ui-block-e" style="background-color: transparent; width: 1.75%;"></div>');
+//                                            } else {
+//                                                var fl_name = data[i + 1].file_name
+//                                                        .replace("mp4", "jpg");
+//                                                console.log(fl_name);
+//                                                let2 = ('<img id="mm2" data-value="'
+//                                                        + data[i + 1].id
+//                                                        + '" class="ui-block-d" src="'
+//                                                        + BASE_URL
+//                                                        + fl_name
+//                                                        + '" style="width: 31%;height: '
+//                                                        + grid_item_height + ';"><img class="ui-block-d" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:42%;display:none;"><div class="ui-block-e" style="background-color: transparent; width: 1.75%;"></div>');
+//                                            }
+//                                            if (i + 2 < data.length) {
+//                                                console
+//                                                        .log(JSON
+//                                                                .stringify(data[i + 2]));
+//                                                console.log(BASE_URL
+//                                                        + data[i].file_name);
+//                                                if (data[i + 2].type == 'image') {
+//                                                    let3 = ('<img id="mm3" data-value="'
+//                                                            + data[i + 2].id
+//                                                            + '" class="ui-block-f" src="'
+//                                                            + BASE_URL
+//                                                            + data[i].file_name
+//                                                            + '" style="width: 31%;height: '
+//                                                            + grid_item_height + ';"><div class="ui-block-g" style="background-color: transparent; width: 1.75%;"></div>');
+//                                                } else {
+//                                                    //var fl_name = data[i + 2].file_name
+//                                                            //.replace("mp4",
+//                                                            //        "jpg");
+//                                                    console.log(fl_name);
+//                                                    let3 = ('<img id="mm3" data-value="'
+//                                                            + data[i + 2].id
+//                                                            + '" class="ui-block-f" src="'
+//                                                            + BASE_URL
+//                                                            + fl_name
+//                                                            + '" style="width: 31%;height: '
+//                                                            + grid_item_height + ';"><img class="ui-block-b" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:74%;display:none;"><div class="ui-block-g" style="background-color: transparent; width: 1.75%;"></div>');
+//                                                }
+//                                            }
+//                                        }
 									}
 									$('#photo_list')
 											.append(
-													'<li style="height:'+grid_item_height+';margin-top:5px;"><div class="ui-grid-f" style="width: 100%;height: '
+													'<li style="height:'+grid_item_height+';margin-top:5px;float: left;width:'+grid_item_height+';margin-left: 4px;"><div class="ui-grid-f" style="width: 100%;height: '
 															+ grid_item_height
 															+ ';padding-top: 2px;padding-bottom: 2px;">'
 															+ let1
@@ -3462,15 +3452,6 @@ var lan_code = {"english":[{"login":"Login",
                        var html='';
                     var let1 = '', let2 = '', let3 = '';
 								for ( var i = 0; i < data.length; i ++ ) {
-									
-									//if (i < data.length) {
-										//console.log(JSON.stringify(data[i]));
-										//console.log(BASE_URL+ data[i].file_name);
-                       
-//                       html+='<div class="ui-block-a"><div class="ui-bar ui-bar-a" ><img style="width:100px" id="mm1" data-value="'+ data[i].id+'" src="'+BASE_URL+data[i].file_name+'"</div></div>'
-//          html += '<div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px">Block B</div></div>'
-//          html += '<div class="ui-block-c"><div class="ui-bar ui-bar-a" style="height:60px">Block C</div></div>'
-                       
 
                                             if(data[i].type=='image'){
                                         let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div><img id="mm1" data-value="'
@@ -3482,46 +3463,6 @@ var lan_code = {"english":[{"login":"Login",
                                                 + grid_item_height + ';"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');
                                             }
 
-//                                        if (i + 1 < data.length) {
-//                                            console.log(JSON
-//                                                    .stringify(data[i + 1]));
-//                                            console.log(BASE_URL
-//                                                    + data[i].file_name);
-//                                            //        if(data[i+1].type=='image'){
-//                                            let2 = ('<img id="mm2" data-value="'
-//                                                    + data[i + 1].id
-//                                                    + '" class="ui-block-d" src="'
-//                                                    + BASE_URL
-//                                                    + data[i + 1].file_name
-//                                                    + '" style="width: 31%;height: '
-//                                                    + grid_item_height + ';"><div class="ui-block-e" style="background-color: transparent; width: 1.75%;"></div>');
-//                                            //    }else{
-//                                            //            var fl_name=data[i+1].file_name.replace("mp4", "jpg");
-//                                            //            console.log(fl_name);
-//                                            //            let2 = ('<img class="ui-block-d" src="'+BASE_URL+fl_name+'" style="width: 31%;height: '+grid_item_height+';"><img class="ui-block-d" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:42%;"><div class="ui-block-e" style="background-color: transparent; width: 1.75%;"></div>');
-//                                            //        }
-////                                            if (i + 2 < data.length) {
-////                                                console
-////                                                        .log(JSON
-////                                                                .stringify(data[i + 2]));
-////                                                console.log(BASE_URL
-////                                                        + data[i].file_name);
-////                                                //        if(data[i+2].type=='image'){
-////                                                let3 = ('<img id="mm3" data-value="'
-////                                                        + data[i + 2].id
-////                                                        + '" class="ui-block-f" src="'
-////                                                        + BASE_URL
-////                                                        + data[i + 2].file_name
-////                                                        + '" style="width: 31%;height: '
-////                                                        + grid_item_height + ';"><div class="ui-block-g" style="background-color: transparent; width: 1.75%;"></div>');
-////                                                //        }else{
-////                                                //            var fl_name=data[i+2].file_name.replace("mp4", "jpg");
-////                                                //            console.log(fl_name);
-////                                                //            let3 = ('<img class="ui-block-f" src="'+BASE_URL+fl_name+'" style="width: 31%;height: '+grid_item_height+';"><img class="ui-block-b" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:74%;"><div class="ui-block-g" style="background-color: transparent; width: 1.75%;"></div>');
-////                                                //        }
-////                                            }
-//                                        }
-                                  //  }
                        
                                     $('#photo_list').append(
                                                     '<li style="height:'+grid_item_height+';margin-top:5px;float: left;width:'+grid_item_height+';margin-left: 4px;"><div class="ui-grid-f" style="width: 100%;height: '
@@ -3532,8 +3473,6 @@ var lan_code = {"english":[{"login":"Login",
                                                             + let3
                                                             + '</div></li>');
                        }
-//                       html+= '</div>'
-//                        $('#photo_list').append(html)
                        
 								$('#photo_list #mm1').click(function() {
 									console.log($(this).attr("data-value"));
