@@ -1806,6 +1806,8 @@ var lan_code = {"english":[{"login":"Login",
 												
 												if (data.post_user_data[0].user_id == user_id) {
 													$('#follow').css('display','none');
+                                   $('#addfriend').css('display','none');
+                                   
 												}
 												$('#username').text(data.post_user_data[0].name);
 												$('#username').click(function() {
@@ -3261,7 +3263,7 @@ var lan_code = {"english":[{"login":"Login",
 							//user_id="1"
 							if(view_profile_id==user_id){
 								$('#follow').css('display','none');
-                       $('#follow').css('display','none');
+                       $('#addfriend').css('display','none');
 
 							}
 							view_user(view_profile_id);
@@ -6184,6 +6186,14 @@ var lan_code = {"english":[{"login":"Login",
 				var msg = $('#message').val();
 				var sub = $('#subject').val();
 				var reg = new RegExp(/[a-zA-Z]/);
+                if(msg == ""){
+                alertSS('Message Field can not be blank');
+                return;
+                }
+                if(sub == ""){
+                alertSS('Subject Field can not be blank');
+                return;
+                }
 				if(msg.length > 0 && !reg.test(msg)){
 					alertSS('Please enter atleast one character for message');
 				}else if(sub.length > 0 && !reg.test(sub)){
@@ -6192,12 +6202,12 @@ var lan_code = {"english":[{"login":"Login",
 				else if (msg.length > 0) {
 					loading();
 					$.ajax({
-						url : BASE_URL + 'api/app/report',
+						url : BASE_URL + 'report.php',
 						dataType : 'json',
 						type : 'post',
 						contentType : 'application/x-www-form-urlencoded',
 						data : {
-							user_id : user_id,
+							userid : user_id,
 							subject : sub,
 							message : msg
 						},
