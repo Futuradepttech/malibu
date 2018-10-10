@@ -3725,7 +3725,7 @@ var lan_code = {"english":[{"login":"Login",
 											success : function(data, textStatus,
 													jQxhr) {
 												//alert(JSON.stringify(data));
-												if (data.notification.length > 0) {
+												if (data.status == "sucess") {
 													$('#noti_count').css('display','');
 //                                                    if(data.notification[0].unread==0){
 //                                                        $('#noti_count').css('display','none');
