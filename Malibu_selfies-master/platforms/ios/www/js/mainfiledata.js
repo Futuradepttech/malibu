@@ -413,7 +413,7 @@ var lan_code = {"english":[{"login":"Login",
 														+ data[i].id
 														+ "' style='background-color: transparent; color: #303638; text-transform: none; overflow: auto; padding: 5px; -webkit-transform: translateZ(0);' ><div class='ui-grid-b'><div class='ui-block-a' style='width: 15%;'><img src='"+mmg+"' id='showpic' data-value='"+ data[i].user_id+ "' style='height: 45px; width: 45px; border-radius: 23px;'></div><div class='ui-block-b' style='width: 65%; padding-top: 15px;'><label id='showname' data-value='"+ data[i].user_id+ "' style='font-size: medium; margin-left: 10px; color: #525456; text-shadow: none; text-transform: none; font-weight: bold;'>"
 														+ data[i].name
-                                                        + "</label></div><img id='deleteimg' data-value='"+data[i].id+"' class='ui-block-c' style='width:12.4%;float:right;' src='img/viewData.png'></div> <div style='border: 2px solid #00BEEE;'id='imgsss' data-value='"+data[i].id+"'>"
+                                                        + "</label></div><img id='deleteimg' data-value='"+data[i].id+"' class='ui-block-c' style='width:12.4%;float:right;' src='img/viewData.png'></div> <div style='border: 2px solid #00BEEE; background-color: rgba(0, 90, 132,0.8);'id='imgsss' data-value='"+data[i].id+"'>"
                                                         +"<video style='margin-top: 18px;' width='100%' height='100%' controls> <source src='"
 														+ BASE_URL+data[i].file_name
                                                         + "'type='video/mp4'></video>"
@@ -5971,6 +5971,103 @@ var lan_code = {"english":[{"login":"Login",
 								$('#settings').css({
 									'display' : ''
 								});
+                                                     
+                                                     
+                                                     var login = {
+                                                     userid : user_id,
+                                                     type : ""
+                                                     };
+                                                     $.ajax({
+                                                            url : BASE_URL+'search_post.php',
+                                                            dataType : 'json',
+                                                            type : 'post',
+                                                            contentType : 'application/x-www-form-urlencoded',
+                                                            data : login,
+                                                            success : function(data,
+                                                                               textStatus, jQxhr) {
+                                                            
+                               // function all(data) {
+                                                            var data = data.post_data;
+                                console.log("ALL");
+                                console.log("DATA Valueeeeee >>>> "+JSON.stringify(data));
+                                $('#not_noresult').css('display','none');
+                                if(data.length == 0){
+                                $('#not_noresult').css('display','');
+                                }
+                                $('#photo_list').empty();
+                                var grid_item_height = '117px';
+                                var let1 = '', let2 = '', let3 = '';
+                                for ( var i = 0; i < data.length; i ++) {
+                                
+                                if (i < data.length) {
+                                console.log(JSON.stringify(data[i]));
+                                console.log(BASE_URL
+                                            + data[i].file_name);
+                                if (data[i].type == 'image') {
+                                let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div><img id="mm1" data-value="'
+                                        + data[i].id
+                                        + '" class="ui-block-b" src="'
+                                        + BASE_URL
+                                        + data[i].file_name
+                                        + '" style="width: 100%;height: '
+                                        + grid_item_height + ';"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');
+                                
+                                } else {
+                                //console.log(fl_name);
+                                let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div>'
+                                        +'<video style="height:'+grid_item_height+'; border: 1px solid #ffffff; background-color: rgba(0, 90, 132,0.8);" width="'+grid_item_height+'" controls> <source src='
+                                        + BASE_URL+data[i].file_name
+                                        + ' type="video/mp4"></video>'
+                                        +'<img class="ui-block-b" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:9%;display:none;"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');
+                                }
+                                
+                                }
+                                $('#photo_list')
+                                .append(
+                                        '<li style="height:'+grid_item_height+';margin-top:5px;float: left;width:'+grid_item_height+';margin-left: 4px;"><div class="ui-grid-f" style="width: 100%;height: '
+                                        + grid_item_height
+                                        + ';padding-top: 2px;padding-bottom: 2px;">'
+                                        + let1
+                                        + let2
+                                        + let3
+                                        + '</div></li>');
+                                }
+                                $('#photo_list #mm1').click(function() {
+                                                            console.log($(this).attr("data-value"));
+                                                            dashboard_id = $(this).attr('data-value');
+                                                            $.mobile.changePage("data_view.html", {
+                                                                                changeHash : true
+                                                                                });
+                                                            });
+                                $('#photo_list #mm2').click(function() {
+                                                            console.log($(this).attr("data-value"));
+                                                            dashboard_id = $(this).attr('data-value');
+                                                            $.mobile.changePage("data_view.html", {
+                                                                                changeHash : true
+                                                                                });
+                                                            });
+                                $('#photo_list #mm3').click(function() {
+                                                            console.log($(this).attr("data-value"));
+                                                            dashboard_id = $(this).attr('data-value');
+                                                            $.mobile.changePage("data_view.html", {
+                                                                                changeHash : true
+                                                                                });
+                                                            });
+                                //}
+                                                            
+                                                            
+                                                            
+                                                            },
+                                                            error : function(jqXhr, textStatus,
+                                                                             errorThrown) {
+                                                            console.log(errorThrown);
+                                                            //alertSS('Server Error');
+                                                            // friends_list2();
+                                                            }
+                                                            });
+                                                     
+                                                     
+                                                     
 							});
 
 						});
