@@ -211,6 +211,7 @@ var lan_code = {"english":[{"login":"Login",
 			/*
 			Check user is already logged in
 			*/
+      //alert(11)
 			console.log("MYLOGIN DEVICEID>"+device.uuid);	
 		/*
 			loading();
@@ -412,7 +413,7 @@ var lan_code = {"english":[{"login":"Login",
 														+ data[i].id
 														+ "' style='background-color: transparent; color: #303638; text-transform: none; overflow: auto; padding: 5px; -webkit-transform: translateZ(0);' ><div class='ui-grid-b'><div class='ui-block-a' style='width: 15%;'><img src='"+mmg+"' id='showpic' data-value='"+ data[i].user_id+ "' style='height: 45px; width: 45px; border-radius: 23px;'></div><div class='ui-block-b' style='width: 65%; padding-top: 15px;'><label id='showname' data-value='"+ data[i].user_id+ "' style='font-size: medium; margin-left: 10px; color: #525456; text-shadow: none; text-transform: none; font-weight: bold;'>"
 														+ data[i].name
-														+ "</label></div><img id='deleteimg' data-value='"+data[i].id+"' class='ui-block-c' style='width:12.4%;float:right;' src='img/viewData.png'></div> <div>"
+                                                        + "</label></div><img id='deleteimg' data-value='"+data[i].id+"' class='ui-block-c' style='width:12.4%;float:right;' src='img/viewData.png'></div> <div style='border: 2px solid #00BEEE;'id='imgsss' data-value='"+data[i].id+"'>"
                                                         +"<video style='margin-top: 18px;' width='100%' height='100%' controls> <source src='"
 														+ BASE_URL+data[i].file_name
                                                         + "'type='video/mp4'></video>"
@@ -1064,7 +1065,7 @@ var lan_code = {"english":[{"login":"Login",
 							//console.log(JSON.stringify(data));
 							if (data.profile.length > 0) {
 								myname = data.profile[0].user_name;
-								mypic = data.profile[0].profile_pic;
+								mypic = BASE_URL+data.profile[0].profile_pic;
 							} else {
 								console.log(data.data);
 							}
@@ -1805,6 +1806,8 @@ var lan_code = {"english":[{"login":"Login",
 												
 												if (data.post_user_data[0].user_id == user_id) {
 													$('#follow').css('display','none');
+                                   $('#addfriend').css('display','none');
+                                   
 												}
 												$('#username').text(data.post_user_data[0].name);
 												$('#username').click(function() {
@@ -1843,7 +1846,7 @@ var lan_code = {"english":[{"login":"Login",
 												$('#topcaption').text(data.post_user_data[0].name);
 												cap_to_show=data.post_user_data[0].caption;
 												$('#caption').text(data.post_user_data[0].caption);
-												$('#totallike').text(data.post_user_data[0].total_likes+ " Likes");
+												$('#totallike').text(data.total_like+ " Likes");
 												$('#totalhate').text(data.total_dislike);
                                    
                                    
@@ -1884,7 +1887,7 @@ var lan_code = {"english":[{"login":"Login",
 //                                                        break;
 //                                                    }
 //                                                }
-												$('#totalcomments').text(data.post_user_data[0].total_comment+ " Comments");
+												$('#totalcomments').text(data.total_comments+ " Comments");
 												comments_checked = parseInt(data.total_comments);
 												
 												if (data.post_user_data[0].is_followed == '1') {
@@ -1902,14 +1905,14 @@ var lan_code = {"english":[{"login":"Login",
 													$('#locname').text(data.post_user_data[0].address);
 												}
 
-												$('#totaltags').text(data.total_tagged_users);
-												
-												for ( var i = 0; i < data.tagged_users.length; i++) {
-													$('#taglist').append('<label style="float: left; margin: 5px; text-transform: none; text-align: center; background-color: #d3d3d3; border: 1px solid #d3d3d3; border-radius: 5px; font-size: small; padding: 2px;" data-value="'+data.tagged_users[i].taged_user_id+'">'
-																			+ data.tagged_users[i].name
-																			+ '</label>');
-													tags.push(data.tagged_users[i].taged_user_id);
-												}
+                                                $('#totaltags').text(data.total_tagged_users);
+//
+                                                for ( var i = 0; i < data.tagged_users.length; i++) {
+                                                    $('#taglist').append('<label style="float: left; margin: 5px; text-transform: none; text-align: center; background-color: #d3d3d3; border: 1px solid #d3d3d3; border-radius: 5px; font-size: small; padding: 2px;" data-value="'+data.tagged_users[i].taged_user_id+'">'
+                                                                            + data.tagged_users[i].name
+                                                                            + '</label>');
+                                                    tags.push(data.tagged_users[i].taged_user_id);
+                                                }
 												for ( var j = 0; j < data.comments_data.length; j++) {
 													var mypic12 = BASE_URL
 															+ data.comments_data[j].profile_pic;
@@ -2150,7 +2153,7 @@ var lan_code = {"english":[{"login":"Login",
 											//console.log(JSON.stringify(data));
 											if (data.profile.length > 0) {
 												myname = data.profile[0].user_name;
-												mypic = data.profile[0].profile_pic;
+												mypic = BASE_URL+data.profile[0].profile_pic;
 											} else {
 												console.log(data.data);
 											}
@@ -2192,13 +2195,13 @@ var lan_code = {"english":[{"login":"Login",
 																	'');
 															$.ajax({
 																		url : BASE_URL
-																				+ 'api/app/add_comment',
+																				+ 'add_comment.php',
 																		dataType : 'json',
 																		type : 'post',
 																		contentType : 'application/x-www-form-urlencoded',
 																		data : {
 																			post_id : dashboard_id,
-																			user_id : user_id,
+																			userid : user_id,
 																			comment : msg
 																		},
 																		success : function(
@@ -2602,7 +2605,7 @@ var lan_code = {"english":[{"login":"Login",
 								loading();
 								$.ajax({
 											url : BASE_URL
-													+ 'api/app/search_users',
+													+ 'search_users.php',
 											dataType : 'json',
 											type : 'post',
 											contentType : 'application/x-www-form-urlencoded',
@@ -2613,7 +2616,7 @@ var lan_code = {"english":[{"login":"Login",
 													textStatus, jQxhr) {
 												//console.log(JSON.stringify(data));
 												if (data.status == '1') {
-													user(data.data);
+													user(data.search_data);
 												} else {
 													alertSS(data.data);
 												}
@@ -3260,7 +3263,7 @@ var lan_code = {"english":[{"login":"Login",
 							//user_id="1"
 							if(view_profile_id==user_id){
 								$('#follow').css('display','none');
-                       $('#follow').css('display','none');
+                       $('#addfriend').css('display','none');
 
 							}
 							view_user(view_profile_id);
@@ -3326,100 +3329,36 @@ var lan_code = {"english":[{"login":"Login",
 									$('#not_noresult').css('display','');
 								}
 								$('#photo_list').empty();
-								var grid_item_height = '115px';
-								for ( var i = 0; i < data.length; i += 3) {
-									var let1 = '', let2 = '', let3 = '';
+								var grid_item_height = '127px';
+                       var let1 = '', let2 = '', let3 = '';
+								for ( var i = 0; i < data.length; i ++) {
+									
 									if (i < data.length) {
 										console.log(JSON.stringify(data[i]));
 										console.log(BASE_URL
 												+ data[i].file_name);
 										if (data[i].type == 'image') {
-											let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div><img id="mm1" data-value="'
-													+ data[i].id
-													+ '" class="ui-block-b" src="'
-													+ BASE_URL
-													+ data[i].file_name
-													+ '" style="width: 31%;height: '
-													+ grid_item_height + ';"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');
-										} else {
-											//var fl_name = data[i].file_name
-													//.replace("mp4", "jpg");
-											console.log(fl_name);
-											let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div>'
-                                                    
-                                                    +'<video style="margin-top: 18px;" width="31%" controls> <source src='
-                                                    + BASE_URL+data[i].file_name
-                                                    + 'type="video/mp4"></video>'
+                       let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div><img id="mm1" data-value="'
+                               + data[i].id
+                               + '" class="ui-block-b" src="'
+                               + BASE_URL
+                               + data[i].file_name
+                               + '" style="width: 100%;height: '
+                               + grid_item_height + ';"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');
 
-                                                    
-//                                                    +'<img id="mm1" data-value="'
-//                                                    + data[i].id
-//                                                    + '" class="ui-block-b" src="'
-//                                                    + BASE_URL
-//                                                    + fl_name
-                                                   // + '" style="width: 31%;height: '
-													//+ grid_item_height + ';z-index:0;">
+										} else {
+											//console.log(fl_name);
+											let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div>'
+                                                    +'<video style="height:'+grid_item_height+'; border: 1px solid #ffffff; background-color: rgba(0, 90, 132,0.8);" width="'+grid_item_height+'" controls> <source src='
+                                                    + BASE_URL+data[i].file_name
+                                                    + ' type="video/mp4"></video>'
                                                     +'<img class="ui-block-b" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:9%;display:none;"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');
 										}
 
-										if (i + 1 < data.length) {
-											console.log(JSON
-													.stringify(data[i + 1]));
-											console.log(BASE_URL
-													+ data[i].file_name);
-											if (data[i + 1].type == 'image') {
-												let2 = ('<img id="mm2" data-value="'
-														+ data[i + 1].id
-														+ '" class="ui-block-d" src="'
-														+ BASE_URL
-														+ data[i + 1].file_name
-														+ '" style="width: 31%;height: '
-														+ grid_item_height + ';"><div class="ui-block-e" style="background-color: transparent; width: 1.75%;"></div>');
-											} else {
-												var fl_name = data[i + 1].file_name
-														.replace("mp4", "jpg");
-												console.log(fl_name);
-												let2 = ('<img id="mm2" data-value="'
-														+ data[i + 1].id
-														+ '" class="ui-block-d" src="'
-														+ BASE_URL
-														+ fl_name
-														+ '" style="width: 31%;height: '
-														+ grid_item_height + ';"><img class="ui-block-d" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:42%;display:none;"><div class="ui-block-e" style="background-color: transparent; width: 1.75%;"></div>');
-											}
-											if (i + 2 < data.length) {
-												console
-														.log(JSON
-																.stringify(data[i + 2]));
-												console.log(BASE_URL
-														+ data[i].file_name);
-												if (data[i + 2].type == 'image') {
-													let3 = ('<img id="mm3" data-value="'
-															+ data[i + 2].id
-															+ '" class="ui-block-f" src="'
-															+ BASE_URL
-															+ data[i].file_name
-															+ '" style="width: 31%;height: '
-															+ grid_item_height + ';"><div class="ui-block-g" style="background-color: transparent; width: 1.75%;"></div>');
-												} else {
-													//var fl_name = data[i + 2].file_name
-															//.replace("mp4",
-															//		"jpg");
-													console.log(fl_name);
-													let3 = ('<img id="mm3" data-value="'
-															+ data[i + 2].id
-															+ '" class="ui-block-f" src="'
-															+ BASE_URL
-															+ fl_name
-															+ '" style="width: 31%;height: '
-															+ grid_item_height + ';"><img class="ui-block-b" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:74%;display:none;"><div class="ui-block-g" style="background-color: transparent; width: 1.75%;"></div>');
-												}
-											}
-										}
 									}
 									$('#photo_list')
 											.append(
-													'<li style="height:'+grid_item_height+';margin-top:5px;"><div class="ui-grid-f" style="width: 100%;height: '
+													'<li style="height:'+grid_item_height+';margin-top:5px;float: left;width:'+grid_item_height+';margin-left: 4px;"><div class="ui-grid-f" style="width: 100%;height: '
 															+ grid_item_height
 															+ ';padding-top: 2px;padding-bottom: 2px;">'
 															+ let1
@@ -3457,72 +3396,32 @@ var lan_code = {"english":[{"login":"Login",
 									$('#not_noresult').css('display','');
 								}
 								$('#photo_list').empty();
-								var grid_item_height = '115px';
-								for ( var i = 0; i < data.length; i += 3) {
-									var let1 = '', let2 = '', let3 = '';
-									if (i < data.length) {
-										console.log(JSON.stringify(data[i]));
-										console.log(BASE_URL
-												+ data[i].file_name);
-											if(data[i].type=='image'){
-										let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div><img id="mm1" data-value="'
-												+ data[i].id
-												+ '" class="ui-block-b" src="'
-												+ BASE_URL
-												+ data[i].file_name
-												+ '" style="width: 31%;height: '
-												+ grid_item_height + ';"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');
-											}
+								var grid_item_height = '127px';
+                       var html='';
+                    var let1 = '', let2 = '', let3 = '';
+								for ( var i = 0; i < data.length; i ++ ) {
 
-										if (i + 1 < data.length) {
-											console.log(JSON
-													.stringify(data[i + 1]));
-											console.log(BASE_URL
-													+ data[i].file_name);
-											//		if(data[i+1].type=='image'){
-											let2 = ('<img id="mm2" data-value="'
-													+ data[i + 1].id
-													+ '" class="ui-block-d" src="'
-													+ BASE_URL
-													+ data[i + 1].file_name
-													+ '" style="width: 31%;height: '
-													+ grid_item_height + ';"><div class="ui-block-e" style="background-color: transparent; width: 1.75%;"></div>');
-											//	}else{
-											//			var fl_name=data[i+1].file_name.replace("mp4", "jpg");
-											//			console.log(fl_name);
-											//			let2 = ('<img class="ui-block-d" src="'+BASE_URL+fl_name+'" style="width: 31%;height: '+grid_item_height+';"><img class="ui-block-d" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:42%;"><div class="ui-block-e" style="background-color: transparent; width: 1.75%;"></div>');
-											//		}
-											if (i + 2 < data.length) {
-												console
-														.log(JSON
-																.stringify(data[i + 2]));
-												console.log(BASE_URL
-														+ data[i].file_name);
-												//		if(data[i+2].type=='image'){
-												let3 = ('<img id="mm3" data-value="'
-														+ data[i + 2].id
-														+ '" class="ui-block-f" src="'
-														+ BASE_URL
-														+ data[i + 2].file_name
-														+ '" style="width: 31%;height: '
-														+ grid_item_height + ';"><div class="ui-block-g" style="background-color: transparent; width: 1.75%;"></div>');
-												//		}else{
-												//			var fl_name=data[i+2].file_name.replace("mp4", "jpg");
-												//			console.log(fl_name);
-												//			let3 = ('<img class="ui-block-f" src="'+BASE_URL+fl_name+'" style="width: 31%;height: '+grid_item_height+';"><img class="ui-block-b" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:74%;"><div class="ui-block-g" style="background-color: transparent; width: 1.75%;"></div>');
-												//		}
-											}
-										}
-									}
-									$('#photo_list').append(
-													'<li style="height:'+grid_item_height+';margin-top:5px;"><div class="ui-grid-f" style="width: 100%;height: '
-															+ grid_item_height
-															+ ';padding-top: 2px;padding-bottom: 2px;">'
-															+ let1
-															+ let2
-															+ let3
-															+ '</div></li>');
-								}
+                                            if(data[i].type=='image'){
+                                        let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div><img id="mm1" data-value="'
+                                                + data[i].id
+                                                   + '" class="ui-block-b" src="'
+                                                + BASE_URL
+                                                + data[i].file_name
+                                                + '" style="width: 100%;height: '
+                                                + grid_item_height + ';"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');
+                                            }
+
+                       
+                                    $('#photo_list').append(
+                                                    '<li style="height:'+grid_item_height+';margin-top:5px;float: left;width:'+grid_item_height+';margin-left: 4px;"><div class="ui-grid-f" style="width: 100%;height: '
+                                                            + grid_item_height
+                                                            + ';padding-top: 2px;padding-bottom: 2px;">'
+                                                            + let1
+                                                            + let2
+                                                            + let3
+                                                            + '</div></li>');
+                       }
+                       
 								$('#photo_list #mm1').click(function() {
 									console.log($(this).attr("data-value"));
 									dashboard_id = $(this).attr('data-value');
@@ -3554,71 +3453,23 @@ var lan_code = {"english":[{"login":"Login",
 								}
 								$('#photo_list').empty();
 								var grid_item_height = '115px';
-								for ( var i = 0; i < data.length; i += 3) {
+								for ( var i = 0; i < data.length; i ++) {
 									var let1 = '', let2 = '', let3 = '';
 									if (i < data.length) {
 										console.log(JSON.stringify(data[i]));
 										console.log(BASE_URL
 												+ data[i].file_name);
-										//	if(data[i].type=='image'){
-										//		let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div><img class="ui-block-b" src="'+BASE_URL+data[i].file_name+'" style="width: 31%;height: '+grid_item_height+';"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');						
-										//	}else{
-										var fl_name = data[i].file_name
-												.replace("mp4", "jpg");
-										console.log(fl_name);
-										let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div><img id="mm1" data-value="'
-												+ data[i].id
-												+ '" class="ui-block-b" src="'
-												+ BASE_URL
-												+ fl_name
-												+ '" style="width: 31%;height: '
-												+ grid_item_height + ';z-index:0;"><img class="ui-block-b" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:9%;display:none;"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');
+
+                       let1 = ('<div class="ui-block-a" style="background-color: transparent; width: 2%;"></div>'
+                               +'<video style="height:'+grid_item_height+'; border: 1px solid #ffffff; background-color: rgba(0, 90, 132,0.8);" width="'+grid_item_height+'" controls> <source src='
+                               + BASE_URL+data[i].file_name
+                               + ' type="video/mp4"></video>'
+                               +'<img class="ui-block-b" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:9%;display:none;"><div class="ui-block-c" style="background-color: transparent; width: 1.75%;"></div>');
 										//	}
 
-										if (i + 1 < data.length) {
-											console.log(JSON
-													.stringify(data[i + 1]));
-											console.log(BASE_URL
-													+ data[i].file_name);
-											//	if(data[i+1].type=='image'){
-											//		let2 = ('<img class="ui-block-d" src="'+BASE_URL+data[i+1].file_name+'" style="width: 31%;height: '+grid_item_height+';"><div class="ui-block-e" style="background-color: transparent; width: 1.75%;"></div>');
-											//	}else{
-											var fl_name = data[i + 1].file_name
-													.replace("mp4", "jpg");
-											console.log(fl_name);
-											let2 = ('<img id="mm2" data-value="'
-													+ data[i + 1].id
-													+ '" class="ui-block-d" src="'
-													+ BASE_URL
-													+ fl_name
-													+ '" style="width: 31%;height: '
-													+ grid_item_height + ';"><img class="ui-block-d" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:42%;display:none;"><div class="ui-block-e" style="background-color: transparent; width: 1.75%;"></div>');
-											//	}
-											if (i + 2 < data.length) {
-												console
-														.log(JSON
-																.stringify(data[i + 2]));
-												console.log(BASE_URL
-														+ data[i].file_name);
-												//		if(data[i+2].type=='image'){
-												//			let3 = ('<img class="ui-block-f" src="'+BASE_URL+data[i+2].file_name+'" style="width: 31%;height: '+grid_item_height+';"><div class="ui-block-g" style="background-color: transparent; width: 1.75%;"></div>');
-												//		}else{
-												var fl_name = data[i + 2].file_name
-														.replace("mp4", "jpg");
-												console.log(fl_name);
-												let3 = ('<img id="mm2" data-value="'
-														+ data[i + 2].id
-														+ '" class="ui-block-f" src="'
-														+ BASE_URL
-														+ fl_name
-														+ '" style="width: 31%;height: '
-														+ grid_item_height + ';"><img class="ui-block-b" src="img/ic_video_up.png" style="width:60px;height:47px;margin:0 auto;z-index:1;position:absolute;top:37px;left:74%;display:none;"><div class="ui-block-g" style="background-color: transparent; width: 1.75%;"></div>');
-												//		}
-											}
-										}
 									}
 									$('#photo_list').append(
-													'<li style="height:'+grid_item_height+';margin-top:5px;"><div class="ui-grid-f" style="width: 100%;height: '
+													'<li style="height:'+grid_item_height+';margin-top:5px;float: left;width:'+grid_item_height+';margin-left: 4px;"><div class="ui-grid-f" style="width: 100%;height: '
 															+ grid_item_height
 															+ ';padding-top: 2px;padding-bottom: 2px;">'
 															+ let1
@@ -3654,26 +3505,27 @@ var lan_code = {"english":[{"login":"Login",
 									loading();
 									$.ajax({
 												url : BASE_URL
-														+ 'api/app/get_video_files',
+														+ 'search_post.php',
 												dataType : 'json',
 												type : 'post',
 												contentType : 'application/x-www-form-urlencoded',
 												data : {
-													user_id : user_id
+													type : "video"
 												},
 												success : function(data,
 														textStatus, jQxhr) {
 													console.log(JSON.stringify(data));
-													if (data.status == '1') {
-														$('#noti_count').css('display','');
-														if(data.notification.unread==0){
-															$('#noti_count').css('display','none');
-														}else if(data.notification.unread > 7){
-															$('#noti_count').text('7+');
-														}else{
-															$('#noti_count').text(data.notification.unread);
-														}
-														videos(data.data);
+													if (data.post_data.length > 0) {
+//                                                        $('#noti_count').css('display','');
+//                                                        if(data.notification.unread==0){
+//                                                            $('#noti_count').css('display','none');
+//                                                        }else if(data.notification.unread > 7){
+//                                                            $('#noti_count').text('7+');
+//                                                        }else{
+//                                                            $('#noti_count').text(data.notification.unread);
+//                                                        }
+                                           //data.post_data;
+														videos(data.post_data);
 														var tt = $(
 																'#photo_list')
 																.height();
@@ -3697,33 +3549,23 @@ var lan_code = {"english":[{"login":"Login",
 									loading();
 									$.ajax({
 												url : BASE_URL
-														+ 'home.php',
+														+ 'search_post.php',
 												dataType : 'json',
 												type : 'post',
 												contentType : 'application/x-www-form-urlencoded',
 												data : {
-													user_id : user_id
+													type : "image"
 												},
 												success : function(data,
 														textStatus, jQxhr) {
 													console.log(JSON.stringify(data));
 													if (data.post_data.length > 0) {
 														$('#noti_count').css('display','');
-//                                                        if(data.notification.unread==0){
-//                                                            $('#noti_count').css('display','none');
-//                                                        }else if(data.notification.unread > 7){
-//                                                            $('#noti_count').text('7+');
-//                                                        }else{
-//                                                            $('#noti_count').text(data.notification.unread);
-//                                                        }
                                            full_data = data.post_data;
-														photos(full_data);
-														var tt = $(
-																'#photo_list')
-																.height();
-														console.log("as>" + tt);
-														$('#photo_list')
-																.height(tt + 50);
+                                           photos(full_data);
+														var tt = $('#photo_list').height();
+                                           console.log("as111 : >" + tt);
+														$('#photo_list').height(tt + 50);
 													} else {
 														alertSS(data.data);
 													}
@@ -3740,12 +3582,12 @@ var lan_code = {"english":[{"login":"Login",
 									loading();
 									$.ajax({
 												url : BASE_URL
-														+ 'home.php',
+														+ 'search_post.php',
 												dataType : 'json',
 												type : 'post',
 												contentType : 'application/x-www-form-urlencoded',
 												data : {
-													user_id : user_id
+													type : ""
 												},
 												success : function(data,
 														textStatus, jQxhr) {
@@ -5643,7 +5485,7 @@ var lan_code = {"english":[{"login":"Login",
                                                             str+='<div style=" margin-top: 10px; position: relative ; margin-left: 20px">'
                                                             str+='<div><img src="img/suer_profile.png" width="40"/></div>'
                                                             str+='<div style=" position: absolute; top: 2px; left: 50px; font-size: 14px">'+data.friends[i].name+'</div>'
-                                                            str+='<div id="follower_'+data.friends[i].id+'" style=" position: absolute; right: 0px; top: 0px; font-size: 14px; border: 1px solid #E1E1E1; padding: 5px;border-radius:5px;width:60px;" >Friend</div>'
+                                                            str+='<div id="follower_'+data.friends[i].id+'" style=" position: absolute; right: 0px; top: 0px; font-size: 14px; border: 1px solid #E1E1E1; padding: 5px;border-radius:5px;width:60px;text-align:center;" >Friend</div>'
                                                             str+='</div>'
                                                             }
                                                            // alert(str)
@@ -6344,6 +6186,14 @@ var lan_code = {"english":[{"login":"Login",
 				var msg = $('#message').val();
 				var sub = $('#subject').val();
 				var reg = new RegExp(/[a-zA-Z]/);
+                if(msg == ""){
+                alertSS('Message Field can not be blank');
+                return;
+                }
+                if(sub == ""){
+                alertSS('Subject Field can not be blank');
+                return;
+                }
 				if(msg.length > 0 && !reg.test(msg)){
 					alertSS('Please enter atleast one character for message');
 				}else if(sub.length > 0 && !reg.test(sub)){
@@ -6352,12 +6202,12 @@ var lan_code = {"english":[{"login":"Login",
 				else if (msg.length > 0) {
 					loading();
 					$.ajax({
-						url : BASE_URL + 'api/app/report',
+						url : BASE_URL + 'report.php',
 						dataType : 'json',
 						type : 'post',
 						contentType : 'application/x-www-form-urlencoded',
 						data : {
-							user_id : user_id,
+							userid : user_id,
 							subject : sub,
 							message : msg
 						},
@@ -6948,7 +6798,7 @@ var lan_code = {"english":[{"login":"Login",
 //                                        console.log(img_to_show + "--"
 //                                                + img_temp_id);
                         img_temp_id = msg.filename
-
+                          img_to_show = msg.filename;
                         loading_done();
                         img_to_show_type='img';
                         $.mobile.changePage("add_details.html",
@@ -6994,8 +6844,7 @@ var lan_code = {"english":[{"login":"Login",
 											timeout : 6000
 										});
 							}
-
-							$('#main_img').attr("src", img_to_show);
+							$('#main_img').attr("src", BASE_URL+img_to_show);
 							$('#yourCaption').val(cap_to_show);
 							$('#shared').click(
 									function() {
@@ -7138,42 +6987,9 @@ var lan_code = {"english":[{"login":"Login",
                                                   //alert(tags);
                                                   
                                                   //return;
-												console.log("TAGS>"+tags.length);
-												loading();
-												for(var ki=0;ki<tags.length;ki++){
-													console.log("s>"+tags[ki]);		
-													$.ajax({
-															url : BASE_URL
-																	+ 'tag_user.php',
-																dataType : 'json',
-															type : 'post',
-															contentType : 'application/x-www-form-urlencoded',
-															data : {
-																userid : user_id,
-																post_id : img_temp_id,
-																taged_user_id : tags[ki]
-																},
-															success : function(
-																data,textStatus,jQxhr) {
-																//console.log(JSON.stringify(data));
-
-																					if (data.status == '1') {
-																						console.log("tagged done");
-																					} else {
-																						console.log(data.data);
-																					}
-																				},
-																				error : function(
-																						jqXhr,
-																						textStatus,
-																						errorThrown) {
-																					console.log(errorThrown);
-																					//alertSS('Server Error');
-																				}
-																			});
-												}
+												
 																
-												tags=[];
+												//tags=[];
 
 												var login = {
 													file_id : img_temp_id,
@@ -7206,6 +7022,45 @@ var lan_code = {"english":[{"login":"Login",
 																		alertSS('Video Updated Successfully');
 																	}
 																	loading_done();
+                                                       
+                                                       
+                                                       console.log("TAGS>"+tags.length);
+                                                       loading();
+                                                       for(var ki=0;ki<tags.length;ki++){
+                                                       console.log("s>"+tags[ki]);
+                                                       $.ajax({
+                                                              url : BASE_URL
+                                                              + 'tag_user.php',
+                                                              dataType : 'json',
+                                                              type : 'post',
+                                                              contentType : 'application/x-www-form-urlencoded',
+                                                              data : {
+                                                              userid : user_id,
+                                                              post_id : data.lastid,
+                                                              taged_user_id : tags[ki]
+                                                              },
+                                                              success : function(
+                                                                                 data,textStatus,jQxhr) {
+                                                              //console.log(JSON.stringify(data));
+                                                              
+                                                              if (data.status == '1') {
+                                                              console.log("tagged done");
+                                                              } else {
+                                                              console.log(data.data);
+                                                              }
+                                                              },
+                                                              error : function(
+                                                                               jqXhr,
+                                                                               textStatus,
+                                                                               errorThrown) {
+                                                              console.log(errorThrown);
+                                                              //alertSS('Server Error');
+                                                              }
+                                                              });
+                                                       }
+                                                       
+                                                       
+                                                       
 																	if(new_img_vid==1){
 																		$.mobile.changePage("dashboard.html",
 																				{
@@ -7431,7 +7286,6 @@ var lan_code = {"english":[{"login":"Login",
 								  return /\d/.test(n);
 								}
 							$('#update_btn').click(function() {
-                                                 //  alert(111)
 										var password = $('#password').val();
 										console.log(password);
 										var username=$('#username').val();
@@ -7703,7 +7557,7 @@ var lan_code = {"english":[{"login":"Login",
 								params.dob = dob;
 								params.about = about;
 								options.params = params;
-								ft.upload(mediaFile,BASE_URL+ "api/app/update_profile",
+								ft.upload(mediaFile,BASE_URL+'profile.php',
 												function(r) {
 													console.log("MM>>"+ JSON.stringify(r.response));
 													var msg = JSON.parse(r.response);
@@ -8389,7 +8243,7 @@ var lan_code = {"english":[{"login":"Login",
                                                                    $.mobile.changePage("dashboard.html",{changeHash : true});
                                                                    
                                                                    } else {
-                                                                   alertSS("Incorrect Username or Password.");
+                                                                   alertSS("Incorrect Email or Password.");
                                                                    }
                                                                    loading_done();
                                                                    },
@@ -8547,7 +8401,7 @@ var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))
                                    }
                                    
                                    } else {
-                                   alertSS(data.data);
+                                   alertSS(data.register[0]);
                                    }
                                    loading_done();
                                    },
