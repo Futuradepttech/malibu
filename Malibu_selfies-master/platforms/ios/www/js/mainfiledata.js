@@ -3762,9 +3762,9 @@ var lan_code = {"english":[{"login":"Login",
 								}
 								console.log("MMNBB>"+data.length);
 								for ( var i = 0; i < data.length; i++) {
-									if (data[i].user_id == user_id) {
-										console.log("SAME NOTI USER"+i);
-									} else {
+									//if (data[i].user_id == user_id) {
+										//console.log("SAME NOTI USER"+i);
+									//} else {
                        //alert(77)
 										var bb = "";
 										if (data[i].profile_pic == "") {
@@ -3778,6 +3778,9 @@ var lan_code = {"english":[{"login":"Login",
 										if (data[i].not_type == "follower") {
 											console.log("FOLLOW>"+data[i].is_read);
 											if (data[i].is_read == '0') {
+                       if (data[i].user_id == user_id) {
+                       continue;
+                       }
 												$("#notification_list").append(
 																'<div id="noti" postID="'
 																		+ data[i].post_id
@@ -3787,24 +3790,27 @@ var lan_code = {"english":[{"login":"Login",
 																		+ data[i].name
 																		+ '</label><label class="ptag" id="user_msg" style="width: 95%; text-transform: none; text-shadow: none; font-size: x-small; font-weight: normal; color: #747474;text-overflow: ellipsis">'
 																		+ data[i].name
-																		+ ' has started following you.</label></div>></div>');
-											} else {
-												$("#notification_list").append(
-																'<div id="noti" postID="'
-																		+ data[i].post_id
-																		+ '" data-value="'
-																		+ data[i].notification_id
-																		+ '" class="ui-grid-a" style="width: 100%;padding:2% 5%;background-color:#FFFFFF;border-bottom:1px solid #808080;"><img class="ui-block-a" src="'+bb+'" style="width: 45px; height: 45px;"><div class="ui-block-b" style="margin-left: 10px; width: 80%; padding-top: 3px;"><label id="unamee" data-value="'+data[i].user_id+'" style="color: #000000; font-size: small; font-weight: bold; text-transform: none; text-shadow: none;">'
-																		+ data[i].name
-																		+ '</label><label class="ptag" id="user_msg" style="width: 95%; text-transform: none; text-shadow: none; font-size: x-small; font-weight: normal; color: #747474;text-overflow: ellipsis">'
-																		+ data[i].name
 																		+ ' has started following you.</label></div></div>');
+											} else {
+//                                                $("#notification_list").append(
+//                                                                '<div id="noti" postID="'
+//                                                                        + data[i].post_id
+//                                                                        + '" data-value="'
+//                                                                        + data[i].notification_id
+//                                                                        + '" class="ui-grid-a" style="width: 100%;padding:2% 5%;background-color:#FFFFFF;border-bottom:1px solid #808080;"><img class="ui-block-a" src="'+bb+'" style="width: 45px; height: 45px;"><div class="ui-block-b" style="margin-left: 10px; width: 80%; padding-top: 3px;"><label id="unamee" data-value="'+data[i].user_id+'" style="color: #000000; font-size: small; font-weight: bold; text-transform: none; text-shadow: none;">'
+//                                                                        + data[i].name
+//                                                                        + '</label><label class="ptag" id="user_msg" style="width: 95%; text-transform: none; text-shadow: none; font-size: x-small; font-weight: normal; color: #747474;text-overflow: ellipsis">'
+//                                                                        + data[i].name
+//                                                                        + ' has started following you.</label></div></div>');
 											}
                        
                        
                        }else if(data[i].not_type == "like"){
                        
                        if (data[i].is_read == '0') {
+                       if (data[i].user_id == user_id) {
+                       continue;
+                       }
                        $("#notification_list").append(
                                                       '<div id="noti" postID="'
                                                       + data[i].post_id
@@ -3814,22 +3820,52 @@ var lan_code = {"english":[{"login":"Login",
                                                       + data[i].name
                                                       + '</label><label class="ptag" id="user_msg" style="width: 95%; text-transform: none; text-shadow: none; font-size: x-small; font-weight: normal; color: #747474;text-overflow: ellipsis">'
                                                       + data[i].name
-                                                      + ' has like your post.</label></div>></div>');
+                                                      + ' has like your post.</label></div></div>');
                        } else {
+//                       $("#notification_list").append(
+//                                                      '<div id="noti" postID="'
+//                                                      + data[i].post_id
+//                                                      + '" data-value="'
+//                                                      + data[i].notification_id
+//                                                      + '" class="ui-grid-a" style="width: 100%;padding:2% 5%;background-color:#FFFFFF;border-bottom:1px solid #808080;"><img class="ui-block-a" src="'+bb+'" style="width: 45px; height: 45px;"><div class="ui-block-b" style="margin-left: 10px; width: 80%; padding-top: 3px;"><label id="unamee" data-value="'+data[i].user_id+'" style="color: #000000; font-size: small; font-weight: bold; text-transform: none; text-shadow: none;">'
+//                                                      + data[i].name
+//                                                      + '</label><label class="ptag" id="user_msg" style="width: 95%; text-transform: none; text-shadow: none; font-size: x-small; font-weight: normal; color: #747474;text-overflow: ellipsis">'
+//                                                      + data[i].name
+//                                                      + ' has started following you.</label></div></div>');
+                       }
+
+
+						}else if(data[i].not_type == "password"){
+                       
                        $("#notification_list").append(
                                                       '<div id="noti" postID="'
                                                       + data[i].post_id
                                                       + '" data-value="'
                                                       + data[i].notification_id
-                                                      + '" class="ui-grid-a" style="width: 100%;padding:2% 5%;background-color:#FFFFFF;border-bottom:1px solid #808080;"><img class="ui-block-a" src="'+bb+'" style="width: 45px; height: 45px;"><div class="ui-block-b" style="margin-left: 10px; width: 80%; padding-top: 3px;"><label id="unamee" data-value="'+data[i].user_id+'" style="color: #000000; font-size: small; font-weight: bold; text-transform: none; text-shadow: none;">'
+                                                      + '" class="ui-grid-a" style="width: 100%;padding:2% 5%;background-color:#9FC5E8;border-bottom:1px solid #808080;"><img class="ui-block-a" src="'+bb+'" style="width: 45px; height: 45px;"><div class="ui-block-b" style="margin-left: 10px; width: 80%; padding-top: 3px;"><label id="unamee" data-value="'+data[i].user_id+'"  style="color: #000000; font-size: small; font-weight: bold; text-transform: none; text-shadow: none;">'
+                                                      + data[i].name
+                                                      + '</label><label class="ptag" id="user_msg" style="width: 95%; text-transform: none; text-shadow: none; font-size: x-small; font-weight: normal; color: #747474;text-overflow: ellipsis">'
+                                                      + ' You update your password Sucessfully.</label></div></div>');
+                       
+                       
+                     
+                       }else if(data[i].not_type == "friend"){
+                       if (data[i].user_id == user_id) {
+                       continue;
+                       }
+                       $("#notification_list").append(
+                                                      '<div id="noti" postID="'
+                                                      + data[i].post_id
+                                                      + '" data-value="'
+                                                      + data[i].notification_id
+                                                      + '" class="ui-grid-a" style="width: 100%;padding:2% 5%;background-color:#9FC5E8;border-bottom:1px solid #808080;"><img class="ui-block-a" src="'+bb+'" style="width: 45px; height: 45px;"><div class="ui-block-b" style="margin-left: 10px; width: 80%; padding-top: 3px;"><label id="unamee" data-value="'+data[i].user_id+'"  style="color: #000000; font-size: small; font-weight: bold; text-transform: none; text-shadow: none;">'
                                                       + data[i].name
                                                       + '</label><label class="ptag" id="user_msg" style="width: 95%; text-transform: none; text-shadow: none; font-size: x-small; font-weight: normal; color: #747474;text-overflow: ellipsis">'
                                                       + data[i].name
-                                                      + ' has started following you.</label></div></div>');
-                       }
-
-
-										} else {
+                                                      + ' has added you as friend.</label></div></div>');
+                       
+                       
+                       } else {
 											if (data[i].file_type == 'image') {
 												console.log("IMG>"+data[i].is_read);
 												if (data[i].is_read == '0') {
@@ -3886,7 +3922,7 @@ var lan_code = {"english":[{"login":"Login",
 												}
 											}
 										}
-									}
+									//}
 								}
 								
 								$('#notification_list #noti').click(function() {
