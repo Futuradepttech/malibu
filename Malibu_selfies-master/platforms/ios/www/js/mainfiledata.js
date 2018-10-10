@@ -3725,6 +3725,7 @@ var lan_code = {"english":[{"login":"Login",
 											success : function(data, textStatus,
 													jQxhr) {
 												//alert(JSON.stringify(data));
+                                     //  alert(data.status)
 												if (data.status == "sucess") {
 													$('#noti_count').css('display','');
 //                                                    if(data.notification[0].unread==0){
@@ -3736,7 +3737,9 @@ var lan_code = {"english":[{"login":"Login",
 //                                                    }
 													all(data.notification);
 													
-												} else {
+												} else if(data.status == "No result found") {
+                                       alertSS(data.status);
+                                       }else{
 													alertSS(data.data);
 												}
 												loading_done();
