@@ -7383,12 +7383,12 @@ var lan_code = {"english":[{"login":"Login",
 															$('#about').val());
 											} else {
 												console.log("With PROFILE PIC");
-												uploadFile(user_pic, $('#name')
-														.val(), final_gender, $(
-														'#city').val(), final_year
-														+ "-" + final_month + "-"
-														+ final_date, $('#about')
-														.val());
+                                                   updateFile($('#name').val(),
+                                                              final_gender, $('#city')
+                                                              .val(), final_year
+                                                              + "-" + final_month
+                                                              + "-" + final_date,
+                                                              $('#about').val());
 											}
 											if (password != null) {
 												console.log("password");
