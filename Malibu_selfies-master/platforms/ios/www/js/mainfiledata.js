@@ -1815,14 +1815,22 @@ var lan_code = {"english":[{"login":"Login",
 														view_profile_id = ik;
 														$.mobile.changePage("view_user.html",{changeHash : true});
 												});
+                                   //alert(data.post_user_data[0].type)
 												if (data.post_user_data[0].type == "image") {
 													$('#postimg').attr('src',BASE_URL+ data.post_user_data[0].file_name);
 													img_to_show=BASE_URL + data.post_user_data[0].file_name;
 													img_to_show1=BASE_URL + data.post_user_data[0].file_name;
 												} else {
+                                   var hrml ='<video style="border: 1px solid #ffffff; background-color: rgba(0, 90, 132,0.8);" width="100%" height="100%" controls> <source src='
+                                   + BASE_URL+ data.post_user_data[0].file_name
+                                   + ' type="video/mp4"></video>'
+                                   
+                                   //alert(hrml)
+                                   
+
 													var mmc = data.post_user_data[0].file_name;
 													var vid_post_id = data.post_user_data[0].id;
-													$('#postimg').attr('src',BASE_URL+ mmc.replace(".mp4",".jpg"));
+													$('#postvideo').html(hrml);
 													
 													
 													/*if(mmc.indexOf(".MOV")>0){
