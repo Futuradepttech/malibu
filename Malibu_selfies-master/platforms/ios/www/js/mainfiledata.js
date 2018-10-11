@@ -33,6 +33,7 @@
 	var show_all_msg='0';
 	var show_cmtss='';
 var edit_val = 0;
+var user_postId = '';
 
 var user_id = localStorage.getItem('userid');
 
@@ -1817,6 +1818,7 @@ var lan_code = {"english":[{"login":"Login",
 														$.mobile.changePage("view_user.html",{changeHash : true});
 												});
                                    //alert(data.post_user_data[0].type)
+                                   user_postId = data.post_user_data[0].id
 												if (data.post_user_data[0].type == "image") {
 													$('#postimg').attr('src',BASE_URL+ data.post_user_data[0].file_name);
                                    edit_val = 1;
@@ -7150,6 +7152,7 @@ var lan_code = {"english":[{"login":"Login",
 																
 												//tags=[];
 
+                                                  
 												var login = {
 													file_id : img_temp_id,
 													caption : capText,
@@ -7157,8 +7160,11 @@ var lan_code = {"english":[{"login":"Login",
 													loc_lat : current_lat,
                                                     userid : user_id,
                                                   file_type_name:img_to_show_type,
-                                                  type : edit_val
+                                                  type : edit_val,
+                                                  postId : user_postId
 												};
+                                                  
+                                                  alert(JSON.stringify(login))
                                                   
                                                  // alert(JSON.stringify(login))
                                                   
@@ -7179,7 +7185,10 @@ var lan_code = {"english":[{"login":"Login",
 																	if (data.update[0] == 'sucess') {
 																		alertSS('Post Uploaded Successfully');
                                                        edit_val = 0;
-																	} else {
+																	} else if(data.update[0] == 'update') {
+                                                       alertSS('Post Updated Successfully');
+                                                       
+                                                       }else{
 																		alertSS('Video Updated Successfully');
 																	}
 																	loading_done();
