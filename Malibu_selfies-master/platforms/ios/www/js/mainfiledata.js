@@ -32,6 +32,7 @@
 	var to_view_profile='';
 	var show_all_msg='0';
 	var show_cmtss='';
+var edit_val = 0;
 
 var user_id = localStorage.getItem('userid');
 
@@ -1818,9 +1819,11 @@ var lan_code = {"english":[{"login":"Login",
                                    //alert(data.post_user_data[0].type)
 												if (data.post_user_data[0].type == "image") {
 													$('#postimg').attr('src',BASE_URL+ data.post_user_data[0].file_name);
-													img_to_show=BASE_URL + data.post_user_data[0].file_name;
+                                   edit_val = 1;
+													img_to_show= data.post_user_data[0].file_name;
 													img_to_show1=BASE_URL + data.post_user_data[0].file_name;
 												} else {
+                                   edit_val = 1;
                                    var hrml ='<video style="border: 1px solid #ffffff; background-color: rgba(0, 90, 132,0.8);" width="100%" height="100%" controls> <source src='
                                    + BASE_URL+ data.post_user_data[0].file_name
                                    + ' type="video/mp4"></video>'
@@ -1839,8 +1842,8 @@ var lan_code = {"english":[{"login":"Login",
 													}*/
 													
 													//$("#showVId").css('display','');
-													img_to_show=BASE_URL+ mmc.replace(".mp4",".jpg");
-													img_to_show1=BASE_URL+ mmc;
+													img_to_show=data.post_user_data[0].file_name;
+													img_to_show1=data.post_user_data[0].file_name;
 													
 													$('#postimg').click(function() {
 																		var ref = window.open(BASE_URL+'video/view/'
@@ -7153,7 +7156,8 @@ var lan_code = {"english":[{"login":"Login",
 													loc_log : current_lng,
 													loc_lat : current_lat,
                                                     userid : user_id,
-                                                  file_type_name:img_to_show_type
+                                                  file_type_name:img_to_show_type,
+                                                  type : edit_val
 												};
                                                   
                                                  // alert(JSON.stringify(login))
@@ -7174,6 +7178,7 @@ var lan_code = {"english":[{"login":"Login",
 																if (data.update.length > 0) {
 																	if (data.update[0] == 'sucess') {
 																		alertSS('Post Uploaded Successfully');
+                                                       edit_val = 0;
 																	} else {
 																		alertSS('Video Updated Successfully');
 																	}
