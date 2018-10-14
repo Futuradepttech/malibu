@@ -3738,15 +3738,14 @@ var lan_code = {"english":[{"login":"Login",
 											success : function(data, textStatus,
 													jQxhr) {
 												//alert(JSON.stringify(data));
+                                       if(data.status == 'no_data'){
+                                       $('#not_noresult').show();
+                                       loading_done();
+                                       return;
+                                       }
 												if (data.notification.length > 0) {
+                                       
 													$('#noti_count').css('display','');
-//                                                    if(data.notification[0].unread==0){
-//                                                        $('#noti_count').css('display','none');
-//                                                    }else if(data.notification[0].unread > 7){
-//                                                        $('#noti_count').text('7+');
-//                                                    }else{
-//                                                        $('#noti_count').text(data.notification[0].unread);
-//                                                    }
 													all(data.notification);
 													
 												} else {
@@ -3858,7 +3857,7 @@ var lan_code = {"english":[{"login":"Login",
                                                       + '" class="ui-grid-a" style="width: 100%;padding:2% 5%;background-color:#9FC5E8;border-bottom:1px solid #808080;"><img class="ui-block-a" src="'+bb+'" style="width: 45px; height: 45px;"><div class="ui-block-b" style="margin-left: 10px; width: 80%; padding-top: 3px;"><label id="unamee" data-value="'+data[i].user_id+'"  style="color: #000000; font-size: small; font-weight: bold; text-transform: none; text-shadow: none;">'
                                                       + data[i].name
                                                       + '</label><label class="ptag" id="user_msg" style="width: 95%; text-transform: none; text-shadow: none; font-size: x-small; font-weight: normal; color: #747474;text-overflow: ellipsis">'
-                                                      + ' You have update your password Sucessfully.</label></div></div>');
+                                                      + ' You have updated your password Sucessfully.</label></div></div>');
                        
                        
                      
@@ -7164,9 +7163,6 @@ var lan_code = {"english":[{"login":"Login",
                                                   postId : user_postId
 												};
                                                   
-                                                  alert(JSON.stringify(login))
-                                                  
-                                                 // alert(JSON.stringify(login))
                                                   
 												$.ajax({
 															url : BASE_URL
@@ -7180,11 +7176,11 @@ var lan_code = {"english":[{"login":"Login",
 																	textStatus,
 																	jQxhr) {
 																console.log(JSON.stringify(data));
-
+                                                                edit_val = 0;
 																if (data.update.length > 0) {
 																	if (data.update[0] == 'sucess') {
 																		alertSS('Post Uploaded Successfully');
-                                                       edit_val = 0;
+                                                       
 																	} else if(data.update[0] == 'update') {
                                                        alertSS('Post Updated Successfully');
                                                        
