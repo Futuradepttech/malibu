@@ -7164,7 +7164,7 @@ var lan_code = {"english":[{"login":"Login",
                                                   postId : user_postId
 												};
                                                   
-                                                  alert(JSON.stringify(login))
+                                                 // alert(JSON.stringify(login))
                                                   
                                                  // alert(JSON.stringify(login))
                                                   
