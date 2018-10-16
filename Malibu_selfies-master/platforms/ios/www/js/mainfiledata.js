@@ -7163,12 +7163,9 @@ var lan_code = {"english":[{"login":"Login",
                                                   postId : user_postId
 												};
                                                   
-<<<<<<< HEAD
                                                  // alert(JSON.stringify(login))
                                                   
                                                  // alert(JSON.stringify(login))
-=======
->>>>>>> f415e75351cb4f7eb500aa42e10e8e6cefb2e53f
                                                   
 												$.ajax({
 															url : BASE_URL
