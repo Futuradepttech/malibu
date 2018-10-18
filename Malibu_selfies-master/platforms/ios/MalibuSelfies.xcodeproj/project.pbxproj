@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
 		06334FE70C1D4C94A16E8BCA /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = F9112A9DAC774A1FAA6623E7 /* CDVDevice.m */; };
@@ -13,7 +12,6 @@
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1DC9DB4A9AF04818A4AE77ED /* CDVVibration.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8C0E17232B4E52BBFB8367 /* CDVVibration.m */; };
-		1F830AA4B3B0405FB6A2CE30 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A98FFAAABA664EAB8FDABC18 /* CDVStatusBar.m */; };
 		1FC865ADFC0F4CB785B85F3E /* CDVIonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = FB87689682744D6D83953B96 /* CDVIonicKeyboard.m */; };
 		2074449C756E442DA2A0BE2C /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 860B6BEE16744CB78182480D /* Toast.m */; };
 		22D52D942A354B5584C9324E /* CDVNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C7A3B41EF2B48758C511CA0 /* CDVNotification.m */; };
@@ -54,6 +52,7 @@
 		E62BE4F378144468B04702BE /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F51A7A2623F045C1A84B4A27 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EF1BDCF800024F3999F5D827 /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = B40B8E5FCE2D471EA2EB14A3 /* CDVViewController+SplashScreen.m */; };
 		F959F23A9A9B45BD826E36D8 /* PushwooshInboxUI in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DB4A871A8934402A60C88DB /* PushwooshInboxUI */; };
+		B3FC39F6719E4CBA8C9ED33F /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = BA276E1F9D654309A89ED3A2 /* CDVStatusBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,7 +94,6 @@
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* MalibuSelfies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MalibuSelfies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DB4A871A8934402A60C88DB /* PushwooshInboxUI */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = PushwooshInboxUI; path = "MalibuSelfies/Plugins/pushwoosh-cordova-plugin/PushwooshInboxUI"; sourceTree = "<group>"; };
-		2046CA2D576F4F048F554ABC /* CDVStatusBar.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVStatusBar.h; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; };
 		25CA582299D74490B7B749E3 /* CDVLocalFilesystem.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVLocalFilesystem.h; path = "cordova-plugin-file/CDVLocalFilesystem.h"; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29C3676815404F2381F6FAA2 /* libstdc++.dylib */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
@@ -140,7 +138,6 @@
 		9C9FAA19A7294A7B9222EDB8 /* libz.dylib */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		A329582CD36D4581B19F3AC7 /* NativePageTransitions.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = NativePageTransitions.m; path = com.telerik.plugins.nativepagetransitions/NativePageTransitions.m; sourceTree = "<group>"; };
 		A56667E9C77E46E9AC97DB0A /* CDVSplashScreen.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = CDVSplashScreen.h; path = "cordova-plugin-splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; };
-		A98FFAAABA664EAB8FDABC18 /* CDVStatusBar.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVStatusBar.m; path = "cordova-plugin-statusbar/CDVStatusBar.m"; sourceTree = "<group>"; };
 		ACF5C58EE5BF423F83CBB853 /* CDVViewController+SplashScreen.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "CDVViewController+SplashScreen.h"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.h"; sourceTree = "<group>"; };
 		B0C9E24D2B1F4F3B9DB6B2F3 /* NSString+SSURLEncoding.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "NSString+SSURLEncoding.m"; path = "cordova-plugin-x-socialsharing/NSString+SSURLEncoding.m"; sourceTree = "<group>"; };
 		B40B8E5FCE2D471EA2EB14A3 /* CDVViewController+SplashScreen.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = "CDVViewController+SplashScreen.m"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.m"; sourceTree = "<group>"; };
@@ -172,6 +169,8 @@
 		F9A4CF17EEDF4245B96DE0B0 /* PushwooshInboxUI.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = PushwooshInboxUI.h; path = "pushwoosh-cordova-plugin/ios/PushwooshInboxUI.h"; sourceTree = "<group>"; };
 		FB87689682744D6D83953B96 /* CDVIonicKeyboard.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVIonicKeyboard.m; path = "cordova-plugin-ionic-keyboard/CDVIonicKeyboard.m"; sourceTree = "<group>"; };
 		FFACB07DD4734A8980B3FD3B /* PushNotification.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = PushNotification.h; path = "pushwoosh-cordova-plugin/ios/PushNotification.h"; sourceTree = "<group>"; };
+		BA276E1F9D654309A89ED3A2 /* CDVStatusBar.m */ = {isa = PBXFileReference; name = "CDVStatusBar.m"; path = "cordova-plugin-statusbar/CDVStatusBar.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		D30DD09AF7DB4D2098CF8949 /* CDVStatusBar.h */ = {isa = PBXFileReference; name = "CDVStatusBar.h"; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,8 +334,6 @@
 				B40B8E5FCE2D471EA2EB14A3 /* CDVViewController+SplashScreen.m */,
 				A56667E9C77E46E9AC97DB0A /* CDVSplashScreen.h */,
 				ACF5C58EE5BF423F83CBB853 /* CDVViewController+SplashScreen.h */,
-				A98FFAAABA664EAB8FDABC18 /* CDVStatusBar.m */,
-				2046CA2D576F4F048F554ABC /* CDVStatusBar.h */,
 				2B8C0E17232B4E52BBFB8367 /* CDVVibration.m */,
 				CAC1A8A8A9C64E9F81CAFB57 /* CDVVibration.h */,
 				B0C9E24D2B1F4F3B9DB6B2F3 /* NSString+SSURLEncoding.m */,
@@ -360,6 +357,8 @@
 				582198D9F7604C239E1E855E /* CDVGlobalization.h */,
 				D8186C41AF074C3F98FEB53D /* Canvas2ImagePlugin.m */,
 				7EE8B123DC4549E8AC0B59DE /* Canvas2ImagePlugin.h */,
+				BA276E1F9D654309A89ED3A2 /* CDVStatusBar.m */,
+				D30DD09AF7DB4D2098CF8949 /* CDVStatusBar.h */,
 			);
 			name = Plugins;
 			path = MalibuSelfies/Plugins;
@@ -505,7 +504,6 @@
 				1FC865ADFC0F4CB785B85F3E /* CDVIonicKeyboard.m in Sources */,
 				A1C34565AEFC47409D409282 /* CDVSplashScreen.m in Sources */,
 				EF1BDCF800024F3999F5D827 /* CDVViewController+SplashScreen.m in Sources */,
-				1F830AA4B3B0405FB6A2CE30 /* CDVStatusBar.m in Sources */,
 				1DC9DB4A9AF04818A4AE77ED /* CDVVibration.m in Sources */,
 				6E10C4AB710D46A29382A615 /* NSString+SSURLEncoding.m in Sources */,
 				C6915C93825B483B87C29CA5 /* SocialSharing.m in Sources */,
@@ -515,6 +513,7 @@
 				12A1A56553B947E081364BEB /* VideoCapturePlus.m in Sources */,
 				9F7FA9E19FD04E3CB7DAC94E /* CDVGlobalization.m in Sources */,
 				28CB13ACC9B64CF686E95D1A /* Canvas2ImagePlugin.m in Sources */,
+				B3FC39F6719E4CBA8C9ED33F /* CDVStatusBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
