@@ -20,7 +20,7 @@
 	var currentpage = '';
 	var cap_to_show='';
 	var new_img_vid=0;
-
+var checkedVal = '';
 	var galleryFlag;
 	
 	//For CHat
@@ -4619,7 +4619,7 @@ var lan_code = {"english":[{"login":"Login",
 		$(document).on("pageshow","#login",function() {
 							console.log("DATA>>>");
 							mytopmargin();
-
+alert(checkedVal)
                        var set_lang = localStorage.getItem('lang_select');
                        if(set_lang == null){
                        localStorage.setItem("lang_select", "en_en");
@@ -5794,6 +5794,8 @@ var lan_code = {"english":[{"login":"Login",
 							$("#logout").click(function() {
 												//loading();
                                                localStorage.clear();
+                                               localStorage.removeItem("userid");
+                                               localStorage.removeItem("lang_select");
                                                $.mobile.changePage("login.html", {
                                                                    changeHash : true
                                                                    });
@@ -8405,6 +8407,10 @@ var lan_code = {"english":[{"login":"Login",
                                                                    
                                                                    if (data.status == 'success') {
                                                                       // alert('Login Successfully');
+                                                                   var checkedValue = $('#remb_me').is(":checked");
+                                                                   alert(username)
+                                                                   checkedVal = username
+                                                                   localStorage.setItem("checkedval", user_id);
                                                                    $('#username').val('');
                                                                    $('#password').val('');
                                                                    user_id = data.users[0].id;
