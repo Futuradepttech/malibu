@@ -48,6 +48,10 @@
         <param name="ios-package" value="CDVSplashScreen" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" />
+        <param name="onload" value="true" />
+    </feature>
     <feature name="Vibration">
         <param name="ios-package" value="CDVVibration" />
     </feature>
@@ -102,6 +106,7 @@
     <preference name="PaginationBreakingMode" value="page" />
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="CameraUsesGeolocation" value="false" />
+<<<<<<< HEAD
     <preference name="StatusBarBackgroundColor" value="#000000" />
     <feature name="StatusBar">
         <param name="ios-package" value="CDVStatusBar" />
@@ -110,4 +115,9 @@
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#43D3F7" />
     <preference name="StatusBarStyle" value="default" />
+=======
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="StatusBarBackgroundColor" value="#000000" />
+>>>>>>> fca7e4ee6d9fd41cb1f30d94476769c497acf13a
 </widget>
