@@ -4619,12 +4619,20 @@ var lan_code = {"english":[{"login":"Login",
 		$(document).on("pageshow","#login",function() {
 							console.log("DATA>>>");
 							mytopmargin();
-alert(checkedVal)
+//alert(checkedVal)
                        var set_lang = localStorage.getItem('lang_select');
                        if(set_lang == null){
                        localStorage.setItem("lang_select", "en_en");
                        }
                        setTimeout(function(){
+                                  
+                       var cred_login = localStorage.getItem('logincred');
+                       var parse_logincred = JSON.parse(cred_login)
+                                  if(localStorage.getItem('checkedval') == "true"){
+                                  $("#username").val(parse_logincred.uname)
+                                   $("#password").val(parse_logincred.upass)
+                                  }
+                                  
                        var set_lang = localStorage.getItem('lang_select');
                        if(set_lang == "en_en"){
                        $('#login_btn').html(lan_code.english[0].login)
@@ -5796,6 +5804,7 @@ alert(checkedVal)
                                                localStorage.clear();
                                                localStorage.removeItem("userid");
                                                localStorage.removeItem("lang_select");
+                                               //alert(localStorage.getItem('checkedval'))
                                                $.mobile.changePage("login.html", {
                                                                    changeHash : true
                                                                    });
@@ -6253,7 +6262,11 @@ alert(checkedVal)
 				alertSS("Blog Show");
 			});
 			$("#logout").click(function() {
-                               localStorage.clear();
+                               //localStorage.clear();
+                               localStorage.removeItem("userid");
+                               localStorage.removeItem("lang_select");
+                               
+                               
                                $.mobile.changePage("login.html", {
                                                    changeHash : true
                                                    });
@@ -6632,7 +6645,7 @@ alert(checkedVal)
 							//mytopmargin();
 							document.removeEventListener("backbutton",back,false);
 							var width = $(window).width();
-							var height = $(window).height() - 290;
+							var height = $(window).height() - 240;
 							console.log(height);
 							$('.ui-content').css("width", width + "px");
 							$('.ui-content').css("height", height + "px");
@@ -6652,15 +6665,15 @@ alert(checkedVal)
 								var gap=($(window).height()-width-200)/2;
 								$('#contentimg').attr('height',width);
 								$('#contentimg').attr('width',width);
-								$('#contentimg').css({'width':width,'height':width,'text-align':'center'});
-								$('#frameImg').css({'width':width,'height':width,'text-align':'center'});
+								$('#contentimg').css({'width':width,'height':width,'text-align':'center','margin-top':(gap+'px')});
+								$('#frameImg').css({'width':width,'height':width,'text-align':'center','margin-top':(gap+'px')});
 								$('#id_logo').css({'margin-top': '165px','margin-right':'55px'});
 							}else{
 								var gap=($(window).height()-width-190)/2;
 								$('#contentimg').attr('height',width);
 								$('#contentimg').attr('width',width);
-								$('#contentimg').css({'width':width,'height':width,'text-align':'center'});
-								$('#frameImg').css({'width':width,'height':width,'text-align':'center'});
+								$('#contentimg').css({'width':width,'height':width,'text-align':'center','margin-top':(gap+'px')});
+								$('#frameImg').css({'width':width,'height':width,'text-align':'center','margin-top':(gap+'px')});
 								$('#id_logo').css({'margin-top': '100px','margin-right':'20px'});
 								$("div[data-role='footer']").css({'height':'22.6%'});
 							}
@@ -7168,6 +7181,7 @@ alert(checkedVal)
                                                  // alert(JSON.stringify(login))
                                                   
                                                  // alert(JSON.stringify(login))
+
                                                   
 												$.ajax({
 															url : BASE_URL
@@ -8408,9 +8422,11 @@ alert(checkedVal)
                                                                    if (data.status == 'success') {
                                                                       // alert('Login Successfully');
                                                                    var checkedValue = $('#remb_me').is(":checked");
-                                                                   alert(username)
-                                                                   checkedVal = username
-                                                                   localStorage.setItem("checkedval", user_id);
+                                                                   var logincred = {"uname":username,"upass":password}
+                                                                   
+                                                            localStorage.setItem("logincred", JSON.stringify(logincred));
+                                                                   
+                                                                   localStorage.setItem("checkedval", checkedValue);
                                                                    $('#username').val('');
                                                                    $('#password').val('');
                                                                    user_id = data.users[0].id;
