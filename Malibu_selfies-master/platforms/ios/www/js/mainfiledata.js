@@ -1210,7 +1210,9 @@ var lan_code = {"english":[{"login":"Login",
 						jpic='img/suer_profile.png';
 					}
 					console.log(data[i].conversation_id);
-					$('#msg_list').append('<li id="'+data[i].conversation_id+'" data-value="'+data[i].conversation_id+'" style="width:97%;height:55px;text-align:center;padding:0px;margin:0px;margin-top:5px;display:inline-block;"><div class="ui-grid-a" style="text-align:center;">	<img class="ui-block-a" src="'+jpic+'"	style="height: 45px; width: 45px;margin-left:8px;">	<div class="ui-block-b" style="margin-left:8px;">	<label	style="text-transform: none; text-align: left; text-shadow: none; font-weight: bold; font-size: medium; color: black;">'+data[i].user_name+'</label>	<p	style="text-transform: none; text-align: left; text-shadow: none; font-size: medium; font-weight: lighter; color: #a9a9a9;">'+data[i].last_message+'</p>	</div>	</div>   <div style="height:1px;width:100%;background:#a9a9a9;float:left;"></div>	</li>');
+                       if(data[i].uname != 'ashu'){
+					$('#msg_list').append('<li id="'+data[i].userid+'" data-value="'+data[i].userid+'" style="width:97%;height:55px;text-align:center;padding:0px;margin:0px;margin-top:5px;display:inline-block;"><div class="ui-grid-a" style="text-align:center;">	<img class="ui-block-a" src="'+jpic+'"	style="height: 45px; width: 45px;margin-left:8px;">	<div class="ui-block-b" style="margin-left:8px;">	<label	style="text-transform: none; text-align: left; text-shadow: none; font-weight: bold; font-size: medium; color: black;">'+data[i].uname+'</label>	<p	style="text-transform: none; text-align: left; text-shadow: none; font-size: medium; font-weight: lighter; color: #a9a9a9;"></p>	</div>	</div>   <div style="height:1px;width:100%;background:#a9a9a9;float:left;"></div>	</li>');
+                       }
 				}
 				$('#msg_list li').click(function(){
 					var id=$(this).attr('data-value');
@@ -1280,18 +1282,21 @@ var lan_code = {"english":[{"login":"Login",
 			
 			loading();
 			$.ajax({
-						url : BASE_URL + 'api/app/get_all_conversations',
+						url : BASE_URL+'get_all_conversations.php',
 						dataType : 'json',
 						type : 'post',
 						contentType : 'application/x-www-form-urlencoded',
 						data : {
-							user_id : user_id
+							userid : user_id
 						},
 						success : function(data, textStatus,jQxhr) {
+                   
+                  // alert(data.chat.length)
+                   
 							console.log(JSON.stringify(data));
-							if (data.status == '1') {
-								if(data.data.length>0){
-									show_msg(data.data);									
+							if (data.chat.length > 0) {
+								if(data.chat.length>0){
+									show_msg(data.chat);
 								}else{
 									alertSS("No Messages");
 									loading_done();
@@ -1350,7 +1355,7 @@ var lan_code = {"english":[{"login":"Login",
 				for(var i=0;i<data.length;i++){
 					//var dt = new Date(data[i].created+' UTC');
 					//var dt = new Date(data[i].created);
-					var dt=dateFromString(data[i].created+' UTC');
+					var dt=dateFromString(data[i].created_date+' UTC');
 					var time = dt.getHours() + ":" + dt.getMinutes();
 					console.log(data[i].created+"<><><>"+dt.toString());
 					var jpic=BASE_URL+data[i].profile_pic;
@@ -1358,15 +1363,16 @@ var lan_code = {"english":[{"login":"Login",
 						jpic='img/suer_profile.png';
 					}
 					
-					if(data[i].sender_id != user_id){
+					if(data[i].s_id != user_id){
 						if(ValidURL(data[i].message)){
-							$('#chat_list').append('<li	id="'+data[i].message_id+'" data-value="'+data[i].message+'" style="background: transparent; background-color: transparent; width: 100%;margin-top:10px;">	<div class="ui-grid-b" style="background: transparent;padding-left:5px;margin-left:6%;"><div class="ui-block-a"	style="width: 15%; background: transparent; float: left;">	<img style="width: 40px; height: 40px;" src="'+jpic+'"></div>	<img class="ui-block-b" src="img/left_icon_ic.png"	style="height: 27px; width: 27px; margin-top: 10px; background-repeat: no-repeat; background-size: cover;"><div class="ui-block-c" style="background: white; padding: 6px 12px; border-radius: 8px; width: 70%;">	<label	style="text-transform: none; text-shadow: none; text-align: left; font-weight: bold; font-size: medium; width: 90%;">'+data[i].name+'</label><p	style="text-transform: none; text-shadow: none; text-align: left; font-weight: lighter; font-size: small; width: 90%; white-space: pre-line; word-wrap: break-word;color:#009AFD;text-decoration: underline; ">'+data[i].message+'</p>	<label	style="text-transform: none; text-shadow: none; text-align: left; color: #93cbe2; font-size: small;">'+time+'</label>	</div>	</div></li>');						
+                       data[i].name = 'ashu';
+                       $('#chat_list').append('<li	id="'+data[i].id+'" data-value="'+data[i].message+'" style="background: transparent; background-color: transparent; width: 100%;margin-top:10px;">	<div class="ui-grid-b" style="background: transparent;padding-left:5px;margin-left:6%;"><div class="ui-block-a"	style="width: 15%; background: transparent; float: left; display:none;">	<img style="width: 40px; height: 40px;" src="'+jpic+'"></div>	<img class="ui-block-b" src="img/left_icon_ic.png"	style="height: 27px; width: 27px; margin-top: 10px; background-repeat: no-repeat; background-size: cover;"><div class="ui-block-c" style="background: white; padding: 6px 12px; border-radius: 8px; width: 70%;">	<label	style="text-transform: none; text-shadow: none; text-align: left; font-weight: bold; font-size: medium; width: 90%;"></label><p	style="text-transform: none; text-shadow: none; text-align: left; font-weight: lighter; font-size: small; width: 90%; white-space: pre-line; word-wrap: break-word;color:#009AFD;text-decoration: underline; ">'+data[i].message+'</p>	<label	style="text-transform: none; text-shadow: none; text-align: left; color: #93cbe2; font-size: small;"></label>	</div>	</div></li>');
 						}else{
-							$('#chat_list').append('<li	id="'+data[i].message_id+'" data-value="'+data[i].message+'" style="background: transparent; background-color: transparent; width: 100%;margin-top:10px;">	<div class="ui-grid-b" style="background: transparent;padding-left:5px;margin-left:6%;"><div class="ui-block-a"	style="width: 15%; background: transparent; float: left;">	<img style="width: 40px; height: 40px;" src="'+jpic+'"></div>	<img class="ui-block-b" src="img/left_icon_ic.png"	style="height: 27px; width: 27px; margin-top: 10px; background-repeat: no-repeat; background-size: cover;"><div class="ui-block-c" style="background: white; padding: 6px 12px; border-radius: 8px; width: 70%;">	<label	style="text-transform: none; text-shadow: none; text-align: left; font-weight: bold; font-size: medium; width: 90%;">'+data[i].name+'</label><p	style="text-transform: none; text-shadow: none; text-align: left; font-weight: lighter; font-size: small; width: 90%; white-space: pre-line; word-wrap: break-word;">'+data[i].message+'</p>	<label	style="text-transform: none; text-shadow: none; text-align: left; color: #93cbe2; font-size: small;">'+time+'</label>	</div>	</div></li>');						
+							$('#chat_list').append('<li	id="'+data[i].id+'" data-value="'+data[i].message+'" style="background: transparent; background-color: transparent; width: 100%;margin-top:10px;">	<div class="ui-grid-b" style="background: transparent;padding-left:5px;margin-left:6%;"><div class="ui-block-a"	style="width: 15%; background: transparent; float: left; display:none;">	<img style="width: 40px; height: 40px;" src="'+jpic+'"></div>	<img class="ui-block-b" src="img/left_icon_ic.png"	style="height: 27px; width: 27px; margin-top: 10px; background-repeat: no-repeat; background-size: cover;"><div class="ui-block-c" style="background: white; padding: 6px 12px; border-radius: 8px; width: 70%;">	<label	style="text-transform: none; text-shadow: none; text-align: left; font-weight: bold; font-size: medium; width: 90%;"></label><p	style="text-transform: none; text-shadow: none; text-align: left; font-weight: lighter; font-size: small; width: 90%; white-space: pre-line; word-wrap: break-word;">'+data[i].message+'</p>	<label	style="text-transform: none; text-shadow: none; text-align: left; color: #93cbe2; font-size: small;"></label>	</div>	</div></li>');
 						}
-					}else if(data[i].sender_id == user_id){
+					}else if(data[i].s_id == user_id){
 						if(ValidURL(data[i].message)){
-							$('#chat_list').append('<li id="'+data[i].message_id+'" data-value="'+data[i].message+'"	style="background: transparent; background-color: transparent; width: 100%;margin-top:10px;">	<div class="ui-grid-b" style="background: transparent;padding-left:5px;margin-left:6%;"><div class="ui-block-a"	style="background: white; padding: 6px 12px; border-radius: 8px; width: 70%;">	<label	style="text-transform: none; text-shadow: none; text-align: left; font-weight: bold; font-size: medium; width: 90%;">'+data[i].name+'</label><p	style="text-transform: none; text-shadow: none; text-align: left; font-weight: lighter; font-size: small; width: 90%; white-space: pre-line; word-wrap: break-word;color:#009AFD;text-decoration: underline;">'+data[i].message+'</p>	<label	style="text-transform: none; text-shadow: none; text-align: left; color: #93cbe2; font-size: small;">'+time+'</label></div><img class="ui-block-b"	src="img/right_icon_ic.png" style="height: 25px; width: 25px; margin-top: 10px; background-repeat: no-repeat; background-size: cover;"><div class="ui-block-c" style="width: 15%; background: transparent; float: right; margin-right: 9px;">	<img style="width: 40px; height: 40px;" src="'+jpic+'"></div></div></li>');
+							$('#chat_list').append('<li id="'+data[i].id+'" data-value="'+data[i].message+'"	style="background: transparent; background-color: transparent; width: 100%;margin-top:10px;">	<div class="ui-grid-b" style="background: transparent;padding-left:5px;margin-left:6%;"><div class="ui-block-a"	style="background: white; padding: 6px 12px; border-radius: 8px; width: 70%;">	<label	style="text-transform: none; text-shadow: none; text-align: left; font-weight: bold; font-size: medium; width: 90%;">'+data[i].name+'</label><p	style="text-transform: none; text-shadow: none; text-align: left; font-weight: lighter; font-size: small; width: 90%; white-space: pre-line; word-wrap: break-word;color:#009AFD;text-decoration: underline;"></p>	<label	style="text-transform: none; text-shadow: none; text-align: left; color: #93cbe2; font-size: small;"></label></div><img class="ui-block-b"	src="img/right_icon_ic.png" style="height: 25px; width: 25px; margin-top: 10px; background-repeat: no-repeat; background-size: cover;"><div class="ui-block-c" style="width: 15%; background: transparent; float: right; margin-right: 9px; display:none;">	<img style="width: 40px; height: 40px;" src="'+jpic+'"></div></div></li>');
 						}else if(findUrls(data[i].message)!=""){
 							console.log("adsj sd");
 							var arr=[];
@@ -1390,9 +1396,9 @@ var lan_code = {"english":[{"login":"Login",
 									stradd+='<p id="msgclk" data-value="'+res[j]+'"	style="text-transform: none; text-shadow: none; text-align: left; font-weight: lighter; font-size: small; white-space: pre-line; word-wrap: break-word;display:inline-block;padding-left:3px;">'+res[j]+'</p>';
 								}
 							}
-							$('#chat_list').append('<li id="'+data[i].message_id+'" data-value="'+data[i].message+'"	style="background: transparent; background-color: transparent; width: 100%;margin-top:10px;">	<div class="ui-grid-b" style="background: transparent;padding-left:5px;margin-left:6%;"><div class="ui-block-a"	style="background: white; padding: 6px 12px; border-radius: 8px; width: 70%;">	<label	style="text-transform: none; text-shadow: none; text-align: left; font-weight: bold; font-size: medium; width: 90%;">'+data[i].name+'</label>'+stradd+'	<label	style="text-transform: none; text-shadow: none; text-align: left; color: #93cbe2; font-size: small;">'+time+'</label></div><img class="ui-block-b"	src="img/right_icon_ic.png" style="height: 25px; width: 25px; margin-top: 10px; background-repeat: no-repeat; background-size: cover;"><div class="ui-block-c" style="width: 15%; background: transparent; float: right; margin-right: 9px;">	<img style="width: 40px; height: 40px;" src="'+jpic+'"></div></div></li>');
+                       $('#chat_list').append('<li id="'+data[i].id+'" data-value="'+data[i].message+'"	style="background: transparent; background-color: transparent; width: 100%;margin-top:10px;">	<div class="ui-grid-b" style="background: transparent;padding-left:5px;margin-left:26%;"><div class="ui-block-a"	style="background: #dcf8c6; padding: 6px 12px; border-radius: 8px; width: 90%;">	<label	style="text-transform: none; text-shadow: none; text-align: left; font-weight: bold; font-size: medium; width: 90%;"></label>'+stradd+'	<label	style="text-transform: none; text-shadow: none; text-align: left; color: #93cbe2; font-size: small;"></label></div><img class="ui-block-b"	src="img/right_icon_ic.png" style="height: 25px; width: 25px; margin-top: 10px; background-repeat: no-repeat; background-size: cover;"><div class="ui-block-c" style="width: 15%; background: transparent; float: right; margin-right: 9px; display:none;">	<img style="width: 40px; height: 40px;" src="'+jpic+'"></div></div></li>');
 						}else{
-							$('#chat_list').append('<li id="'+data[i].message_id+'" data-value="'+data[i].message+'"	style="background: transparent; background-color: transparent; width: 100%;margin-top:10px;">	<div class="ui-grid-b" style="background: transparent;padding-left:5px;margin-left:6%;"><div class="ui-block-a"	style="background: white; padding: 6px 12px; border-radius: 8px; width: 70%;">	<label	style="text-transform: none; text-shadow: none; text-align: left; font-weight: bold; font-size: medium; width: 90%;">'+data[i].name+'</label><p	style="text-transform: none; text-shadow: none; text-align: left; font-weight: lighter; font-size: small; width: 90%; white-space: pre-line; word-wrap: break-word;">'+data[i].message+'</p>	<label	style="text-transform: none; text-shadow: none; text-align: left; color: #93cbe2; font-size: small;">'+time+'</label></div><img class="ui-block-b"	src="img/right_icon_ic.png" style="height: 25px; width: 25px; margin-top: 10px; background-repeat: no-repeat; background-size: cover;"><div class="ui-block-c" style="width: 15%; background: transparent; float: right; margin-right: 9px;">	<img style="width: 40px; height: 40px;" src="'+jpic+'"></div></div></li>');
+							$('#chat_list').append('<li id="'+data[i].id+'" data-value="'+data[i].message+'"	style="background: transparent; background-color: transparent; width: 100%;margin-top:10px;">	<div class="ui-grid-b" style="background: transparent;padding-left:5px;margin-left:26%;"><div class="ui-block-a"	style="background: #dcf8c6; padding: 6px 12px; border-radius: 8px; width: 90%;">	<label	style="text-transform: none; text-shadow: none; text-align: left; font-weight: bold; font-size: medium; width: 90%;"></label><p	style="text-transform: none; text-shadow: none; text-align: left; font-weight: lighter; font-size: small; width: 90%; white-space: pre-line; word-wrap: break-word;">'+data[i].message+'</p>	<label	style="text-transform: none; text-shadow: none; text-align: left; color: #93cbe2; font-size: small;"></label></div><img class="ui-block-b"	src="img/right_icon_ic.png" style="height: 25px; width: 25px; margin-top: 10px; background-repeat: no-repeat; background-size: cover;"><div class="ui-block-c" style="width: 15%; background: transparent; float: right; margin-right: 9px; display:none;">	<img style="width: 40px; height: 40px;" src="'+jpic+'"></div></div></li>');
 						}
 					}else{
 						console.log('NO MY Chat');
@@ -1524,22 +1530,22 @@ var lan_code = {"english":[{"login":"Login",
 				if(mmp.length > 0){
 				if(msg!='' || msg.length>0) {
 					
-					loading();
+					//loading();
 					$.ajax({
-								url : BASE_URL + 'api/app/conversation_temp',
+								url : BASE_URL + 'conversation.php',
 								dataType : 'json',
 								type : 'post',
 								contentType : 'application/x-www-form-urlencoded',
 								data : {
-									conversation_id : conversation_id,
+									//conversation_id : conversation_id,
 									sender_id : user_id,
-									receiver_id:to_view_profile,
+									receiver_id:conversation_id,
 									message: msg
 								},
 								success : function(data, textStatus,jQxhr) {
 									console.log(JSON.stringify(data));
-									loading_done();
-									if (data.status == '1') {
+									//loading_done();
+									if (data.register[0] == 'sucess') {
 										//var dt = new Date(data.data.created+' UTC');
 										//var dt = new Date(data.data.created);
 										var dt=dateFromString(data.data.created+' UTC');
@@ -1636,9 +1642,9 @@ var lan_code = {"english":[{"login":"Login",
 			
 		function refresh(){	
 			console.log(conversation_id);
-			loading();
+			//loading();
 			$.ajax({
-						url : BASE_URL + 'api/app/get_conversation_temp',
+						url : BASE_URL + 'get_conversation.php',
 						dataType : 'json',
 						type : 'post',
 						contentType : 'application/x-www-form-urlencoded',
@@ -1648,25 +1654,29 @@ var lan_code = {"english":[{"login":"Login",
 						},
 						success : function(data, textStatus,jQxhr) {
 							console.log(JSON.stringify(data));
-							if (data.status == '1') {
+							if (data.chat.length > 0) {
 								
-									if(data.receiver_profile.profile_pic==''){
-										$('#user_pic').attr('src','img/suer_profile.png');
-									}else{
-										$('#user_pic').attr('src',BASE_URL+data.receiver_profile.profile_pic);										
-									}
+//                                    if(data.receiver_profile.profile_pic==''){
+//                                        $('#user_pic').attr('src','img/suer_profile.png');
+//                                    }else{
+//                                        $('#user_pic').attr('src',BASE_URL+data.receiver_profile.profile_pic);
+//                                    }
 
-									$('#user_name').text(data.receiver_profile.user_name);
-									to_view_profile=data.receiver_profile.id;
-									sender_name=data.sender_profile.user_name;
-									sender_pic=data.sender_profile.profile_pic;
-									if(data.data.length>0){
-										show_msg(data.data);	
+                   
+                  // $('#user_pic').attr('src','img/suer_profile.png');
+                   //$('#user_name').text('Ashutosh');
+                   
+//                                    $('#user_name').text(data.receiver_profile.user_name);
+//                                    to_view_profile=data.receiver_profile.id;
+//                                    sender_name=data.sender_profile.user_name;
+//                                    sender_pic=data.sender_profile.profile_pic;
+									if(data.chat.length>0){
+										show_msg(data.chat);
 									}else{
 									console.log("No Chat");
 									
 								}
-									loading_done();
+								//	loading_done();
 							}else{
 								console.log(data.message);
 								to_view_profile=for_chat_user_id;
@@ -1690,8 +1700,15 @@ var lan_code = {"english":[{"login":"Login",
 			});
 			
 		}	
-			refresh();
-			$('#refresh').click(function(){
+			
+//
+                      setInterval(function(){
+                                  refresh();
+                                  }, 5000);
+                       refresh();
+		
+                       
+                       $('#refresh').click(function(){
 				refresh();
 			});
 			
@@ -1701,35 +1718,67 @@ var lan_code = {"english":[{"login":"Login",
 				$('#refresh').css('display','');
 			}
 			
-			$.ajax({
-						url : BASE_URL
-								+ 'api/app/get_user_profile',
-						dataType : 'json',
-						type : 'post',
-						contentType : 'application/x-www-form-urlencoded',
-						data : {user_id:user_id},
-						success : function(data,
-								textStatus, jQxhr) {
-							console.log(JSON
-									.stringify(data));
-							if (data.profile.length > 0) {
-								//console.log(data.data);
-								sender_name=data.profile[0].user_name;
-								sender_pic=data.profile[0].profile_pic;
-								if(data.profile[0].profile_pic=='' || data.profile[0].profile_pic == BASE_URL){
-									sender_pic='';
-								}
-								
-							} else {
-								alertSS(data.data);
-							}
-						},
-						error : function(jqXhr, textStatus,
-								errorThrown) {
-							console.log(errorThrown);
-							alertSS('Server Error');
-						}
-					});
+//            $.ajax({
+//                        url : url : BASE_URL+'profile.php',
+//                        dataType : 'json',
+//                        type : 'post',
+//                        contentType : 'application/x-www-form-urlencoded',
+//                        data : {user_id:user_id},
+//                        success : function(data,
+//                                textStatus, jQxhr) {
+//                            console.log(JSON
+//                                    .stringify(data));
+//                            if (data.profile.length > 0) {
+//                                //console.log(data.data);
+//                                sender_name=data.profile[0].user_name;
+//                                sender_pic=data.profile[0].profile_pic;
+//                                if(data.profile[0].profile_pic=='' || data.profile[0].profile_pic == BASE_URL){
+//                                    sender_pic='';
+//                                }
+//
+//                            } else {
+//                                alertSS(data.data);
+//                            }
+//                        },
+//                        error : function(jqXhr, textStatus,
+//                                errorThrown) {
+//                            console.log(errorThrown);
+//                            alertSS('Server Error');
+//                        }
+//                    });
+                       
+                       
+                       $.ajax({
+                              url : BASE_URL+'profile.php',
+                              dataType : 'json',
+                              type : 'post',
+                              contentType : 'application/x-www-form-urlencoded',
+                              data : {
+                              userid : conversation_id
+                              },
+                              success : function(data, textStatus,
+                                                 jQxhr) {
+                              //console.log(JSON.stringify(data));
+                              if (data.profile.length > 0) {
+                              sender_name = data.profile[0].user_name;
+                              sender_pic = BASE_URL+data.profile[0].profile_pic;
+                              if(data.profile[0].profile_pic=='' || data.profile[0].profile_pic == BASE_URL){
+                              sender_pic='';
+                              }
+                              $('#user_pic').attr('src',sender_pic);
+                              $('#user_name').text(sender_name);
+                              } else {
+                              console.log(data.data);
+                              }
+                              },
+                              error : function(jqXhr, textStatus,
+                                               errorThrown) {
+                              console.log(errorThrown);
+                              alertSS('Server Error');
+                              }
+                              });
+                       
+                       
 			
 		});
 		
