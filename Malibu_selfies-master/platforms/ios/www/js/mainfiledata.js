@@ -1210,7 +1210,8 @@ var lan_code = {"english":[{"login":"Login",
 						jpic='img/suer_profile.png';
 					}
 					console.log(data[i].conversation_id);
-                       if(data[i].uname != 'ashu'){
+                       var UName = localStorage.getItem('user_name');
+                       if(data[i].uname != UName){
 					$('#msg_list').append('<li id="'+data[i].userid+'" data-value="'+data[i].userid+'" style="width:97%;height:55px;text-align:center;padding:0px;margin:0px;margin-top:5px;display:inline-block;"><div class="ui-grid-a" style="text-align:center;">	<img class="ui-block-a" src="'+jpic+'"	style="height: 45px; width: 45px;margin-left:8px;">	<div class="ui-block-b" style="margin-left:8px;">	<label	style="text-transform: none; text-align: left; text-shadow: none; font-weight: bold; font-size: medium; color: black;">'+data[i].uname+'</label>	<p	style="text-transform: none; text-align: left; text-shadow: none; font-size: medium; font-weight: lighter; color: #a9a9a9;"></p>	</div>	</div>   <div style="height:1px;width:100%;background:#a9a9a9;float:left;"></div>	</li>');
                        }
 				}
@@ -8478,6 +8479,7 @@ var lan_code = {"english":[{"login":"Login",
                                                                    $('#password').val('');
                                                                    user_id = data.users[0].id;
                                                                    localStorage.setItem("userid", user_id);
+                                                                   localStorage.setItem("user_name", data.users[0].user_name);
                                                                    $.mobile.changePage("dashboard.html",{changeHash : true});
                                                                    
                                                                    } else {

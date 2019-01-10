@@ -6473,7 +6473,7 @@ var lan_code = {"english":[{"login":"Login",
 							var height = $(window).height() - 240;
 							console.log(height);
 							$('.ui-content').css("width", width + "px");
-							$('.ui-content').css("height", height + "px");
+							//$('.ui-content').css("height", height + "px");
 							console.log($('.ui-content').height());
 							//var frame_name='frame0.png';
 							var frame_name = '';
