@@ -6630,7 +6630,7 @@ var lan_code = {"english":[{"login":"Login",
 							//mytopmargin();
 							document.removeEventListener("backbutton",back,false);
 							var width = $(window).width();
-							var height = $(window).height() - 240;
+							var height = $(window).height() - 290;
 							console.log(height);
 							$('.ui-content').css("width", width + "px");
 							$('.ui-content').css("height", height + "px");
@@ -6650,15 +6650,15 @@ var lan_code = {"english":[{"login":"Login",
 								var gap=($(window).height()-width-200)/2;
 								$('#contentimg').attr('height',width);
 								$('#contentimg').attr('width',width);
-								$('#contentimg').css({'width':width,'height':width,'text-align':'center','margin-top':(gap+'px')});
-								$('#frameImg').css({'width':width,'height':width,'text-align':'center','margin-top':(gap+'px')});
+								$('#contentimg').css({'width':width,'height':width,'text-align':'center'});
+								$('#frameImg').css({'width':width,'height':width,'text-align':'center'});
 								$('#id_logo').css({'margin-top': '165px','margin-right':'55px'});
 							}else{
 								var gap=($(window).height()-width-190)/2;
 								$('#contentimg').attr('height',width);
 								$('#contentimg').attr('width',width);
-								$('#contentimg').css({'width':width,'height':width,'text-align':'center','margin-top':(gap+'px')});
-								$('#frameImg').css({'width':width,'height':width,'text-align':'center','margin-top':(gap+'px')});
+								$('#contentimg').css({'width':width,'height':width,'text-align':'center'});
+								$('#frameImg').css({'width':width,'height':width,'text-align':'center'});
 								$('#id_logo').css({'margin-top': '100px','margin-right':'20px'});
 								$("div[data-role='footer']").css({'height':'22.6%'});
 							}
@@ -7163,12 +7163,9 @@ var lan_code = {"english":[{"login":"Login",
                                                   postId : user_postId
 												};
                                                   
-<<<<<<< HEAD
                                                  // alert(JSON.stringify(login))
                                                   
                                                  // alert(JSON.stringify(login))
-=======
->>>>>>> f415e75351cb4f7eb500aa42e10e8e6cefb2e53f
                                                   
 												$.ajax({
 															url : BASE_URL

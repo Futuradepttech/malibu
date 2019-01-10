@@ -34,9 +34,6 @@
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.futuradept.malibuselfies"
         },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.futuradept.malibuselfies"
-        },
         "cordova-plugin-vibration": {
             "PACKAGE_NAME": "com.futuradept.malibuselfies"
         },
@@ -62,6 +59,9 @@
             "PACKAGE_NAME": "com.futuradept.malibuselfies"
         },
         "org.devgeeks.Canvas2ImagePlugin": {
+            "PACKAGE_NAME": "com.futuradept.malibuselfies"
+        },
+        "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.futuradept.malibuselfies"
         }
     },

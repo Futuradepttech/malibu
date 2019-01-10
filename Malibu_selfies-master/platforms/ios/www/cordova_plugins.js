@@ -271,14 +271,6 @@ module.exports = [
     ]
   },
   {
-    "id": "cordova-plugin-statusbar.statusbar",
-    "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
-    "pluginId": "cordova-plugin-statusbar",
-    "clobbers": [
-      "window.StatusBar"
-    ]
-  },
-  {
     "id": "cordova-plugin-vibration.notification",
     "file": "plugins/cordova-plugin-vibration/www/vibration.js",
     "pluginId": "cordova-plugin-vibration",
@@ -347,6 +339,14 @@ module.exports = [
     "clobbers": [
       "window.canvas2ImagePlugin"
     ]
+  },
+  {
+    "id": "cordova-plugin-statusbar.statusbar",
+    "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+    "pluginId": "cordova-plugin-statusbar",
+    "clobbers": [
+      "window.StatusBar"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -361,7 +361,6 @@ module.exports.metadata =
   "cordova-plugin-inappbrowser": "3.0.0",
   "cordova-plugin-ionic-keyboard": "2.0.5",
   "cordova-plugin-splashscreen": "5.0.2",
-  "cordova-plugin-statusbar": "2.4.2",
   "cordova-plugin-vibration": "3.1.0",
   "cordova-plugin-whitelist": "1.3.3",
   "es6-promise-plugin": "4.2.2",
@@ -371,7 +370,8 @@ module.exports.metadata =
   "cordova-plugin-compat": "1.2.0",
   "nl.x-services.plugins.videocaptureplus": "1.3.0",
   "cordova-plugin-globalization": "1.11.0",
-  "org.devgeeks.Canvas2ImagePlugin": "0.6.0"
+  "org.devgeeks.Canvas2ImagePlugin": "0.6.0",
+  "cordova-plugin-statusbar": "2.4.2"
 };
 // BOTTOM OF METADATA
 });
